@@ -1,0 +1,82 @@
+<div class="full-page login-page"
+     style="background-image: url('../../../assets/img/bg17.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;">
+    <div class="content">
+        <div class=" container">
+            <div class=" col-lg-4 col-md-6 ml-auto mr-auto">
+                <form id="LoginValidation" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                    <div class=" card card-login card-white">
+                        <!----------------------- HEADER ---------------------------->
+                        <div class=" card-header">
+                            <img alt="" src="../../../assets/img/card-primary.png" />
+                            <h1 class=" card-title">Log in</h1>
+                        </div>
+                        <!----------------------- BODY ---------------------------->
+                        <div class=" card-body">
+
+                            <!----------------------- Input Mail ---------------------------->
+                            <div class=" form-group has-label"
+                                 [ngClass]="{
+                              'has-danger':
+                              ((focusTouched || login) && loginF.email.errors) ||
+                              (loginF.email.value != '' && loginF.email.errors),
+                              'has-success':
+                              !loginF.email.errors
+                              }">
+                                <label> Addresse Mail  * </label>
+                                <input
+                                        class=" form-control"
+                                        formControlName="email"
+                                        (focus)="focusTouched = true"
+                                        name="email"
+                                        type="email"
+                                />
+                                <label
+                                        class="error"
+                                        *ngIf="((focusTouched || login) && loginF.email.errors) ||
+                               (loginF.email.value != '' && loginF.email.errors)">
+                                    Merci de renseigner une adresse mail valide
+                                </label>
+                            </div>
+
+                            <!----------------------- Input Password ---------------------------->
+                            <div class=" form-group has-label"
+                                 [ngClass]="{
+                              'has-danger':
+                                ((focusTouched1 || login) && loginF.password.errors) ||
+                                (loginF.password.value != '' && loginF.password.errors),
+                              'has-success':
+                              !loginF.password.errors
+                              }"
+                            >
+                                <label> Mot de Passe * </label>
+                                <input
+                                        class=" form-control"
+                                        name="password"
+                                        formControlName="password"
+                                        (focus)="focusTouched1 = true"
+                                        type="password"
+                                />
+                                <label
+                                        class="error"
+                                        *ngIf=" ((focusTouched1 || login) && loginF.password.errors) ||
+                                (loginF.password.value != '' && loginF.password.errors)">
+                                    Ce champ est requis
+                                </label>
+                            </div>
+                            <!----------------------- Champs requis ---------------------------->
+                            <div class="category form-category" style="color: #0e84f8">* champs requis</div>
+                        </div>
+
+                        <!----------------------- FOOTER ---------------------------->
+                        <div class=" card-footer">
+                            <button class=" btn btn-primary btn-lg btn-block" type="submit">Se connecter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

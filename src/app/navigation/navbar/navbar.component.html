@@ -1,0 +1,237 @@
+<nav class=" navbar navbar-expand-lg navbar-absolute" [ngClass]="{'bg-white': isCollapsed === false, 'navbar-transparent': isCollapsed === true}">
+  <div class=" container-fluid">
+    <div class=" navbar-wrapper">
+      <div class=" navbar-minimize d-inline">
+        <button
+          class=" minimize-sidebar btn btn-link btn-just-icon"
+          tooltil="Sidebar toggle"
+          placement="right"
+          (click)="minimizeSidebar()">
+          <i class=" tim-icons icon-align-center visible-on-sidebar-regular">
+          </i>
+          <i class=" tim-icons icon-bullet-list-67 visible-on-sidebar-mini">
+          </i>
+        </button>
+      </div>
+      <div class=" navbar-toggle d-inline">
+        <button class=" navbar-toggler" type="button" (click)="sidebarOpen()">
+          <span class=" navbar-toggler-bar bar1"> </span>
+          <span class=" navbar-toggler-bar bar2"> </span>
+          <span class=" navbar-toggler-bar bar3"> </span>
+        </button>
+      </div>
+      <!--a class=" navbar-brand" href="javascript:void(0)"> {{ getTitle() }} </a-->
+      <div class=" customBreadcumb">
+        <nav aria-label="breadcrumb" role="navigation" [ngSwitch]="breadcrumb.length">
+
+          <ol *ngSwitchCase="0" class=" breadcrumb">
+          </ol>
+
+          <ol *ngSwitchCase="1" class=" breadcrumb" style="text-transform: uppercase">
+            <li aria-current="page" class=" breadcrumb-item active">
+              {{breadcrumb[0].label}}
+            </li>
+          </ol>
+
+          <ol *ngSwitchCase="2" class=" breadcrumb">
+            <li class=" breadcrumb-item ml-2" style="text-transform: uppercase">
+              <a routerLinkActive="router-link-active" [routerLink]="breadcrumb[0].url">
+                {{breadcrumb[0].label}}
+              </a>
+            </li>
+            <li aria-current="page" class=" breadcrumb-item active">
+              {{breadcrumb[1].label}}
+            </li>
+          </ol>
+
+          <ol *ngSwitchCase="3" class=" breadcrumb">
+            <li class=" breadcrumb-item ml-2" style="text-transform: uppercase">
+              <a routerLinkActive="router-link-active" [routerLink]="breadcrumb[0].url">
+                {{breadcrumb[0].label}}
+              </a>
+            </li>
+            <li aria-current="page" class=" breadcrumb-item">
+              <a routerLinkActive="router-link-active" [routerLink]="breadcrumb[1].url">
+                {{breadcrumb[1].label}}
+              </a>
+            </li>
+            <li aria-current="page" class=" breadcrumb-item active">
+              {{breadcrumb[2].label}}
+            </li>
+          </ol>
+
+          <ol *ngSwitchCase="4" class=" breadcrumb">
+            <li class=" breadcrumb-item ml-2" style="text-transform: uppercase">
+              <a routerLinkActive="router-link-active" [routerLink]="breadcrumb[0].url">
+                {{breadcrumb[0].label}}
+              </a>
+            </li>
+            <li aria-current="page" class=" breadcrumb-item">
+              <a routerLinkActive="router-link-active" [routerLink]="breadcrumb[1].url">
+                {{breadcrumb[1].label}}
+              </a>
+            </li>
+            <li aria-current="page" class=" breadcrumb-item">
+              <a routerLinkActive="router-link-active" [routerLink]="breadcrumb[2].url">
+                {{breadcrumb[2].label}}
+              </a>
+            </li>
+            <li aria-current="page" class=" breadcrumb-item active">
+              {{breadcrumb[3].label}}
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <button
+      aria-label="Toggle navigation"
+      class=" navbar-toggler"
+      [attr.aria-expanded]="!isCollapsed"
+      (click)="isCollapsed = !isCollapsed"
+      id="navigation"
+      type="button">
+      <span class=" navbar-toggler-bar navbar-kebab"> </span>
+      <span class=" navbar-toggler-bar navbar-kebab"> </span>
+      <span class=" navbar-toggler-bar navbar-kebab"> </span>
+    </button>
+
+    <div
+      class=" navbar-collapse"
+      [collapse]="isCollapsed">
+      <ul class=" navbar-nav ml-auto">
+        <li class=" dropdown nav-item" dropdown>
+          <a
+            class=" dropdown-toggle nav-link dropdown-toggle"
+            data-toggle="dropdown"
+            dropdownToggle
+            href="javascript:void(0)"
+            (click)="$event.preventDefault()">
+            <div class=" notification d-none d-lg-block d-xl-block"></div>
+            <i class=" tim-icons icon-sound-wave"> </i>
+            <p class=" d-lg-none">Notifications</p>
+          </a>
+          <ul
+            class=" dropdown-menu dropdown-menu-right dropdown-navbar" *dropdownMenu>
+            <li>
+              <input type="text" style="cursor: pointer; color: #211F3A"
+                     placeholder="Datepicker"
+                     class="form-control"
+                     bsDatepicker
+                     (bsValueChange)="onChangeDate($event)"
+                     [bsValue]="bsValue"
+                     [minDate]="minDate"
+                     [maxDate]="maxDate"
+                     [minMode]="'month'"
+                     [daysDisabled]="[6,0]"
+                     [bsConfig]="bsConfig">
+            </li>
+            <li class=" dropdown-divider"></li>
+            <ng-container *ngFor="let data of dataPeriod">
+            <li class=" nav-link">
+              <a *ngIf="nbMonths===data" class=" nav-item dropdown-item" (click)="onMonths(data)"
+                 style="cursor: pointer; color: #211F3A">
+               Période de {{data}} mois
+              </a>
+              <a *ngIf="nbMonths!==data" class=" nav-item dropdown-item" (click)="onMonths(data)"
+                 style="cursor: pointer; color: #b1b1b3">
+                Période de {{data}} mois
+              </a>
+            </li>
+            </ng-container>
+          </ul>
+        </li>
+        <li class="dropdown nav-item" dropdown placement="bottom left">
+          <a
+            class="nav-link dropdown-toggle"
+            data-toggle="dropdown"
+            dropdownToggle
+            href="#"
+            (click)="$event.preventDefault()">
+            <div class=" photo">
+              <img alt="Profile Photo" src="assets/img/mike.jpg" />
+            </div>
+            <b class=" caret d-none d-lg-block d-xl-block"> </b>
+            <p class=" d-lg-none">Log out</p>
+          </a>
+          <ul
+            class=" dropdown-menu dropdown-navbar dropdown-menu-right"
+            *dropdownMenu>
+            <li class=" nav-link">
+              <a class=" nav-item dropdown-item" href="javascript:void(0)" (click)="onUser()">
+                Mon Compte
+              </a>
+            </li>
+            <li class=" nav-link">
+              <a class=" nav-item dropdown-item" href="javascript:void(0)" (click)="paramModal.show()">
+                Paramètres
+              </a>
+            </li>
+            <li class=" dropdown-divider"></li>
+            <li class=" nav-link">
+              <a class=" nav-item dropdown-item" href="javascript:void(0)" (click)="onLogOut()">
+                Se Déconnecter
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class=" separator d-lg-none"></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!--- MODAL PARAMETER -->
+<div  aria-hidden="true"
+      aria-labelledby="myModalLabel"
+      bsModal
+      class="modal fade"
+      #paramModal="bs-modal"
+      id="myModal"
+      role="dialog"
+      tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <button
+                aria-hidden="true"
+                class="close"
+                data-dismiss="modal"
+                type="button"
+                (click)="paramModal.hide()">
+          <i class="tim-icons icon-simple-remove default-text"> </i>
+        </button>
+        <h4 class="title title-up">Paramètres Graphiques</h4>
+      </div>
+      <div class="modal-body">
+        <div class="adjustments-line mt1">
+          <div class="togglebutton switch-sidebar-mini text-center">
+            <span class="label-switch mr">OFF</span>
+            <bSwitch
+                    [switch-on-color]="'primary'"
+                    [switch-off-text]="' '"
+                    [switch-on-text]="' '"
+                    [(ngModel)]="state"
+                    (click)="onChange($event)"
+            ></bSwitch>
+            <span class="label-switch label-right ml">ON</span>
+          </div>
+        </div>
+        <div class="text-center mt">Thème</div>
+        <div class=" adjustments-line text-center color-change">
+          <div class="togglebutton switch-sidebar-mini">
+            <span class="label-switch mr"> LIGHT MODE </span>
+            <bSwitch
+                    [switch-on-color]="'primary'"
+                    [switch-off-text]="' '"
+                    [switch-on-text]="' '"
+                    [(ngModel)]="dashboardColor"
+                    (click)="onChangeDashboardColor($event)"
+            ></bSwitch>
+            <span class="label-switch label-right ml"> DARK MODE </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
