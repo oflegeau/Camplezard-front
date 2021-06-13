@@ -15,6 +15,12 @@ export class MemberRestService {
   constructor(private http: HttpClient) {
   }
 
+  setPassword() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const date = new Date();
+    return date.getDate() + date.getMonth() + user.uid.substring(0, 10) + date.getFullYear() + user.uid.substring(15, 20);
+  }
+
   // ---------------------------------------------------------------------------------------------- //
   //
   //            GET
@@ -24,8 +30,8 @@ export class MemberRestService {
   // MemberList //
   getMemberList(): Observable<HttpResponse<Member[]>> {
     const headers = new HttpHeaders()
-      .set('Authorization', 'Basic ' + btoa(localStorage.getItem('login') + ':' + localStorage.getItem('password')))
-      .set('Content-Type', 'application/json');
+        .set('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + this.setPassword()))
+        .set('Content-Type', 'application/json');
 
     return this.http.get<Member[]>(this.localurl, {headers, observe: 'response'});
   }
@@ -33,7 +39,7 @@ export class MemberRestService {
   // MemberPhoto List //
   getMemberPhotoList(): Observable<HttpResponse<MemberPhoto[]>> {
     const headers = new HttpHeaders()
-        .set('Authorization', 'Basic ' + btoa(localStorage.getItem('login') + ':' + localStorage.getItem('password')))
+        .set('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + this.setPassword()))
         .set('Content-Type', 'application/json');
 
     return this.http.get<MemberPhoto[]>(this.localurl + '/photo', {headers, observe: 'response'});
@@ -46,8 +52,8 @@ export class MemberRestService {
           sortAsc: boolean,
           sortName: string): Observable<HttpResponse<PageMember>> {
     const headers = new HttpHeaders()
-      .set('Authorization', 'Basic ' + btoa(localStorage.getItem('login') + ':' + localStorage.getItem('password')))
-      .set('Content-Type', 'application/json');
+        .set('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + this.setPassword()))
+        .set('Content-Type', 'application/json');
 
     const paramas = new HttpParams()
       .set('page', page.toString())
@@ -67,16 +73,16 @@ export class MemberRestService {
 
   create(obj: MemberCard): Observable<HttpResponse<Reponse>> {
     const headers = new HttpHeaders()
-      .set('Authorization', 'Basic ' + btoa(localStorage.getItem('login') + ':' + localStorage.getItem('password')))
-      .set('Content-Type', 'application/json');
+        .set('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + this.setPassword()))
+        .set('Content-Type', 'application/json');
 
     return this.http.post<Reponse>(this.localurl + '/create', obj, {headers, observe: 'response'});
   }
 
   createConnect(obj: MemberCard, idConnect: string): Observable<HttpResponse<Connect>> {
     const headers = new HttpHeaders()
-      .set('Authorization', 'Basic ' + btoa(localStorage.getItem('login') + ':' + localStorage.getItem('password')))
-      .set('Content-Type', 'application/json');
+        .set('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + this.setPassword()))
+        .set('Content-Type', 'application/json');
 
     return this.http.post<Connect>(this.localurl + '/create/connect/' + idConnect, obj, {headers, observe: 'response'});
   }
@@ -89,8 +95,8 @@ export class MemberRestService {
 
   update(obj: MemberCard): Observable<HttpResponse<Reponse>> {
     const headers = new HttpHeaders()
-      .set('Authorization', 'Basic ' + btoa(localStorage.getItem('login') + ':' + localStorage.getItem('password')))
-      .set('Content-Type', 'application/json');
+        .set('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + this.setPassword()))
+        .set('Content-Type', 'application/json');
 
     return this.http.put<Reponse>(this.localurl + '/update', obj, {headers, observe: 'response'});
   }
@@ -103,16 +109,16 @@ export class MemberRestService {
 
   delete(id: string): Observable<HttpResponse<Reponse>> {
     const headers = new HttpHeaders()
-      .set('Authorization', 'Basic ' + btoa(localStorage.getItem('login') + ':' + localStorage.getItem('password')))
-      .set('Content-Type', 'application/json');
+        .set('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + this.setPassword()))
+        .set('Content-Type', 'application/json');
 
     return this.http.delete<Reponse>(this.localurl + '/delete/' + id, {headers, observe: 'response'});
   }
 
   deleteConnect(id: string): Observable<HttpResponse<Reponse>> {
     const headers = new HttpHeaders()
-      .set('Authorization', 'Basic ' + btoa(localStorage.getItem('login') + ':' + localStorage.getItem('password')))
-      .set('Content-Type', 'application/json');
+        .set('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + this.setPassword()))
+        .set('Content-Type', 'application/json');
 
     return this.http.delete<Reponse>(this.localurl + '/delete/connect/' + id, {headers, observe: 'response'});
   }

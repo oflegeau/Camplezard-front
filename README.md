@@ -44,9 +44,9 @@ We are very excited to share this dashboard with you and we look forward to hear
 
 ## Demo
 
-| Dashboard | User Profile | Tables | Maps | Notification |
+| Dashboard | UserConnected Profile | Tables | Maps | Notification |
 | --- | --- | --- | --- | --- |
-| [![Start page](./github-assets/dashboard-page.png)](https://demos.creative-tim.com/black-dashboard-pro-angular/#/dashboard) | [![User profile page](./github-assets/user-page.png)](https://demos.creative-tim.com/black-dashboard-pro-angular/#/pages/profile) | [![Tables page ](./github-assets/table-page.png)](https://demos.creative-tim.com/black-dashboard-pro-angular/#/tables/extended) | [![Maps Page](./github-assets/map-page.png)](https://demos.creative-tim.com/black-dashboard-pro-angular/#/maps/full-screen) | [![Notification page](./github-assets/notifications-page.png)](https://demos.creative-tim.com/black-dashboard-pro-angular/#/components/notifications)
+| [![Start page](./github-assets/dashboard-page.png)](https://demos.creative-tim.com/black-dashboard-pro-angular/#/dashboard) | [![UserConnected profile page](./github-assets/user-page.png)](https://demos.creative-tim.com/black-dashboard-pro-angular/#/pages/profile) | [![Tables page ](./github-assets/table-page.png)](https://demos.creative-tim.com/black-dashboard-pro-angular/#/tables/extended) | [![Maps Page](./github-assets/map-page.png)](https://demos.creative-tim.com/black-dashboard-pro-angular/#/maps/full-screen) | [![Notification page](./github-assets/notifications-page.png)](https://demos.creative-tim.com/black-dashboard-pro-angular/#/components/notifications)
 
 [View More](https://demos.creative-tim.com/black-dashboard-pro-angular/#/dashboard).
 

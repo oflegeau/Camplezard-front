@@ -15,6 +15,6 @@ export class ForbiddenComponent implements OnInit {
   }
 
   onDeco() {
-    this.authService.signOutAccount();
+  //  this.authService.signOutAccount();
   }
 }

@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, NgZone} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
@@ -6,26 +6,36 @@ import {Connect} from '../model/Connect';
 import {AppISetting} from '../../app.interface.setting';
 import {ToastrService} from 'ngx-toastr';
 import {AngularFireAuth} from '@angular/fire/auth';
-import firebase from 'firebase';
 import {ConnectRestService} from '../rest/connect.rest.service';
 import {Reponse} from '../model/Reponse';
+
+import firebase from 'firebase/app';
+import 'firebase/auth';        // for authentication
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  userData: Observable<firebase.User>;
-
+  userData: any;
   private user: Connect;
   private obs: BehaviorSubject<Connect>;
 
   constructor(private connectRestService: ConnectRestService,
               private toastrService: ToastrService,
               private router: Router,
+              public ngZone: NgZone, // NgZone service to remove outside scope warning
               private angularFireAuth: AngularFireAuth) {
-    this.userData = angularFireAuth.authState;
     this.user = null;
     this.obs = new BehaviorSubject<Connect>(this.user);
+
+    this.angularFireAuth.authState.subscribe(user => {
+      if (user) {
+          this.userData = user;
+          localStorage.setItem('user', JSON.stringify(this.userData));
+      } else {
+          localStorage.setItem('user', null);
+      }
+    });
   }
 
   // ---------------------------------------------------------------------------------------- //
@@ -36,169 +46,142 @@ export class AuthService {
 
   // ---------------------------------------------------------------------------------------- //
 
-  getId(): string {
-    return localStorage.getItem('password');
-  }
+  // Sign in with email/password
+  signIn(email, password) {
+    return this.angularFireAuth.signInWithEmailAndPassword(email, password)
+        .then((result) => {
+            result.user.getIdToken(true).then( (reps) => {
+                localStorage.setItem('token', reps);
+                this.updateUser(result.user).then((rep) => {
+                    if (rep === true) {
+                        this.toastrService.success('<span class=" tim-icons icon-simple-add"></span>vous êtes identifié !',
+                            'Gestion sécurisée des Accès', AppISetting.toastOptions);
 
-  setId(id: string) {
-    localStorage.setItem('password', id);
-  }
-
-  getLogin(): string {
-    return localStorage.getItem('login');
-  }
-
-  setLogin(idToken: string) {
-    localStorage.setItem('login', idToken);
-  }
-
-  getRole(): number {
-    return parseInt(localStorage.getItem('role'), 10);
-  }
-
-  setrole(role: number) {
-    if (role > 0) {
-      localStorage.setItem('role', role.toString());
-    } else {
-      localStorage.setItem('role', '0');
-    }
-  }
-
-  // ---------------------------------------------------------------------------------------- //
-  // FIREBASE CLIENT FUNCTIONS
-  // ---------------------------------------------------------------------------------------- //
-
-  isSignInAccount(): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      this.angularFireAuth.authState.subscribe(
-        (user) => {
-          if (user) {
-            if (user.displayName !== null) {
-              user.getIdToken(true).then(idToken => {
-                this.updateAccount(idToken, user.displayName).then(
-                    () => {
-                      resolve(true);
-                    }, () => {
-                      this.user = null;
-                      this.router.navigate(['/fullscreen/login']);
-                      reject(false);
-                    });
-              });
-            }
-          } else {
-            this.router.navigate(['/fullscreen/login']);
-            reject(false);
-          }
-      });
-    });
-  }
-
-  // ----------------------------------- //
-
-  signInAccount(email: string, password: string) {
-    return new Promise((resolve, reject) => {
-      this.angularFireAuth.signInWithEmailAndPassword(email, password).then(
-        () => {
-          resolve();
-        },
-        (error) => {
-          reject(error);
-        }
-      );
-    });
-  }
-
-  signOutAccount() {
-    this.setLogin('');
-    this.setId('');
-    this.setrole(0);
-    this.user = null;
-    this.obs.next(this.user);
-
-    this.angularFireAuth.signOut().then(r => this.router.navigate(['/fullscreen/login']));
-  }
-
-  // ---------------------------------------------------------------------------------------- //
-  // CONNECT FUNCTIONS
-  // ---------------------------------------------------------------------------------------- //
-
-  createAccount(email: string, password: string, name: string, surname: string, phone: string): Promise<string> {
-    return new Promise((resolve, reject) => {
-      this.angularFireAuth.createUserWithEmailAndPassword(email, password).then(
-        (data) => {
-          this.user = null;
-          data.user.getIdToken().then(
-            (idToken) => {
-              this.connectRestService.create(idToken, name, surname, phone).subscribe(
-                (data1: HttpResponse<Reponse>) => {
-                  if (data1.ok && data1.status === AppISetting.HTTP_CREATED) {
-                    resolve(data1.body.ids);
-                  }
-                },
-                (err: HttpErrorResponse) => {
-                  if (err.status === AppISetting.HTTP_FORBIDDEN) {
-                    this.router.navigate(['/fullscreen/forbidden']);
-                  } else if (err.status === AppISetting.HTTP_UNAUTHORIZED) {
-                    this.signOutAccount();
-                  } else {
-                    console.log(err.error.message);
-                    reject(err.error.httpMessage);
-                  }
+                        this.ngZone.run(() => {
+                            this.router.navigate(['/app/home']);
+                        });
+                    } else {
+                        console.log('Pb Serveur');
+                    }
                 });
-            },
-            (error) => reject(error));
-        }, (res) => reject(res));
-    });
+            });
+        }).catch((error) => {
+            console.log('Pb Firebase');
+            this.toastrService.error('<span class=" tim-icons icon-alert-circle-exc"></span>',error.message,
+                AppISetting.toastOptions);
+        })
   }
 
-  updateAccount(idToken: string, id: string): Promise<boolean> {
-
-    return new Promise((resolve, reject) => {
-      this.connectRestService.getConnect(idToken, id).subscribe(
-        (data: HttpResponse<Connect>) => {
-          if (data.ok && data.status === AppISetting.HTTP_OK) {
-            this.setLogin(idToken);
-            this.setId(id);
-            this.setrole(data.body.role);
-            this.user = data.body;
-            this.obs.next(this.user);
-            resolve(true);
-          } else {
-            if (data.ok && data.status === AppISetting.HTTP_NOTFOUND) {
-              this.setLogin('');
-              this.setId('');
-              this.setrole(0);
-              this.user = null;
-              this.obs.next(this.user);
-              reject(false);
-            }
-          }
-        },
-        (err: HttpErrorResponse) => {
-          if (err.status === AppISetting.HTTP_FORBIDDEN) {
-            this.router.navigate(['/fullscreen/forbidden']);
-          } else if (err.status === AppISetting.HTTP_UNAUTHORIZED) {
-            this.signOutAccount();
-          } else {
-            this.showSidebarMessage('le serveur est arrêté !');
-            console.log(err.error.message);
-            reject(err.error.httpMessage);
-          }
+  signUp(email: string, password: string, name: string, surname: string, phone: string): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            this.angularFireAuth.createUserWithEmailAndPassword(email, password).then(
+                (data) => {
+                    data.user.getIdToken().then(
+                        (idToken) => {
+                            localStorage.setItem('token', idToken);
+                            this.connectRestService.create(idToken, name, surname, phone).subscribe(
+                                (data1: HttpResponse<Reponse>) => {
+                                    if (data1.ok && data1.status === AppISetting.HTTP_CREATED) {
+                                        resolve(true);
+                                    } else {
+                                        reject(false);
+                                        this.toastrService.error('<span class=" tim-icons icon-alert-circle-exc"></span>',
+                                            'Retour HTTP incorrect',
+                                            AppISetting.toastOptions);
+                                    }
+                                },
+                                (err: HttpErrorResponse) => {
+                                    console.log(err.message);
+                                    if (err.status === AppISetting.HTTP_FORBIDDEN) {
+                                        reject(false);
+                                        this.router.navigate(['/forbidden']);
+                                    } else if (err.status === AppISetting.HTTP_UNAUTHORIZED) {
+                                        reject(false);
+                                        this.signOut().then();
+                                    } else {
+                                        reject(false);
+                                        this.toastrService.error('<span class=" tim-icons icon-alert-circle-exc"></span>',
+                                            err.message,
+                                            AppISetting.toastOptions);
+                                    }
+                                });
+                        },
+                        (error) => {
+                            console.log(error.message);
+                            reject(false);
+                            this.toastrService.error('<span class=" tim-icons icon-alert-circle-exc"></span>',
+                                error.message,
+                                AppISetting.toastOptions);
+                        });
+                }, (error) => {
+                    console.log(error.message);
+                    reject(false);
+                    this.toastrService.error('<span class=" tim-icons icon-alert-circle-exc"></span>',
+                        error.message,
+                        AppISetting.toastOptions);
+                });
         });
-    });
   }
 
-  showSidebarMessage(message) {
-    this.toastrService.show(
-        '<span class="now-ui-icons ui-1_bell-53"></span>',
-        message,
-        {
-          timeOut: 4000,
-          closeButton: true,
-          enableHtml: true,
-          toastClass: 'alert alert-danger alert-with-icon',
-          positionClass: 'toast-top-right'
-        }
-    );
+  // Send email verfificaiton when new user sign up
+  sendVerificationMail() {
+    return firebase.auth().currentUser.sendEmailVerification()
+        .then(() => {
+          this.router.navigate(['/verify-email']);
+        })
+  }
+
+  // Reset Forggot password
+  forgotPassword(passwordResetEmail) {
+    return this.angularFireAuth.sendPasswordResetEmail(passwordResetEmail)
+        .then(() => {
+            this.toastrService.success('<span class=" tim-icons icon-simple-add"></span>Mail envoyé ! Vérifiez votre boite mail',
+                'Gestion sécurisée des Accès', AppISetting.toastOptions);
+        }).catch((error) => {
+            this.toastrService.error('<span class=" tim-icons icon-alert-circle-exc"></span>',error.message,
+                AppISetting.toastOptions);
+        })
+  }
+
+  // Returns true when user is looged in and email is verified
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user'));
+    this.updateUser(user).then();
+    return (user !== null && user.emailVerified !== false) ? true : false;
+  }
+
+  updateUser(user): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            if (user.emailVerified === true) {
+                this.connectRestService.getConnect().subscribe(
+                    (data: HttpResponse<Connect>) => {
+                        if (data.ok && data.status === AppISetting.HTTP_OK) {
+                            this.user = data.body;
+                            this.obs.next(this.user);
+                            resolve(true);
+                        } else {
+                            if (data.ok && data.status === AppISetting.HTTP_NOTFOUND) {
+                                this.user = null;
+                                this.obs.next(this.user);
+
+                                this.toastrService.error('<span class=" tim-icons icon-alert-circle-exc"></span>Le serveur ne répond pas',
+                                    'Gestion sécurisée des Accès',
+                                    AppISetting.toastOptions);
+                                reject(false);
+                            }
+                        }
+                    });
+            } else {
+                resolve(true);
+            }
+        });
+    }
+
+  // Sign out
+  signOut() {
+    return this.angularFireAuth.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['/login']);
+    })
   }
 }

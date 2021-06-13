@@ -1,0 +1,233 @@
+<div class="full-page register-page">
+  <div class=" content">
+    <div class=" container">
+      <div class=" row">
+        <div class=" col-md-5 ml-auto">
+          <div class=" info-area info-horizontal mt-5">
+            <div class=" icon icon-warning">
+              <i class=" tim-icons icon-wifi"> </i>
+            </div>
+            <div class=" description">
+              <h3 class=" info-title">Connecté</h3>
+              <p class=" description">
+               La gestion de votre camping municpal à partir d'internet.
+                Paiements sécurisés.
+              </p>
+            </div>
+          </div>
+          <div class=" info-area info-horizontal">
+            <div class=" icon icon-primary">
+              <i class=" tim-icons icon-triangle-right-17"> </i>
+            </div>
+            <div class=" description">
+              <h3 class=" info-title">Respect de votre vie privé</h3>
+              <p class=" description">
+                Site sécurisé, conforme à la protection des données personnelles.
+                N'utilise pas de cookies.
+              </p>
+            </div>
+          </div>
+          <div class=" info-area info-horizontal">
+            <div class=" icon icon-info">
+              <i class=" tim-icons icon-trophy"> </i>
+            </div>
+            <div class=" description">
+              <h3 class=" info-title">Réservations</h3>
+              <p class=" description">
+                Réservez en ligne !
+                <p>Passer un agréable séjour en notre compagnie.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class=" col-md-7 mr-auto">
+          <div class=" card card-register card-white">
+            <div class=" card-header">
+              <img
+                alt="Card image"
+                class=" card-img"
+                src="assets/img/card-primary.png"/>
+              <h4 class=" card-title">Compte</h4>
+            </div>
+            <form [formGroup]="loginForm">
+              <div class=" card-body">
+
+                <div class=" card-body">
+                  <div class=" form-row">
+                    <div    class=" col input-group"
+                            [ngClass]="{ 'input-group-focus': focusName === true,
+                                         'has-danger':     ((focusTouchedName || formOk) && name.errors) ||
+                                                            (name.value != '' && name.errors),
+                                         'has-success':     !name.errors
+                                       }">
+                      <div class=" input-group-prepend">
+                        <div class=" input-group-text">
+                          <i class=" tim-icons icon-email-85"> </i>
+                        </div>
+                      </div>
+                      <input
+                              class=" form-control"
+                              placeholder="Nom"
+                              formControlName="name"
+                              type="text"
+                              (blur)="focusName = false"
+                              (focus)="focusName = true; focusTouchedName=true"
+                      />
+                      <label class="error" *ngIf="((focusTouchedName || formOk) && name.errors) ||
+                                                              (name.value != '' && name.errors)">
+                        Merci de renseigner un Nom Valide (entre 3 et 20 caractères)
+                      </label>
+                    </div>
+                    <div    class=" col input-group"
+                            [ngClass]="{ 'input-group-focus': focusSurname === true,
+                                         'has-danger':     ((focusTouchedSurname || formOk) && surname.errors) ||
+                                                            (surname.value != '' && surname.errors),
+                                         'has-success':     !surname.errors
+                                       }">
+                      <div class=" input-group-prepend">
+                        <div class=" input-group-text">
+                          <i class=" tim-icons icon-email-85"> </i>
+                        </div>
+                      </div>
+                      <input
+                              class=" form-control"
+                              placeholder="Prénom"
+                              formControlName="surname"
+                              type="text"
+                              (blur)="focusSurname = false"
+                              (focus)="focusSurname = true; focusTouchedSurname=true"
+                      />
+                      <label class="error" *ngIf="((focusTouchedSurname || formOk) && surname.errors) ||
+                                                              (surname.value != '' && surname.errors)">
+                        Merci de renseigner un Prénom valide (entre 3 et 20 caractères)
+                      </label>
+                    </div>
+                  </div>
+                  <div class=" form-row">
+                    <div    class=" col input-group"
+                            [ngClass]="{ 'input-group-focus': focusEmail === true,
+                                         'has-danger':     ((focusTouchedEmail || formOk) && email.errors) ||
+                                                            (email.value != '' && email.errors),
+                                         'has-success':     !email.errors
+                                       }">
+                      <div class=" input-group-prepend">
+                        <div class=" input-group-text">
+                          <i class=" tim-icons icon-email-85"> </i>
+                        </div>
+                      </div>
+                      <input
+                              class=" form-control"
+                              placeholder="Email"
+                              formControlName="email"
+                              type="email"
+                              (blur)="focusEmail = false"
+                              (focus)="focusEmail = true; focusTouchedEmail=true"
+                      />
+                      <label class="error" *ngIf="((focusTouchedEmail || formOk) && email.errors) ||
+                                                              (email.value != '' && email.errors)">
+                        Merci de renseigner une adresse mail valide
+                      </label>
+                    </div>
+                    <div    class=" col input-group"
+                            [ngClass]="{ 'input-group-focus': focusPhone === true,
+                                         'has-danger':     ((focusTouchedPhone || formOk) && phone.errors) ||
+                                                            (phone.value != '' && phone.errors),
+                                         'has-success':     !phone.errors
+                                       }">
+                      <div class=" input-group-prepend">
+                        <div class=" input-group-text">
+                          <i class=" tim-icons icon-email-85"> </i>
+                        </div>
+                      </div>
+                      <input
+                              class=" form-control"
+                              placeholder="Téléphone"
+                              formControlName="phone"
+                              type="text"
+                              (blur)="focusPhone = false"
+                              (focus)="focusPhone = true; focusTouchedPhone=true"
+                      />
+                      <label class="error" *ngIf="((focusTouchedPhone || formOk) && phone.errors) ||
+                                                              (phone.value != '' && phone.errors)">
+                        Merci de renseigner un Téléphone (ex. 06 90 90 90 90)
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class=" form-row">
+                    <div    class=" col input-group"
+                            [ngClass]="{ 'input-group-focus': focusPassword === true ,
+                                         'has-danger':    ((focusTouchedPassword || formOk) && password.errors) ||
+                                                           (password.value != '' && password.errors),
+                                         'has-success':    !password.errors}">
+                      <div class=" input-group-prepend">
+                        <div class=" input-group-text">
+                          <i class=" tim-icons icon-lock-circle"> </i>
+                        </div>
+                      </div>
+                      <input
+                              class=" form-control"
+                              placeholder="Password"
+                              formControlName="password"
+                              type="password"
+                              (blur)="focusPassword = false"
+                              (focus)="focusPassword = true; focusTouchedPassword=true"
+                      />
+                      <label class="error" *ngIf=" ((focusTouchedPassword || formOk) && password.errors) ||
+                                                               (password.value != '' && password.errors)">
+                         6 caractères minimum + caractères spéciaux (%_-)
+                      </label>
+                    </div>
+                    <div    class=" col input-group"
+                            [ngClass]="{ 'input-group-focus': focusPassword1 === true ,
+                                                   'has-danger':    ((focusTouchedPassword1 || formOk) && password1.errors) ||
+                                                                     (password1.value != '' && password1.errors),
+                                                   'has-success':    !password1.errors}">
+                      <div class=" input-group-prepend">
+                        <div class=" input-group-text">
+                          <i class=" tim-icons icon-lock-circle"> </i>
+                        </div>
+                      </div>
+                      <input
+                              class=" form-control"
+                              placeholder="Password"
+                              formControlName="password1"
+                              type="password"
+                              (blur)="focusPassword1 = false"
+                              (focus)="focusPassword1 = true; focusTouchedPassword1=true"
+                      />
+                      <label class="error" *ngIf=" ((focusTouchedPassword1 || formOk) && password1.errors) ||
+                                                               (password1.value != '' && password1.errors)">
+                        6 caractères minimum + caractères spéciaux (%_-)
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class=" col form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input"
+                         formControlName="actionDone"
+                         type="checkbox">
+                  <span class=" form-check-sign"> </span> J'ai lu et j'accepte les
+                  <a href="condition"> conditions générales </a> et le
+                  <a href="rules"> règlement intérieur </a>
+                </label>
+              </div>
+
+              <div class=" card-footer">
+                <button *ngIf= "!isProcessed && focusTouchedPassword || focusTouchedPassword1 || focusTouchedEmail || focusTouchedName || focusTouchedSurname || focusTouchedPhone"
+                        type="button"
+                        class="btn btn-primary btn-lg btn-block"
+                        (click)="onLogin()">
+                  Créer le compte
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

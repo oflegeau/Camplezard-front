@@ -47,10 +47,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.fullPage = true;
     this.router.events.subscribe((route: any) => {
       if (route.routerEvent) {
-        this.fullPage = false;
+        this.fullPage = true;
         this.currentUrl = route.routerEvent.url;
-        if (this.currentUrl.includes('/fullscreen')) {
-          this.fullPage = true;
+        if (this.currentUrl.includes('/app')) {
+          this.fullPage = false;
         }
       }
     });
@@ -119,6 +119,8 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.subMembers) {
       this.subMembers.unsubscribe();
     }
+
+    this.authService.signOut();
   }
 
   minimizeSidebar() {

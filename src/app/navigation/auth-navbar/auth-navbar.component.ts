@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import {AuthService} from '../../service/guard/auth.service';
 
 const misc: any = {
   sidebar_mini_active: true
@@ -17,7 +18,9 @@ export class AuthNavbarComponent implements OnInit {
   private listTitles: any[];
   location: Location;
 
-  constructor(location: Location, public toastr: ToastrService) {
+  constructor(location: Location,
+              private authService: AuthService,
+              public toastr: ToastrService) {
     this.location = location;
   }
   minimizeSidebar() {
@@ -61,6 +64,6 @@ export class AuthNavbarComponent implements OnInit {
       }
     }
 
-    return 'Kraken Web App';
+    return 'Application Camping';
   }
 }

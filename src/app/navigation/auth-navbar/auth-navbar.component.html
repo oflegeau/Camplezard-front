@@ -24,27 +24,20 @@
       <span class=" navbar-toggler-bar navbar-kebab">
       </span>
     </button>
-    <div class=" navbar-collapse" [collapse]="isCollapsed" id="navigation">
+    <div class=" navbar-collapse" [collapse]="isCollapsed" id="navigationAuth">
       <ul class=" navbar-nav ml-auto">
         <li class=" nav-item">
-          <a class=" nav-link text-primary" [routerLink]="['/dashboard']">
-            <i class=" tim-icons icon-minimal-left">
-            </i>
-            Back to Dashboard
-          </a>
-        </li>
-        <li class=" nav-item">
-          <a class=" nav-link" [routerLink]="['/fullscreen/login']">
+          <a class=" nav-link" [routerLink]="['/login']">
             <i class=" tim-icons icon-single-02">
             </i>
-            Login
+            Se connecter
           </a>
         </li>
         <li class=" nav-item">
-          <a class=" nav-link" [routerLink]="['/fullscreen/lock']">
-            <i class=" tim-icons icon-lock-circle">
+          <a class=" nav-link" href="javascript:void(0)" (click)="authService.signOut()">
+            <i class=" tim-icons icon-user-run">
             </i>
-            Lock
+            Se Déconnecter
           </a>
         </li>
       </ul>

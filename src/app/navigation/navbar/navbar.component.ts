@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
 import {AuthService} from '../../service/guard/auth.service';
 import {AppIBreadCrumb} from '../../app.interface.breadcrumb';
 import {Subscription} from 'rxjs';
-import {BsDatepickerConfig, BsDatepickerViewMode} from 'ngx-bootstrap/datepicker';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
+import {BsModalService} from 'ngx-bootstrap';
 import {AppISetting} from '../../app.interface.setting';
 import {GlobalVariable, PeriodMonths} from '../../service/model/GlobalVariable';
 import {GlobalVariableService} from '../../service/service/global.variable.service';
@@ -238,9 +238,5 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   onUser() {
     this.router.navigate(['/user']);
-  }
-
-  onLogOut() {
-    this.authService.signOutAccount();
   }
 }

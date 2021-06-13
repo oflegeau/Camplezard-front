@@ -36,9 +36,9 @@ export class MemberListService {
         },
         (err: HttpErrorResponse) => {
           if (err.ok === false) { switch (err.status) {
-            case AppISetting.HTTP_NOTFOUND:   this.router.navigate(['/fullscreen/not-found']); break;
-            case AppISetting.HTTP_FORBIDDEN:  this.router.navigate(['/fullscreen/forbidden']); break;
-            case AppISetting.HTTP_UNAUTHORIZED: this.authService.signOutAccount(); break;
+            case AppISetting.HTTP_NOTFOUND:   this.router.navigate(['/not-found']); break;
+            case AppISetting.HTTP_FORBIDDEN:  this.router.navigate(['/forbidden']); break;
+            case AppISetting.HTTP_UNAUTHORIZED: this.authService.signOut(); break;
             default: if (err.error) {console.log(err.error.message); } break;
           }} else {console.log('Pb HTTP REST'); }});
     return this.obsList.asObservable();
@@ -56,9 +56,9 @@ export class MemberListService {
           },
           (err: HttpErrorResponse) => {
             if (err.ok === false) { switch (err.status) {
-              case AppISetting.HTTP_NOTFOUND:   this.router.navigate(['/fullscreen/not-found']); break;
-              case AppISetting.HTTP_FORBIDDEN:  this.router.navigate(['/fullscreen/forbidden']); break;
-              case AppISetting.HTTP_UNAUTHORIZED: this.authService.signOutAccount(); break;
+              case AppISetting.HTTP_NOTFOUND:   this.router.navigate(['/not-found']); break;
+              case AppISetting.HTTP_FORBIDDEN:  this.router.navigate(['/forbidden']); break;
+              case AppISetting.HTTP_UNAUTHORIZED: this.authService.signOut(); break;
               default: if (err.error) {console.log(err.error.message); } break;
             }} else {console.log('Pb HTTP REST'); }
             reject(null);

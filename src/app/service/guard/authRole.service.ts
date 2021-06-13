@@ -16,7 +16,7 @@ export class RoleGuard implements CanActivate {
     let role = {admin: false, manager: false, user: false};
     role = JSON.parse(next.data.role);
 
-    switch (this.authService.getRole()) {
+    switch (this.authService.userData.role) {
       case AppISetting.ROLE_ADMIN:
         if (role.admin) {
           return true;
@@ -35,7 +35,7 @@ export class RoleGuard implements CanActivate {
     }
 
     // navigate to not found page
-    this.router.navigate(['/fullscreen/forbidden']);
+    this.router.navigate(['/forbidden']);
     return false;
   }
 }

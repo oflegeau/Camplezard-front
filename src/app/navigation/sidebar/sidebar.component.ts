@@ -37,7 +37,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '/user',
-    title: 'User Profile',
+    title: 'UserConnected Profile',
     type: 'link',
     icontype: 'tim-icons icon-chart-pie-36 iconBlack',
   },

@@ -1,0 +1,33 @@
+
+<div class="full-page login-page"
+     style="background-image: url('../../../assets/img/bg17.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;">
+    <div class="content">
+        <div class=" container">
+            <div class=" col-lg-4 col-md-6 ml-auto mr-auto">
+                <div class=" card card-login card-white">
+                    <div class=" card-header">
+                        <img alt="" src="../../../assets/img/card-primary.png" />
+                        <h1 class=" card-title">Check</h1>
+                    </div>
+                    <div class=" card-body" *ngIf="authService.userData as user">
+                        <h5 class="text-center text-primary">Nous avons envoyé un email de confirmation à <strong>{{user.email}}</strong>.</h5>
+                        <h5 class="text-center text-primary">Merci de vérifier vos mails (vérifiez courriers indésirables) et suivre la procédure</h5>
+                    </div>
+                    <div class=" card-footer">
+                        <button type="button" (click)="authService.sendVerificationMail()"
+                                class="btn btn-primary btn-lg btn-block">
+                            Envoyer le mail de vérification
+                        </button>
+                        <button type="button" (click)="authService.signOut()"
+                                class="btn btn-primary btn-lg btn-block">
+                            J'ai compris
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

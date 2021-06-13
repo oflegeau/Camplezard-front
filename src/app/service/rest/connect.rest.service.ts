@@ -14,6 +14,12 @@ export class ConnectRestService {
   constructor(private http: HttpClient) {
   }
 
+  setPassword() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const date = new Date();
+    return date.getDate() + date.getMonth() + user.uid.substring(0, 10) + date.getFullYear() + user.uid.substring(15, 20);
+  }
+
   // ---------------------------------------------------------------------------------------------- //
   //
   //            GET
@@ -22,7 +28,7 @@ export class ConnectRestService {
 
   getList(): Observable<HttpResponse<Connect[]>> {
     const headers = new HttpHeaders()
-      .set('Authorization', 'Basic ' + btoa(localStorage.getItem('login') + ':' + localStorage.getItem('password')))
+      .set('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + this.setPassword()))
       .set('Content-Type', 'application/json');
 
     return this.http.get<Connect[]>(this.localurl, {headers, observe: 'response'});
@@ -34,7 +40,7 @@ export class ConnectRestService {
            sortAsc: boolean,
            sortName: string): Observable<HttpResponse<PageConnect>> {
     const headers = new HttpHeaders()
-      .set('Authorization', 'Basic ' + btoa(localStorage.getItem('login') + ':' + localStorage.getItem('password')))
+        .set('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + this.setPassword()))
       .set('Content-Type', 'application/json');
 
     const paramas = new HttpParams()
@@ -47,12 +53,12 @@ export class ConnectRestService {
     return this.http.get<PageConnect>(this.localurl + '/page', {headers, params: paramas, observe: 'response'});
   }
 
-  getConnect(idToken: string, id: string): Observable<HttpResponse<Connect>> {
+  getConnect(): Observable<HttpResponse<Connect>> {
     const headers = new HttpHeaders()
-      .set('Authorization', 'Basic ' + btoa(idToken + ':' + id))
+      .set('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + this.setPassword()))
       .set('Content-Type', 'application/json');
 
-    return this.http.get<Connect>(this.localurl + '/last', {headers, observe: 'response'});
+    return this.http.get<Connect>(this.localurl + '/last', {headers , observe: 'response'});
   }
 
   // ---------------------------------------------------------------------------------------------- //
@@ -78,7 +84,7 @@ export class ConnectRestService {
 
   updateRole(idConnect: string, role: number): Observable<HttpResponse<Connect>> {
     const headers = new HttpHeaders()
-      .set('Authorization', 'Basic ' + btoa(localStorage.getItem('login') + ':' + localStorage.getItem('password')))
+      .set('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + this.setPassword()))
       .set('Content-Type', 'application/json');
 
     const paramas = new HttpParams()
@@ -93,7 +99,7 @@ export class ConnectRestService {
 
   update(obj: Connect): Observable<HttpResponse<Connect>> {
     const headers = new HttpHeaders()
-      .set('Authorization', 'Basic ' + btoa(localStorage.getItem('login') + ':' + localStorage.getItem('password')))
+      .set('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + this.setPassword()))
       .set('Content-Type', 'application/json');
 
     return this.http.put<Connect>(this.localurl + '/update', obj, {headers, observe: 'response'});
@@ -107,7 +113,7 @@ export class ConnectRestService {
 
   delete(id: string): Observable<HttpResponse<Reponse>> {
     const headers = new HttpHeaders()
-      .set('Authorization', 'Basic ' + btoa(localStorage.getItem('login') + ':' + localStorage.getItem('password')))
+      .set('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + this.setPassword()))
       .set('Content-Type', 'application/json');
 
     return this.http.delete<Reponse>(this.localurl + '/delete/' + id, {headers, observe: 'response'});
