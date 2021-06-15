@@ -23,7 +23,7 @@ import {VerifyEmailComponent} from './navigation/verify-email/verify-email.compo
 import {HomeUserComponent} from './navigation/home-user/home-user.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '', redirectTo: '/app/home', pathMatch: 'full'},
   { path: 'lock', component: LockComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
@@ -42,28 +42,28 @@ const routes: Routes = [
     },
     canActivate: [AuthGuard],
     children: [{
-      path: '',
-      component: HomeComponent,
-    },
-      {
-        path: 'camping',
-        component: CampingHomeComponent,
-        canActivate: [RoleGuard],
-        data: {
-          role: JSON.stringify({admin: true, manager: true, user: false}),
-          breadcrumb: 'Mon Dashboard',
-        },
-      },
-      {
-        path: 'user',
-        component: UserComponent,
-        canActivate: [RoleGuard],
-        data: {
-          role: JSON.stringify({admin: true, manager: true, user: false}),
-          breadcrumb: 'Mon Compte',
-        },
-      },
-    ]
+                    path: '',
+                    component: HomeComponent,
+                },
+                  {
+                    path: 'camping',
+                    component: CampingHomeComponent,
+                    canActivate: [RoleGuard],
+                    data: {
+                      role: JSON.stringify({admin: true, manager: true, user: false}),
+                      breadcrumb: 'Mon Dashboard',
+                    },
+                  },
+                  {
+                    path: 'user',
+                    component: UserComponent,
+                    canActivate: [RoleGuard],
+                    data: {
+                      role: JSON.stringify({admin: true, manager: true, user: false}),
+                      breadcrumb: 'Mon Compte',
+                    },
+                  },
+                ]
   },
   {
     path: 'app/members',

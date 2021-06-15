@@ -67,13 +67,13 @@ export class ConnectRestService {
   //
   // ---------------------------------------------------------------------------------------------- //
 
-  create(idToken: string, name: string, surname: string, phone: string): Observable<HttpResponse<Reponse>> {
+  create(token: string, name: string, surname: string, phone: string): Observable<HttpResponse<Reponse>> {
     const paramas = new HttpParams()
       .set('name', name)
       .set('surname', surname)
       .set('phone', phone);
 
-    return this.http.post<Reponse>(this.localurl + '/create', idToken, {params: paramas, observe: 'response'});
+    return this.http.post<Reponse>(this.localurl + '/create', token, {params: paramas, observe: 'response'});
   }
 
   // ---------------------------------------------------------------------------------------------- //

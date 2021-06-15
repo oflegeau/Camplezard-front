@@ -26,6 +26,7 @@ export class AuthService {
               public ngZone: NgZone, // NgZone service to remove outside scope warning
               private angularFireAuth: AngularFireAuth) {
     this.user = null;
+    this.userData = null;
     this.obs = new BehaviorSubject<Connect>(this.user);
 
     this.angularFireAuth.authState.subscribe(user => {
@@ -76,7 +77,7 @@ export class AuthService {
         return new Promise((resolve, reject) => {
             this.angularFireAuth.createUserWithEmailAndPassword(email, password).then(
                 (data) => {
-                    data.user.getIdToken().then(
+                    data.user.getIdToken(false).then(
                         (idToken) => {
                             localStorage.setItem('token', idToken);
                             this.connectRestService.create(idToken, name, surname, phone).subscribe(
@@ -91,6 +92,8 @@ export class AuthService {
                                     }
                                 },
                                 (err: HttpErrorResponse) => {
+                                    const userConnected = firebase.auth().currentUser;
+                                    userConnected.delete().then();
                                     console.log(err.message);
                                     if (err.status === AppISetting.HTTP_FORBIDDEN) {
                                         reject(false);
@@ -180,7 +183,9 @@ export class AuthService {
   // Sign out
   signOut() {
     return this.angularFireAuth.signOut().then(() => {
+      localStorage.removeItem('token');
       localStorage.removeItem('user');
+      localStorage.clear();
       this.router.navigate(['/login']);
     })
   }
