@@ -39,6 +39,7 @@ import {RoleGuard} from './service/guard/authRole.service';
 import {AuthGuard} from './service/guard/authGuard.service';
 import {ServiceModule} from './service/service.module';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {CampingModule} from './camping/camping.module';
 
 @NgModule({
     declarations: [
@@ -78,6 +79,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
         ServiceModule,
         NavigationModule,
         MemberModule,
+        CampingModule,
     ],
     providers: [{provide: LOCALE_ID, useValue: 'fr-FR'},
                 AuthService, AuthGuard, RoleGuard,

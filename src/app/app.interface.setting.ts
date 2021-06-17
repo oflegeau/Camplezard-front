@@ -13,8 +13,9 @@ export class AppISetting {
   public static HTTP_FAIL = 417;
   public static HTTP_ERROR = 500;
 
-  public static ROLE_ADMIN = 3;
-  public static ROLE_MANAGER = 2;
+  public static ROLE_ADMIN = 4;
+  public static ROLE_MANAGER = 3;
+  public static ROLE_CUSTOMER = 2;
   public static ROLE_USER = 1;
 
   public static toastOptions = {timeOut: 5000,

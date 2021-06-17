@@ -13,7 +13,8 @@ export class RoleGuard implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-    let role = {admin: false, manager: false, user: false};
+    const connect = JSON.parse(localStorage.getItem('connect'));
+    let role = {admin: false, manager: false, master: false, user: false};
     role = JSON.parse(next.data.role);
 
     switch (this.authService.userData.role) {
@@ -27,6 +28,10 @@ export class RoleGuard implements CanActivate {
           return true;
         }
         break;
+      case AppISetting.ROLE_CUSTOMER:
+        if (role.user) {
+          return true;
+        }
       case AppISetting.ROLE_USER:
         if (role.user) {
           return true;

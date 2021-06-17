@@ -24,6 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public breadcrumbs: AppIBreadCrumb[] = [];
 
   fullPage: boolean;
+  floating: boolean;
   private currentUrl = '';
 
   connect: Connect;
@@ -45,12 +46,17 @@ export class AppComponent implements OnInit, OnDestroy {
     this.sub = null;
 
     this.fullPage = true;
+    this.floating = true;
     this.router.events.subscribe((route: any) => {
       if (route.routerEvent) {
         this.fullPage = true;
+        this.floating = true;
         this.currentUrl = route.routerEvent.url;
-        if (this.currentUrl.includes('/app')) {
+        if (this.currentUrl.includes('/kraken/')) {
           this.fullPage = false;
+        }
+        if (this.currentUrl.includes('/full/')) {
+          this.floating = false;
         }
       }
     });

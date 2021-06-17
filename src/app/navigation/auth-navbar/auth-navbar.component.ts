@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
@@ -17,6 +17,8 @@ export class AuthNavbarComponent implements OnInit {
   isCollapsed = true;
   private listTitles: any[];
   location: Location;
+
+  @Input() floating: boolean;
 
   constructor(location: Location,
               private authService: AuthService,

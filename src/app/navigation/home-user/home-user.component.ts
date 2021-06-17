@@ -20,8 +20,4 @@ export class HomeUserComponent implements OnInit, OnDestroy {
     const body = document.getElementsByTagName('body')[0];
     body.classList.remove('home-user-page');
   }
-
-  onConnect() {
-    this.authService.sendVerificationMail();
-  }
 }

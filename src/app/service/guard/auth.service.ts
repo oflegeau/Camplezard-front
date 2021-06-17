@@ -64,7 +64,9 @@ export class AuthService {
                     } else {
                         console.log('Pb Serveur');
                     }
-                });
+                }, ((err) => {
+                    console.log(err.message);
+                }));
             });
         }).catch((error) => {
             console.log('Pb Firebase');
@@ -146,13 +148,6 @@ export class AuthService {
         })
   }
 
-  // Returns true when user is looged in and email is verified
-  get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-    this.updateUser(user).then();
-    return (user !== null && user.emailVerified !== false) ? true : false;
-  }
-
   updateUser(user): Promise<boolean> {
         return new Promise((resolve, reject) => {
             if (user.emailVerified === true) {
@@ -173,10 +168,39 @@ export class AuthService {
                                 reject(false);
                             }
                         }
-                    });
+                    }, (error => {
+                        console.log(error.message);
+                        reject(false);
+                    }));
             } else {
                 resolve(true);
             }
+        });
+    }
+
+    changePhotoUser(photo : string): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            const connect = JSON.parse(localStorage.getItem('connect'));
+            connect.photo = photo;
+            this.connectRestService.update(connect).subscribe((data: HttpResponse<Connect>) => {
+                if (data.ok && data.status === AppISetting.HTTP_ACCEPTED) {
+                    this.user = data.body;
+                    localStorage.setItem('connect', JSON.stringify(this.user));
+                    this.obs.next(this.user);
+                    resolve(true);
+                } else {
+                    if (data.ok && data.status === AppISetting.HTTP_NOTFOUND) {
+                        this.user = null;
+                        localStorage.setItem('connect', null);
+                        this.obs.next(this.user);
+
+                        this.toastrService.error('<span class=" tim-icons icon-alert-circle-exc"></span>Le serveur ne répond pas',
+                            'Gestion sécurisée des Accès',
+                            AppISetting.toastOptions);
+                    }
+                    resolve(false);
+                }
+            });
         });
     }
 
@@ -185,6 +209,7 @@ export class AuthService {
     return this.angularFireAuth.signOut().then(() => {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      localStorage.removeItem('connect');
       localStorage.clear();
       this.router.navigate(['/login']);
     })
