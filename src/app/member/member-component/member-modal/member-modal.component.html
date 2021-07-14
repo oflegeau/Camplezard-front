@@ -31,11 +31,10 @@
 
                     <div class="form-row">
                         <!----------------------- Input type ---------------------------->
-                        <div class=" form-group">
+                        <div class=" col input-group">
                             <ng-select class="custom" style="width: auto"
                                        [clearable]="false"
-                                       formControlName="type"
-                                       placeholder="Type">
+                                       formControlName="type">
                                 <ng-option *ngFor="let item of types" [value]="item.id">{{item.name}}</ng-option>
                             </ng-select>
                         </div>
@@ -131,27 +130,26 @@
 
                     </div>
 
+                    <div class="form-row mt-4">
                     <app-picture-upload [avatar]="true"
                                         [image]="image"
                                         (output)="getOutputPhoto($event)"></app-picture-upload>
-
+                    </div>
                 </div>
 
                 <!----------------------- FOOTER ---------------------------->
                 <div class="modal-footer d-flex justify-content-end">
                     <button *ngIf= "formMemberCreate &&
-                     (focusTouchedName || focusTouchedSurname || focusTouchedTrigram || focusTouchedCreation
-                     || focusTouchedStart || focusTouchedEnd || focusTouchedDiploma
-                     || focusTouchedType || focusTouchedParttime || focusTouchedPosition)"
+                     (focusTouchedName || focusTouchedSurname || focusTouchedCreation
+                     || focusTouchedType || imageChange)"
                             type="button"
                             class="btn btn-primary btn-lg btn-block"
                             (click)="submitCreate()">
                         Ajouter
                     </button>
                     <button *ngIf= "!formMemberCreate &&
-                       (focusTouchedName || focusTouchedSurname || focusTouchedTrigram || focusTouchedCreation
-                     || focusTouchedStart || focusTouchedEnd || focusTouchedDiploma
-                     || focusTouchedType || focusTouchedParttime || focusTouchedPosition)"
+                     (focusTouchedName || focusTouchedSurname || focusTouchedCreation
+                     || focusTouchedType || imageChange)"
                             type="button"
                             class="btn btn-primary btn-lg btn-block"
                             (click)="submitChange()">

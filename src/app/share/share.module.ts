@@ -17,7 +17,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {BsDatepickerModule} from 'ngx-bootstrap';
 import {GetTypePlacePipe} from './pipe/pipe.place';
 import {ControlPeriodComponent} from './composant/control-period/control-period.component';
-import {GetTypeMemberPipe} from './pipe/pipe.member';
+import {GetTypeMemberPipe, GetTypeRolePipe} from './pipe/pipe.member';
 
 @NgModule({
     imports: [
@@ -44,6 +44,7 @@ import {GetTypeMemberPipe} from './pipe/pipe.member';
         DivBy10Pipe,
         GetTypePlacePipe,
         GetTypeMemberPipe,
+        GetTypeRolePipe,
         IsDateNotNullPipe,
         ModalConfirmDeleteComponent,
         ModalConfirmCreateComponent,
@@ -66,6 +67,7 @@ import {GetTypeMemberPipe} from './pipe/pipe.member';
         IsDateNotNullPipe,
         GetTypePlacePipe,
         GetTypeMemberPipe,
+        GetTypeRolePipe,
         ModalConfirmDeleteComponent,
         ModalConfirmCreateComponent,
         PictureUploadComponent,

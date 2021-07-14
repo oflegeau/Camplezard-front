@@ -1,0 +1,30 @@
+<div class=" content">
+    <section>
+
+        <div class="calendar-container d-flex justify-content-top ">
+            <div class="calendar">
+                <span class="day-name">Lundi</span>
+                <span class="day-name">Mardi</span>
+                <span class="day-name">Mercredi</span>
+                <span class="day-name">Jeudi</span>
+                <span class="day-name">Vendredi</span>
+                <span class="day-name">Samedi</span>
+                <span class="day-name">Dimanche</span>
+
+                <ng-container *ngFor="let data of calendarDates;">
+                    <div [ngClass]="data.getCSS()">{{data.date}}</div>
+                    <ng-container *ngFor="let dataEvent of data.calendarEvents;">
+                        <ng-container *ngFor="let dataEventCSS of dataEvent.getTypeCSS();">
+                        <span class="{{dataEventCSS}}"
+                              style="grid-column:{{data.col}};
+                                   grid-row:{{data.row}};
+                                   background-color:{{dataEvent.color}};">
+                        </span>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
+
+    </section>
+</div>

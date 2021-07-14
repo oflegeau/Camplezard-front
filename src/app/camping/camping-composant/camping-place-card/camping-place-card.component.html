@@ -110,7 +110,7 @@
                         <span class="ml-2">{{place.avis}} avis</span>
                     </p>
                     <a *ngIf="place.status > 2"
-                        class="inside-page__btn inside-page__btn--camping" href="#">
+                        class="inside-page__btn inside-page__btn--camping" routerLink="/app/place/{{place.id}}/2021-03">
                         Calendrier
                     </a>
                 </div>

@@ -1,5 +1,6 @@
-import {AppISetting} from '../interface/app.interface.setting';
+
 import {Pipe, PipeTransform} from '@angular/core';
+import {AppISetting} from '../interface/app.interface.setting';
 
 @Pipe({name: 'getTypeMember'})
 export class GetTypeMemberPipe implements PipeTransform {
@@ -9,89 +10,70 @@ export class GetTypeMemberPipe implements PipeTransform {
     transform(param: number, format: string): string {
         if (format === 'text') {
             switch (param) {
-                case AppISetting.MEMBER_LIKSI:      // tous sauf partis
-                    return 'Liksi';
-                case AppISetting.MEMBER_STRUCT:
-                    return 'Struct.';
-                case AppISetting.MEMBER_PROD:
-                    return 'Prod.';
-                case AppISetting.MEMBER_INTERN:
-                    return 'Stage';
-                case AppISetting.MEMBER_EXT:
-                    return 'Ext.';
+                case AppISetting.MEMBER_ALL:      // tous sauf partis
+                    return 'Tous';
+                case AppISetting.MEMBER_MEMBER:
+                    return 'Membre.';
+                case AppISetting.MEMBER_CLIENT:
+                    return 'Client';
                 case AppISetting.MEMBER_OUT:
                     return 'Partis';
             }
         }
         if (format === 'icon') {
             switch (param) {
-                case AppISetting.MEMBER_LIKSI:      // tous sauf partis
+                case AppISetting.MEMBER_ALL:      // tous sauf partis
                     return '';
-                case AppISetting.MEMBER_STRUCT:
+                case AppISetting.MEMBER_MEMBER:
                     return 'fad fa-house-user';
-                case AppISetting.MEMBER_PROD:
+                case AppISetting.MEMBER_CLIENT:
                     return 'fad fa-user-cog';
-                case AppISetting.MEMBER_INTERN:
-                    return 'fad fa-user-graduate';
-                case AppISetting.MEMBER_EXT:
-                    return 'fad fa-user-times';
                 case AppISetting.MEMBER_OUT:
-                    return 'fad fa-user-slash';
+                    return 'fad fa-user-graduate';
             }
         }
         if (format === 'btn') {
             switch (param) {
-                case AppISetting.MEMBER_LIKSI:      // tous sauf partis
+                case AppISetting.MEMBER_ALL:      // tous sauf partis
                     return '';
-                case AppISetting.MEMBER_STRUCT:
+                case AppISetting.MEMBER_MEMBER:
                     return 'btn-info';
-                case AppISetting.MEMBER_PROD:
+                case AppISetting.MEMBER_CLIENT:
                     return 'btn-primary';
-                case AppISetting.MEMBER_INTERN:
-                    return 'btn-warning';
-                case AppISetting.MEMBER_EXT:
                 case AppISetting.MEMBER_OUT:
-                    return 'btn-danger';
+                    return 'btn-warning';
             }
         }
         if (format === 'background') {
             switch (param) {
-                case AppISetting.MEMBER_LIKSI:      // tous sauf partis
+                case AppISetting.MEMBER_ALL:      // tous sauf partis
                     return '#4B515D';
-                case AppISetting.MEMBER_STRUCT:
+                case AppISetting.MEMBER_MEMBER:
                     return '#217CA3';
-                case AppISetting.MEMBER_PROD:
+                case AppISetting.MEMBER_CLIENT:
                     return '#E29930';
-                case AppISetting.MEMBER_INTERN:
-                    return '#F0BA18';
-                case AppISetting.MEMBER_EXT:
                 case AppISetting.MEMBER_OUT:
-                    return '#F07148';
+                    return '#F0BA18';
             }
         }
         if (format === 'color') {
             switch (param) {
-                case AppISetting.MEMBER_LIKSI:      // tous sauf partis
-                case AppISetting.MEMBER_STRUCT:
-                case AppISetting.MEMBER_EXT:
-                case AppISetting.MEMBER_OUT:
+                case AppISetting.MEMBER_ALL:      // tous sauf partis
+                case AppISetting.MEMBER_MEMBER:
+                case AppISetting.MEMBER_CLIENT:
                     return '#e3e3e3';
-                case AppISetting.MEMBER_PROD:
-                case AppISetting.MEMBER_INTERN:
+                case AppISetting.MEMBER_OUT:
                     return '#211f30';
             }
         }
         if (format === 'badge') {
             switch (param) {
-                case AppISetting.MEMBER_LIKSI:      // tous sauf partis
+                case AppISetting.MEMBER_ALL:      // tous sauf partis
                     return 'badge-default';
-                case AppISetting.MEMBER_STRUCT:
+                case AppISetting.MEMBER_MEMBER:
                     return 'badge-secondary';
-                case AppISetting.MEMBER_PROD:
+                case AppISetting.MEMBER_CLIENT:
                     return 'badge-primary';
-                case AppISetting.MEMBER_INTERN:
-                    return 'badge-warning';
-                case AppISetting.MEMBER_EXT:
                 case AppISetting.MEMBER_OUT:
                     return 'badge-danger';
             }
@@ -112,11 +94,9 @@ export class GetTypeRolePipe implements PipeTransform {
                     return 'Administrateur';
                 case AppISetting.ROLE_MANAGER:
                     return 'Manager';
-                case AppISetting.ROLE_MASTER:
-                    return 'Tech Lead';
                 case AppISetting.ROLE_MEMBER:
                     return 'Membre';
-                case AppISetting.ROLE_CLIENT:
+                case AppISetting.ROLE_CUSTOMER:
                     return 'Client';
                 case AppISetting.ROLE_USER:
                     return 'Utilisateur';
@@ -128,11 +108,9 @@ export class GetTypeRolePipe implements PipeTransform {
                     return 'database';
                 case AppISetting.ROLE_MANAGER:
                     return 'user-tie';
-                case AppISetting.ROLE_MASTER:
-                    return 'user-cog';
                 case AppISetting.ROLE_MEMBER:
                     return 'member-team';
-                case AppISetting.ROLE_CLIENT:
+                case AppISetting.ROLE_CUSTOMER:
                     return 'client';
                 case AppISetting.ROLE_USER:
                     return 'user-alt';

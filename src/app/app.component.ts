@@ -168,8 +168,11 @@ export class AppComponent implements OnInit, OnDestroy {
           if (this.memberLists) {
             label = this.memberLists.find(data => label === data.id).name;
           } else {
-            label = 'Ressource';
+            label = 'Membres';
           }
+          break;
+        case 'ItemPlace':
+            label = 'Calendrier';
           break;
       }
     }

@@ -28,7 +28,6 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { HomeUserComponent } from './home-user/home-user.component';
 import {HomeVerifiedComponent} from './home-verified/home-verified.component';
 import {HomePageComponent} from './home-page/home-page.component';
-import {IconsComponent} from './icons/icons.component';
 import {ShareModule} from '../share/share.module';
 
 @NgModule({
@@ -56,7 +55,6 @@ import {ShareModule} from '../share/share.module';
         HomePageComponent,
         HomeUserComponent,
         HomeVerifiedComponent,
-        IconsComponent,
         LockComponent,
         LoginComponent,
         NavbarComponent,

@@ -144,8 +144,8 @@ export class MemberModalComponent implements OnInit, OnDestroy {
     this.name.setValue('');
     this.surname.setValue('');
     this.creation.setValue(new Date());
-    this.type.setValue(1);
-    this.typeSelected = 1;
+    this.type.setValue(0);
+    this.typeSelected = 0;
     this.image  =  '';
 
     this.minDateStart = new Date(2017, 0, 1);
@@ -194,6 +194,8 @@ export class MemberModalComponent implements OnInit, OnDestroy {
     this.name.setValue(this.member.name);
     this.surname.setValue(this.member.surname);
     this.creation.setValue(new Date(this.member.created));
+    this.type.setValue(this.member.nation);
+    this.typeSelected = this.member.nation;
 
     this.minDateStart = new Date(2017, 0, 1);
 

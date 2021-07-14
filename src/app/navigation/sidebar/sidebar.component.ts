@@ -36,8 +36,14 @@ export const ROUTES: RouteInfo[] = [
     icontype: 'tim-icons icon-chart-bar-32 iconBlack',
   },
   {
+    path: '/app/place',
+    title: 'Emplacements',
+    type: 'link',
+    icontype: 'tim-icons icon-chart-bar-32 iconBlack',
+  },
+  {
     path: '/app/members',
-    title: 'Ressources',
+    title: 'Membres',
     type: 'link',
     icontype: 'tim-icons icon-single-02 iconBlack',
   },

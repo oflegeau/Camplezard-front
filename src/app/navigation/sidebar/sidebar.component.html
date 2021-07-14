@@ -2,12 +2,12 @@
   <div class="logo">
     <a href="/app/home" class="simple-text logo-mini">
       <div class="logo-img">
-        <img src="assets/img/app.png" />
+        <img src="assets/img/logo.png" />
       </div>
     </a>
     <a href="/app/home"
-      class="simple-text logo-normal">
-      app
+      class="simple-text logo-normal black-text">
+      Camping
     </a>
   </div>
 
@@ -49,8 +49,8 @@
               [routerLink]="[menuitem.path, childitems.path]"
               *ngIf="childitems.type === 'link'"
             >
-              <span class="sidebar-mini-icon black-text">{{ childitems.smallTitle }}</span>
-              <span class="sidebar-normal black-text">{{ childitems.title }}</span>
+              <span class="sidebar-mini-icon">{{ childitems.smallTitle }}</span>
+              <span class="sidebar-normal">{{ childitems.title }}</span>
             </a>
             <!--If it have a submenu-->
             <a
@@ -60,8 +60,8 @@
               [attr.aria-controls]="childitems.collapse"
               *ngIf="childitems.type === 'sub'"
             >
-              <span class="sidebar-mini-icon black-text">{{ childitems.smallTitle }}</span>
-              <span class="sidebar-normal black-text"
+              <span class="sidebar-mini-icon">{{ childitems.smallTitle }}</span>
+              <span class="sidebar-normal"
                 >{{ childitems.title }}<b class="caret"></b
               ></span>
             </a>

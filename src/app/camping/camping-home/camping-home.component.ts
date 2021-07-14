@@ -26,7 +26,7 @@ export class CampingHomeComponent implements  OnInit, OnDestroy {
   private filterTypeValue: number;
 
   @ViewChildren('pages') pages: QueryList<any>;
-  private numberOfVisiblePaginators = 1;
+  private numberOfVisiblePaginators = 5;
   numberOfPaginators: number;
   paginators: Array<any> = [];
   activePage = 1;

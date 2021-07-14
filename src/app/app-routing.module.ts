@@ -20,6 +20,8 @@ import {VerifyEmailComponent} from './navigation/verify-email/verify-email.compo
 import {HomeUserComponent} from './navigation/home-user/home-user.component';
 import {HomeVerifiedComponent} from './navigation/home-verified/home-verified.component';
 import {HomePageComponent} from './navigation/home-page/home-page.component';
+import {CampingItemComponent} from './camping/camping-item/camping-item.component';
+import {CampingPlanComponent} from './camping/camping-plan/camping-plan.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -45,7 +47,7 @@ const routes: Routes = [
                 },
                   {
                     path: 'camping',
-                    component: CampingHomeComponent,
+                    component: CampingPlanComponent,
                     canActivate: [RoleGuard],
                     data: {
                       role: JSON.stringify({admin: true, manager: true, customer: true, member: true, user: false}),
@@ -64,10 +66,40 @@ const routes: Routes = [
                 ]
   },
   {
+    path: 'app/place',
+    canActivate: [AuthGuard],
+    data: {
+      breadcrumb: 'Emplacements',
+    },
+    children: [
+      {
+        path: '',
+        canActivate: [RoleGuard],
+        data: {
+          role: JSON.stringify({admin: true, manager: true, customer: false, member: true, user: false}),
+        },
+        children: [{
+          path: '',
+          component: CampingHomeComponent,
+        },
+          {
+            path: ':id/:yearmonth',
+            canActivate: [RoleGuard],
+            component: CampingItemComponent,
+            data: {
+              role: JSON.stringify({admin: true, manager: true, customer: false, member: true, user: false}),
+              breadcrumb: 'ItemPlace',
+            },
+          },
+        ]
+      },
+    ]
+  },
+  {
     path: 'app/members',
     canActivate: [AuthGuard],
     data: {
-      breadcrumb: 'Ressources',
+      breadcrumb: 'Membres',
     },
     children: [
       {

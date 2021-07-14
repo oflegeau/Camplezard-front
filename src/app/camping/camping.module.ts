@@ -16,6 +16,8 @@ import {MemberListComponent} from '../member/member-list/member-list.component';
 import { CampingHomeComponent } from './camping-home/camping-home.component';
 import {ShareModule} from '../share/share.module';
 import { CampingPlaceCardComponent } from './camping-composant/camping-place-card/camping-place-card.component';
+import { CampingItemComponent } from './camping-item/camping-item.component';
+import { CampingPlanComponent } from './camping-plan/camping-plan.component';
 
 @NgModule({
     imports: [
@@ -38,7 +40,9 @@ import { CampingPlaceCardComponent } from './camping-composant/camping-place-car
     ],
     declarations: [
     CampingHomeComponent,
-    CampingPlaceCardComponent
+    CampingPlaceCardComponent,
+    CampingItemComponent,
+    CampingPlanComponent
     ],
     entryComponents: [],
     exports: []

@@ -117,9 +117,6 @@
 .btn-cyan {
   @include btn-styles($cyan, $cyan);
 }
-.btn-black {
-  @include btn-styles($dark-gray, $dark-gray);
-}
 .btn-success {
   @include btn-styles($success, $success-states);
 }

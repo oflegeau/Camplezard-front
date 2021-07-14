@@ -59,7 +59,7 @@ export class MemberCardPageService {
   pro_create(obj: MemberCard): Promise<Reponse> {
 
     return new Promise((resolve, reject) => {
-      this.memberRestService.createMemberCard(obj).subscribe(
+      this.memberRestService.create(obj).subscribe(
         (data: HttpResponse<Reponse>) => {
           if (data.ok && data.status === AppISetting.HTTP_CREATED) {
 

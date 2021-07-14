@@ -15,6 +15,8 @@ import {AppISetting} from '../../share/interface/app.interface.setting';
 })
 export class MemberListComponent implements OnInit, OnDestroy {
 
+  nation = ['France', 'Espagne', 'Angleterre' ,'Allemagne','Autres'];
+
   members: PageMember;
   private subMembers: Subscription;
   typeMember: number[] = [0, 1, 2];
@@ -26,7 +28,7 @@ export class MemberListComponent implements OnInit, OnDestroy {
   private sortCol: number;
 
   @ViewChildren('pages') pages: QueryList<any>;
-  private itemsPerPage = 9;
+  private itemsPerPage = 8;
   private numberOfVisiblePaginators = 4;
   numberOfPaginators: number;
   paginators: Array<any> = [];
