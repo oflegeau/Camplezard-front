@@ -79,6 +79,14 @@ export class MemberRestService {
     return this.http.post<Reponse>(this.localurl + '/create', obj, {headers, observe: 'response'});
   }
 
+  createMemberCard(obj: MemberCard): Observable<HttpResponse<Reponse>> {
+    const headers = new HttpHeaders()
+        .set('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + this.setPassword()))
+        .set('Content-Type', 'application/json');
+
+    return this.http.post<Reponse>(this.localurl + '/create/card', obj, {headers, observe: 'response'});
+  }
+
   createConnect(obj: MemberCard, idConnect: string): Observable<HttpResponse<Connect>> {
     const headers = new HttpHeaders()
         .set('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + this.setPassword()))

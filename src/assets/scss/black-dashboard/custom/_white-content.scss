@@ -275,7 +275,7 @@
     }
 
     .pagination .page-item:not(.active) .page-link {
-      color: $black-states;
+      color: $dark-gray;
       &:hover {
         background: rgba($dark-gray, 0.1);
       }

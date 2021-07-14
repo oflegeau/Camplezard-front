@@ -44,7 +44,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private toggleButton: any;
   public isCollapsed = true;
 
-  public sidebarColor = 'primary';
   public state = true;
   public dashboardColor = true;
 
@@ -61,7 +60,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     this.bsConfig = Object.assign({}, {
       isAnimated: true,
-      containerClass: 'theme-orange',
+      containerClass: 'theme-green',
       dateInputFormat: 'MM-YYYY',
     });
   }
@@ -200,41 +199,5 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     }
     html.classList.remove('nav-open');
-  }
-
-  changeDashboardColor(color) {
-    const body = document.getElementsByTagName('body')[0];
-    if (body && color === 'white-content') {
-      body.classList.add(color);
-    } else if (body.classList.contains('white-content')) {
-      body.classList.remove('white-content');
-    }
-  }
-  onChangeDashboardColor(event) {
-    const body = document.getElementsByTagName('body')[0];
-    if (this.dashboardColor === true) {
-      this.changeDashboardColor('');
-    } else {
-      this.changeDashboardColor('white-content');
-    }
-    // we simulate the window Resize so the charts will get updated in realtime.
-    const simulateWindowResize = setInterval(()=> {window.dispatchEvent(new Event('resize'));}, 180);
-
-    // we stop the simulation of Window Resize after the animations are completed
-    setTimeout(()=> {clearInterval(simulateWindowResize);}, 1000);
-  }
-
-  onChange(event) {
-    const body = document.getElementsByTagName('body')[0];
-    if (this.state === true) {
-      body.classList.remove('sidebar-mini');
-    } else {
-      body.classList.add('sidebar-mini');
-    }
-    // we simulate the window Resize so the charts will get updated in realtime.
-    const simulateWindowResize = setInterval(()=> {window.dispatchEvent(new Event('resize'));}, 180);
-
-    // we stop the simulation of Window Resize after the animations are completed
-    setTimeout(()=> {clearInterval(simulateWindowResize);}, 1000);
   }
 }

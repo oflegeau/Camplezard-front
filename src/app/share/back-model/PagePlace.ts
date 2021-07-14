@@ -9,19 +9,17 @@ export class PagePlace {
     public empty: boolean;
     public firstPage: boolean;
     public lastPage: boolean;
-    public totalItem: number;
     public totalPage: number;
     public type: number[];
 
     // tslint:disable-next-line:max-line-length
-    constructor(items: Place[], indexPage: number, itemPerPage: number, empty: boolean, firstPage: boolean, lastPage: boolean, totalItem: number, totalPage: number, type: number[]) {
+    constructor(items: Place[], indexPage: number, itemPerPage: number, empty: boolean, firstPage: boolean, lastPage: boolean, totalPage: number, type: number[]) {
         this.items = items;
         this.indexPage = indexPage;
         this.itemPerPage = itemPerPage;
         this.empty = empty;
         this.firstPage = firstPage;
         this.lastPage = lastPage;
-        this.totalItem = totalItem;
         this.totalPage = totalPage;
         this.type = type;
     }

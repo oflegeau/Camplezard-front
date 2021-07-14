@@ -9,74 +9,114 @@ export class GetTypePlacePipe implements PipeTransform {
     transform(param: number, format: string): string {
         if (format === 'text') {
             switch (param) {
-                case AppISetting.PLACE_FREE:
-                    return 'Libre';
-                case AppISetting.PLACE_BOOKED:
-                    return 'Réservé';
-                case AppISetting.PLACE_BUSY:
-                    return 'Occupé';
+                case AppISetting.PLACE_ALL:
+                    return 'Tous';
+                case AppISetting.PLACE_STATE:
+                    return 'Structure';
                 case AppISetting.PLACE_OFF:
                     return 'HS';
+                case AppISetting.PLACE_BUSY:
+                    return 'Occupé';
+                case AppISetting.PLACE_BOOKED:
+                    return 'Réservé';
+                case AppISetting.PLACE_FREE:
+                    return 'Libre';
             }
         }
         if (format === 'icon') {
             switch (param) {
-                case AppISetting.PLACE_FREE:
-                    return 'fad fa-comments';
-                case AppISetting.PLACE_BOOKED:
-                    return 'fad fa-anchor';
-                case AppISetting.PLACE_BUSY:
-                    return 'fad fa-comments-alt-dollar';
+                case AppISetting.PLACE_ALL:
+                    return 'parent';
+                case AppISetting.PLACE_STATE:
+                    return 'home';
                 case AppISetting.PLACE_OFF:
-                    return 'fad fa-comments-dollar';
+                    return 'construction';
+                case AppISetting.PLACE_BUSY:
+                    return 'contribute';
+                case AppISetting.PLACE_BOOKED:
+                    return 'booked';
+                case AppISetting.PLACE_FREE:
+                    return 'free'
             }
         }
         if (format === 'btn') {
             switch (param) {
-                case AppISetting.PLACE_FREE:
-                    return 'btn-success';
-                case AppISetting.PLACE_BOOKED:
+                case AppISetting.PLACE_ALL:
+                    return 'btn-warning';
+                case AppISetting.PLACE_STATE:
                     return 'btn-secondary';
-                case AppISetting.PLACE_BUSY:
-                    return 'btn-primary';
                 case AppISetting.PLACE_OFF:
                     return 'btn-danger';
+                case AppISetting.PLACE_BUSY:
+                    return 'btn-success';
+                case AppISetting.PLACE_BOOKED:
+                    return 'btn-info';
+                case AppISetting.PLACE_FREE:
+                    return 'btn-primary';
             }
         }
         if (format === 'background') {
             switch (param) {
-                case AppISetting.PLACE_FREE:
-                    return '#1CB4BA';
-                case AppISetting.PLACE_BOOKED:
-                    return '#217CA3';
-                case AppISetting.PLACE_BUSY:
-                    return '#E29930';
+                case AppISetting.PLACE_ALL:
+                    return '#DE7A22';
+                case AppISetting.PLACE_STATE:
+                    return '#F4CC70';
                 case AppISetting.PLACE_OFF:
-                    return '#F07148';
+                    return '#F98866';
+                case AppISetting.PLACE_BUSY:
+                    return '#209488';
+                case AppISetting.PLACE_BOOKED:
+                    return '#80BD9E';
+                case AppISetting.PLACE_FREE:
+                    return '#89DA59';
+            }
+        }
+        if (format === 'background-state') {
+            switch (param) {
+                case AppISetting.PLACE_ALL:
+                    return '#C46B1D';
+                case AppISetting.PLACE_STATE:
+                    return '#DBB865';
+                case AppISetting.PLACE_OFF:
+                    return '#E07B5C';
+                case AppISetting.PLACE_BUSY:
+                    return '#1B7A71';
+                case AppISetting.PLACE_BOOKED:
+                    return '#6FA389';
+                case AppISetting.PLACE_FREE:
+                    return '#78BF4E';
             }
         }
         if (format === 'color') {
             switch (param) {
-                case AppISetting.PLACE_FREE:
-                    return '#211f30';
-                case AppISetting.PLACE_BOOKED:
-                    return '#211f30';
-                case AppISetting.PLACE_BUSY:
+                case AppISetting.PLACE_ALL:
                     return '#e3e3e3';
+                case AppISetting.PLACE_STATE:
+                    return '#020202';
                 case AppISetting.PLACE_OFF:
                     return '#e3e3e3';
+                case AppISetting.PLACE_BUSY:
+                    return '#e3e3e3';
+                case AppISetting.PLACE_BOOKED:
+                    return '#e3e3e3';
+                case AppISetting.PLACE_FREE:
+                    return '#020202';
             }
         }
         if (format === 'badge') {
             switch (param) {
-                case AppISetting.PLACE_FREE:
-                    return 'badge-success';
-                case AppISetting.PLACE_BOOKED:
+                case AppISetting.PLACE_ALL:
+                    return 'badge-warning';
+                case AppISetting.PLACE_STATE:
                     return 'badge-secondary';
-                case AppISetting.PLACE_BUSY:
-                    return 'badge-primary';
                 case AppISetting.PLACE_OFF:
                     return 'badge-danger';
+                case AppISetting.PLACE_BUSY:
+                    return 'badge-success';
+                case AppISetting.PLACE_BOOKED:
+                    return 'badge-info';
+                case AppISetting.PLACE_FREE:
+                    return 'badge-primary';
             }
         }
         return '';

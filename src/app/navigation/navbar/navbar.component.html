@@ -20,7 +20,6 @@
           <span class=" navbar-toggler-bar bar3"> </span>
         </button>
       </div>
-      <!--a class=" navbar-brand" href="javascript:void(0)"> {{ getTitle() }} </a-->
       <div class=" customBreadcumb">
         <nav aria-label="breadcrumb" role="navigation" [ngSwitch]="breadcrumb.length">
 
@@ -108,7 +107,7 @@
             href="javascript:void(0)"
             (click)="$event.preventDefault()">
             <div class=" notification d-none d-lg-block d-xl-block"></div>
-            <i class=" tim-icons icon-sound-wave"> </i>
+            <i class=" tim-icons icon-sound-wave primary-text"> </i>
             <p class=" d-lg-none">Notifications</p>
           </a>
           <ul
@@ -116,7 +115,7 @@
             <li>
               <input type="text" style="cursor: pointer; color: #211F3A"
                      placeholder="Datepicker"
-                     class="form-control"
+                     class="form-control primary-text"
                      bsDatepicker
                      (bsValueChange)="onChangeDate($event)"
                      [bsValue]="bsValue"
@@ -143,7 +142,7 @@
         </li>
         <li class="dropdown nav-item" dropdown placement="bottom left">
           <a
-            class="nav-link dropdown-toggle"
+            class="nav-link dropdown-toggle primary-text"
             data-toggle="dropdown"
             dropdownToggle
             href="#"
@@ -161,18 +160,13 @@
             class=" dropdown-menu dropdown-navbar dropdown-menu-right"
             *dropdownMenu>
             <li class=" nav-link">
-              <a class=" nav-item dropdown-item" href="app/home/user">
+              <a class=" nav-item dropdown-item primary-text" href="app/home/user">
                 Mon Compte
-              </a>
-            </li>
-            <li class=" nav-link">
-              <a class=" nav-item dropdown-item" href="javascript:void(0)" (click)="paramModal.show()">
-                Paramètres
               </a>
             </li>
             <li class=" dropdown-divider"></li>
             <li class=" nav-link">
-              <a class=" nav-item dropdown-item" href="javascript:void(0)" (click)="authService.signOut()">
+              <a class=" nav-item dropdown-item primary-text" href="javascript:void(0)" (click)="authService.signOut()">
                 Se Déconnecter
               </a>
             </li>

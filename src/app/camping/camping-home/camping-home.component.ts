@@ -4,6 +4,8 @@ import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {PagePlace} from '../../share/back-model/PagePlace';
 import {PlacePageService} from '../../share/service/place.page.service';
+import {GlobalVariable, PeriodMonths} from '../../share/front-model/GlobalVariable';
+import {GlobalVariableService} from '../../share/service/global.variable.service';
 
 @Component({
   selector: 'app-camping-home',
@@ -12,14 +14,19 @@ import {PlacePageService} from '../../share/service/place.page.service';
 })
 export class CampingHomeComponent implements  OnInit, OnDestroy {
 
+  // gestion de la période glissante //
+  public globalVariable: GlobalVariable;
+  private globalVariableSub: Subscription;
+  public periodMonths: PeriodMonths;
+  public nbMonths: number;
+
   places: PagePlace;
   private subPlaces: Subscription;
-  typePlaces: number[] = [0, 1, 2, 3];
+  typePlaces: number[] = [0, 1, 2, 3, 4, 5];
   private filterTypeValue: number;
 
   @ViewChildren('pages') pages: QueryList<any>;
-  private itemsPerPage = 9;
-  private numberOfVisiblePaginators = 4;
+  private numberOfVisiblePaginators = 1;
   numberOfPaginators: number;
   paginators: Array<any> = [];
   activePage = 1;
@@ -27,6 +34,7 @@ export class CampingHomeComponent implements  OnInit, OnDestroy {
   lastVisiblePaginator = this.numberOfVisiblePaginators;
 
   constructor(private placePageService: PlacePageService,
+              private globalVariableService: GlobalVariableService,
               private router: Router,
               private toastrService: ToastrService) {
     this.places = null;
@@ -40,6 +48,8 @@ export class CampingHomeComponent implements  OnInit, OnDestroy {
   /*--------------------------------------------------------------------*/
 
   onRefresh() {
+    this.periodMonths = this.globalVariableService.getPeriodMonths();
+    this.nbMonths = this.globalVariable.nbMonths;
     if (this.activePage > 0) {
       this.placePageService.obs_getPage(this.activePage-1);
     }
@@ -58,11 +68,20 @@ export class CampingHomeComponent implements  OnInit, OnDestroy {
         }, error => console.log(error),
           () => console.log('complete places'));
     }
+
+    // variable de période glissante /
+    this.globalVariableSub = this.globalVariableService.obs_getObj().subscribe(data => {
+      this.globalVariable=data;
+      this.onRefresh();
+    });
   }
 
   ngOnDestroy(): void {
     if (this.subPlaces) {
       this.subPlaces.unsubscribe();
+    }
+    if (this.globalVariableSub) {
+      this.globalVariableSub.unsubscribe();
     }
   }
 
@@ -90,7 +109,7 @@ export class CampingHomeComponent implements  OnInit, OnDestroy {
   }
 
   changePage(event: any) {
-    if (event.target.text >= 1 && event.target.text <= this.numberOfPaginators) {
+    if (event.target.text !=='undefined' && event.target.text >= 1 && event.target.text <= this.numberOfPaginators) {
       this.activePage = +event.target.text;
       this.onRefresh();
     }

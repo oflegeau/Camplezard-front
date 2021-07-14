@@ -4,6 +4,7 @@ export class Place {
     public id: string;
     public code: string;
     public type: number;
+    public comment: string;
     public line: number;
     public zone: number;
     public status: number;
@@ -18,10 +19,11 @@ export class Place {
     public member: Member;
 
     // tslint:disable-next-line:max-line-length
-    constructor(id: string, code: string, type: number, line: number, zone: number, status: number, famous: number, avis: number, price: number, photo: string, video: string, van: boolean, water: boolean, elect: boolean, member: Member) {
+    constructor(id: string, code: string, type: number, comment: string, line: number, zone: number, status: number, famous: number, avis: number, price: number, photo: string, video: string, van: boolean, water: boolean, elect: boolean, member: Member) {
         this.id = id;
         this.code = code;
         this.type = type;
+        this.comment = comment;
         this.line = line;
         this.zone = zone;
         this.status = status;

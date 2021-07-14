@@ -54,7 +54,6 @@ $cyan: #2bffc6 !default;
 
 $black: #211f30 !default;
 $default: #32384D !default;
-$default-light: #48516F !default;
 $primary: #F0A132 !default;
 $secondary: #217CA3 !default;
 $success: $green !default;
@@ -103,9 +102,6 @@ $colors: map-merge(
 $default-color-opacity: rgba(182, 182, 182, 0.6) !default;
 $orange-color: $orange !default;
 
-.default-light-text {
-  color: $default-light;
-}
 .default-text {
   color: $default;
 }

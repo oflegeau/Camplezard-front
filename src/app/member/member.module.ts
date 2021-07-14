@@ -14,6 +14,7 @@ import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {ShareModule} from '../share/share.module';
+import {MemberModalComponent} from './member-component/member-modal/member-modal.component';
 
 @NgModule({
     imports: [
@@ -36,6 +37,7 @@ import {ShareModule} from '../share/share.module';
     ],
     declarations: [
         MemberListComponent,
+        MemberModalComponent,
     ],
     entryComponents: [],
     exports: []

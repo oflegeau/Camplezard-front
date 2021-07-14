@@ -42,6 +42,7 @@ import {CampingModule} from './camping/camping.module';
 import {ShareModule} from './share/share.module';
 import {PlacePageService} from './share/service/place.page.service';
 import {PlaceRestService} from './share/rest/place.rest.service';
+import {MemberCardPageService} from './share/service/memberCard.page.service';
 
 @NgModule({
     declarations: [
@@ -87,7 +88,7 @@ import {PlaceRestService} from './share/rest/place.rest.service';
                 AuthService, AuthGuard, RoleGuard,
                 GlobalVariableService,
                 ConnectRestService,
-                MemberRestService, MemberListService,
+                MemberRestService, MemberListService, MemberCardPageService,
                 PlaceRestService, PlacePageService],
     bootstrap: [AppComponent],
     schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]

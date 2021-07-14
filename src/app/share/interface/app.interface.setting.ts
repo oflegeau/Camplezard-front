@@ -3,7 +3,7 @@ export class AppISetting {
   public static HTTP_OK = 200;
   public static HTTP_CREATED = 201;
   public static HTTP_ACCEPTED = 202;
-  public static HTTP_NO_ACCEPTED = 203;
+  public static HTTP_NON_AUTHORITATIVE_INFORMATION = 203;
   public static HTTP_NO_CONTENT = 204;
 
   public static HTTP_BAD_REQUEST = 400;
@@ -30,10 +30,12 @@ export class AppISetting {
   public static DAY_PARTTIME = 23;
   public static DAY_HOLIDAY = 24;
 
-  public static PLACE_FREE = 1;
-  public static PLACE_BOOKED = 2;
+  public static PLACE_ALL= 0;
+  public static PLACE_STATE = 1;
+  public static PLACE_OFF = 2;
   public static PLACE_BUSY = 3;
-  public static PLACE_OFF = 4;
+  public static PLACE_BOOKED = 4;
+  public static PLACE_FREE = 5;
 
   public static toastOptions = {timeOut: 5000,
                                 closeButton: true,

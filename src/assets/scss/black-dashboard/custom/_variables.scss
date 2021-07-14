@@ -48,19 +48,31 @@ $pink: #f3a4b5 !default;
 $red: #e9607d !default;
 $orange: #e98e10 !default;
 $yellow: #eec756 !default;
-$green: #1CB4BA !default;
 $teal: #11cdef !default;
+$green: #27D6B2 !default;
 $cyan: #2bffc6 !default;
+$black: #070707 !default;
 
-$black: #211f30 !default;
 $default: #32384D !default;
-$default-light: #48516F !default;
-$primary: #F0A132 !default;
-$secondary: #217CA3 !default;
-$success: $green !default;
-$info: #5998B3 !default;
-$warning: #F0BA18 !default;
-$danger: #f07148 !default;
+$primary: #89DA59 !default;
+$secondary: #F4CC70 !default;
+$success: #80BD9E !default;
+$info: #209488 !default;
+$warning: #DE7A22 !default;
+$danger: #F98866 !default;
+
+// gradient
+$black-states: #32385B !default;
+$default-states: #C46B1D !default;
+$primary-states: #78BF4E !default;
+$secondary-states: #DBB865 !default;
+$success-states: #6FA389 !default;
+$info-states: #1B7A71 !default;
+$warning-states: #C46B1D !default;
+$danger-states: #E07B5C !default;
+
+$background-black: #f5f5f5 !default;
+$background-states-black: #f5f5f5 !default;
 
 $line-height-lg: 1.625rem !default;
 $line-height-sm: 1.5 !default;
@@ -103,9 +115,6 @@ $colors: map-merge(
 $default-color-opacity: rgba(182, 182, 182, 0.6) !default;
 $orange-color: $orange !default;
 
-.default-light-text {
-  color: $default-light;
-}
 .default-text {
   color: $default;
 }
@@ -135,6 +144,13 @@ $orange-color: $orange !default;
 }
 .white-text {
   color: #e3e3e3;
+}
+.grey-text {
+  color: $opacity-gray-5;
+}
+.black-text {
+  color: $black;
+  font-size: 16px;
 
   &-underline {
     color: #e3e3e3;
@@ -142,28 +158,6 @@ $orange-color: $orange !default;
     margin-bottom: 10px;
   }
 }
-.grey-text {
-  color: $opacity-gray-5;
-}
-.blackLight-text {
-     color: #535b70;
-   }
-.black-text {
-  color: $black;
-}
-
-// gradient
-$black-states: #211F3A !default;
-$default-states: #32385B !default;
-$primary-states: #e0ab5e !default;
-$secondary-states: #217CAD !default;
-$success-states: #1CB4C5 !default;
-$info-states: #5998BD !default;
-$warning-states: #F0BA23 !default;
-$danger-states: #F07153 !default;
-
-$background-black: #211F30 !default;
-$background-states-black: #211F3A !default;
 
 // opacity
 $default-opacity: rgba(182, 182, 182, 0.6) !default;
@@ -898,9 +892,9 @@ $popover-arrow-outer-color: transparent !default;
 
 // Breadcrumbs
 
-$breadcrumb-bg: $black !default;
-$breadcrumb-divider-color: $white !default;
-$breadcrumb-active-color: $white !default;
+$breadcrumb-bg: $white !default;
+$breadcrumb-divider-color: $black !default;
+$breadcrumb-active-color: $black !default;
 
 // Badges
 

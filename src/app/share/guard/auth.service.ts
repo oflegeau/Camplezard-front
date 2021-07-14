@@ -2,12 +2,12 @@ import {Injectable, NgZone} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {Connect} from '../model/Connect';
-import {AppISetting} from '../../app.interface.setting';
+import {Connect} from '../back-model/Connect';
+import {AppISetting} from '../interface/app.interface.setting';
 import {ToastrService} from 'ngx-toastr';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {ConnectRestService} from '../rest/connect.rest.service';
-import {Reponse} from '../model/Reponse';
+import {Reponse} from '../back-model/Reponse';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';        // for authentication
@@ -155,11 +155,13 @@ export class AuthService {
                     (data: HttpResponse<Connect>) => {
                         if (data.ok && data.status === AppISetting.HTTP_OK) {
                             this.user = data.body;
+                            localStorage.setItem('connect', JSON.stringify(this.user));
                             this.obs.next(this.user);
                             resolve(true);
                         } else {
                             if (data.ok && data.status === AppISetting.HTTP_NOTFOUND) {
                                 this.user = null;
+                                localStorage.setItem('connect', null);
                                 this.obs.next(this.user);
 
                                 this.toastrService.error('<span class=" tim-icons icon-alert-circle-exc"></span>Le serveur ne répond pas',

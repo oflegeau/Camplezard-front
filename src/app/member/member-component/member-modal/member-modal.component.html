@@ -1,0 +1,164 @@
+<div aria-hidden="true"
+     aria-labelledby="modalMemberLabel"
+     bsModal
+     class="modal fade modal-black"
+     #childModalMember="bs-modal"
+     id="modalMember"
+     role="dialog"
+     tabindex="-1"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="formMember">
+            <!----------------------- HEADER ---------------------------->
+            <div class="modal-header justify-content-center">
+                <button
+                        aria-hidden="true"
+                        class="close"
+                        data-dismiss="modal"
+                        (click)="childModalMember.hide()"
+                        type="button">
+                    <i class=" {{'exit' | getIcon : 'fas'}} text-white"> </i>
+                </button>
+                <div class="text-muted text-center ml-auto mr-auto">
+                    <h3 *ngIf="formMemberCreate" class="mb-0">Création d'un Membre</h3>
+                    <h3 *ngIf="!formMemberCreate" class="mb-0">Modification d'un Membre</h3>
+                </div>
+            </div>
+
+                <!----------------------- BODY ---------------------------->
+                <div class="modal-body">
+
+                    <div class="form-row">
+                        <!----------------------- Input type ---------------------------->
+                        <div class=" form-group">
+                            <ng-select class="custom" style="width: auto"
+                                       [clearable]="false"
+                                       formControlName="type"
+                                       placeholder="Type">
+                                <ng-option *ngFor="let item of types" [value]="item.id">{{item.name}}</ng-option>
+                            </ng-select>
+                        </div>
+
+                        <!----------------------- Input type ---------------------------->
+                        <div class=" col input-group"
+                             [ngClass]="{'input-group-focus': focusCreation === true,
+                                  'has-danger':((focusTouchedCreation || formMemberOk) && creation.errors) ||
+                                                                 (creation.value != '' && creation.errors),
+                                  'has-success':                                         !creation.errors  }">
+                            <div class=" input-group-prepend">
+                                <div class=" input-group-text">
+                                    <i class=" fas {{'presence' | getIcon : 'fas'}}"> </i>
+                                </div>
+                            </div>
+                            <input  autocomplete="off"
+                                    bsDatepicker
+                                    class="form-control"
+                                    formControlName="creation"
+                                    data-datepicker-color="danger"
+                                    [bsConfig]="{ isAnimated: true,
+                                                  containerClass: 'theme-orange',
+                                                  dateInputFormat: 'DD/MM/YYYY' }"
+                                    [minDate]="minDateStart"
+                                    type="text"
+                            />
+                            <label
+                                    class="error"
+                                    *ngIf="((focusTouchedCreation || formMemberOk) && creation.errors) ||
+                                                             (creation.value != '' && creation.errors)">
+                                Champ requis
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-row mt-2">
+
+                        <!----------------------- Input Name ---------------------------->
+                        <div class=" col input-group"
+                             [ngClass]="{'input-group-focus': focusName === true,
+                                  'has-danger':     ((focusTouchedName || formMemberOk) && name.errors) ||
+                                                                      (name.value != '' && name.errors),
+                                  'has-success':                                          !name.errors }">
+                            <div class=" input-group-prepend">
+                                <div class=" input-group-text">
+                                    <i class=" fas {{'name' | getIcon : 'fas'}}"> </i>
+                                </div>
+                            </div>
+                            <input  autocomplete="off"
+                                    class=" form-control"
+                                    formControlName="name"
+                                    name="name"
+                                    placeholder="Nom..."
+                                    type="text"
+                                    (focus)="focusName = true; focusTouchedName = true"
+                                    (blur)="focusName = false"
+                            />
+                            <label
+                                    class="error"
+                                    *ngIf="((focusTouchedName || formMemberOk) && name.errors) ||
+                                                             (name.value != '' && name.errors)">
+                                Champ requis
+                            </label>
+                        </div>
+
+                        <!----------------------- Input SurName ---------------------------->
+                        <div class=" col input-group"
+                             [ngClass]="{'input-group-focus': focusSurname === true,
+                              'has-danger':     ((focusTouchedSurname || formMemberOk) && surname.errors) ||
+                                                                  (surname.value != '' && surname.errors),
+                              'has-success':                                             !surname.errors  }">
+                            <div class=" input-group-prepend">
+                                <div class=" input-group-text">
+                                    <i class=" fas {{'surname' | getIcon : 'fas'}}"> </i>
+                                </div>
+                            </div>
+                            <input  autocomplete="off"
+                                    class=" form-control"
+                                    formControlName="surname"
+                                    name="surname"
+                                    placeholder="Prénom..."
+                                    type="text"
+                                    (focus)="focusSurname = true; focusTouchedSurname = true"
+                                    (blur)="focusSurname = false"
+                            />
+                            <label
+                                    class="error"
+                                    *ngIf="((focusTouchedSurname || formMemberOk) && surname.errors) ||
+                                                             (surname.value != '' && surname.errors)">
+                                Champ requis
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <app-picture-upload [avatar]="true"
+                                        [image]="image"
+                                        (output)="getOutputPhoto($event)"></app-picture-upload>
+
+                </div>
+
+                <!----------------------- FOOTER ---------------------------->
+                <div class="modal-footer d-flex justify-content-end">
+                    <button *ngIf= "formMemberCreate &&
+                     (focusTouchedName || focusTouchedSurname || focusTouchedTrigram || focusTouchedCreation
+                     || focusTouchedStart || focusTouchedEnd || focusTouchedDiploma
+                     || focusTouchedType || focusTouchedParttime || focusTouchedPosition)"
+                            type="button"
+                            class="btn btn-primary btn-lg btn-block"
+                            (click)="submitCreate()">
+                        Ajouter
+                    </button>
+                    <button *ngIf= "!formMemberCreate &&
+                       (focusTouchedName || focusTouchedSurname || focusTouchedTrigram || focusTouchedCreation
+                     || focusTouchedStart || focusTouchedEnd || focusTouchedDiploma
+                     || focusTouchedType || focusTouchedParttime || focusTouchedPosition)"
+                            type="button"
+                            class="btn btn-primary btn-lg btn-block"
+                            (click)="submitChange()">
+                        Modifier
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

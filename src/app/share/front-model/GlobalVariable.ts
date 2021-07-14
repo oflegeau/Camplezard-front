@@ -1,4 +1,4 @@
-import {AppISetting} from '../../app.interface.setting';
+import {AppISetting} from '../interface/app.interface.setting';
 
 export class PeriodMonth {
 
