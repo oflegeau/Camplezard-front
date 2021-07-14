@@ -1,0 +1,46 @@
+
+<!--- MODAL DELETE -->
+
+<div    aria-hidden="true"
+        aria-labelledby="myModalDeleteLabel"
+        bsModal
+        class=" modal fade modal-mini modal-danger"
+        #childModalDelete="bs-modal"
+        id="myModalDelete"
+        role="dialog"
+        tabindex="-1">
+    <div class=" modal-dialog">
+        <div class=" modal-content">
+            <div class=" modal-header justify-content-center">
+                <button aria-hidden="true"
+                        class=" close"
+                        (click)="childModalDelete.hide()"
+                        data-dismiss="modal"
+                        type="button">
+                    <i class=" {{'exit' | getIcon : ''}} text-white" > </i>
+                </button>
+                <div class=" modal-profile">
+                    <i class=" {{'remove' | getIcon : ''}}" > </i>
+                </div>
+            </div>
+            <div class=" modal-body">
+                <p *ngIf="deleteConfirmation" >{{deleteConfirmation.title}}</p>
+                <p *ngIf="deleteConfirmation" style="color: #1e1e2f">{{deleteConfirmation.message}}</p>
+            </div>
+            <div class=" modal-footer">
+                <button (click)="onConfirm();childModalDelete.hide()"
+                        class=" btn btn-link btn-neutral"
+                        type="button">
+                    OUI
+                </button>
+                <button
+                        class=" btn btn-link btn-neutral"
+                        data-dismiss="modal"
+                        (click)="childModalDelete.hide()"
+                        type="button">
+                    NON
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

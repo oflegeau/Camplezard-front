@@ -14,6 +14,8 @@ import {NgSelectModule} from '@ng-select/ng-select';
 import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
 import {MemberListComponent} from '../member/member-list/member-list.component';
 import { CampingHomeComponent } from './camping-home/camping-home.component';
+import {ShareModule} from '../share/share.module';
+import { CampingPlaceCardComponent } from './camping-composant/camping-place-card/camping-place-card.component';
 
 @NgModule({
     imports: [
@@ -32,9 +34,11 @@ import { CampingHomeComponent } from './camping-home/camping-home.component';
         NgSelectModule,
         AngularMultiSelectModule,
         TabsModule,
+        ShareModule
     ],
     declarations: [
-    CampingHomeComponent
+    CampingHomeComponent,
+    CampingPlaceCardComponent
     ],
     entryComponents: [],
     exports: []

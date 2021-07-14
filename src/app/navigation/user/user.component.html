@@ -7,24 +7,15 @@
           <form>
             <div class=" row">
               <div class=" col-md-5 pr-md-1">
-                <div class=" form-group">
-                  <label>Entreprise</label>
-                  <input
-                          class=" form-control"
-                          disabled=""
-                          type="text"
-                          value="{{connect.company}}"
-                  />
-                </div>
               </div>
               <div class=" col-md-7 pl-md-1">
                 <div class=" form-group">
                   <label> Email address </label>
                   <input
-                          class=" form-control"
-                          disabled=""
-                          placeholder="{{connect.email}}"
-                          type="email"
+                    class=" form-control"
+                    disabled=""
+                    placeholder="{{connect.email}}"
+                    type="email"
                   />
                 </div>
               </div>
@@ -71,19 +62,20 @@
             <div class=" block block-three"></div>
             <div class=" block block-four"></div>
 
-            <img
-                    alt="..."
-                    class=" avatar"
-                    src="{{connect.photo | photoPipe}}"
-            />
+              <img
+                alt="..."
+                class=" avatar"
+                src="{{connect.photo | photoPipe}}"
+              />
 
-            <h5 class=" title">{{connect.surname}} {{connect.name}}</h5>
+              <h5 class=" title">{{connect.surname}} {{connect.name}}</h5>
 
             <p class=" description" [ngSwitch]="connect.role">
               <span *ngSwitchCase="1">Utilisateur</span>
-              <span *ngSwitchCase="2">Scrum Master</span>
-              <span *ngSwitchCase="3">Manager</span>
-              <span *ngSwitchCase="4">Administrateur</span>
+              <span *ngSwitchCase="2">Membre</span>
+              <span *ngSwitchCase="3">Client</span>
+              <span *ngSwitchCase="4">Manager</span>
+              <span *ngSwitchCase="5">Administrateur</span>
             </p>
           </div>
         </div>

@@ -30,22 +30,16 @@ export interface ChildrenItems2 {
 // Menu Items
 export const ROUTES: RouteInfo[] = [
   {
-    path: '/home',
-    title: 'Dashboard',
+    path: '/app/home/camping',
+    title: 'Camping',
     type: 'link',
-    icontype: 'tim-icons icon-chart-pie-36 iconBlack',
+    icontype: 'tim-icons icon-chart-bar-32 iconBlack',
   },
   {
-    path: '/user',
-    title: 'UserConnected Profile',
-    type: 'link',
-    icontype: 'tim-icons icon-chart-pie-36 iconBlack',
-  },
-  {
-    path: '/members',
+    path: '/app/members',
     title: 'Ressources',
     type: 'link',
-    icontype: 'tim-icons icon-chart-pie-36 iconBlack',
+    icontype: 'tim-icons icon-single-02 iconBlack',
   },
 ];
 

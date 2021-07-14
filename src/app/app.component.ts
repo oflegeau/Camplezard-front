@@ -1,10 +1,10 @@
 import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {AppIBreadCrumb} from './app.interface.breadcrumb';
-import {Connect} from './service/model/Connect';
-import {Member} from './service/model/MemberCard';
-import {AuthService} from './service/guard/auth.service';
-import {MemberListService} from './service/service/member.list.service';
+import {AppIBreadCrumb} from './share/interface/app.interface.breadcrumb';
+import {Connect} from './share/back-model/Connect';
+import {Member} from './share/back-model/MemberCard';
+import {AuthService} from './share/guard/auth.service';
+import {MemberListService} from './share/service/member.list.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import PerfectScrollbar from 'perfect-scrollbar';
@@ -28,7 +28,6 @@ export class AppComponent implements OnInit, OnDestroy {
   private currentUrl = '';
 
   connect: Connect;
-  private sub: Subscription;
 
   memberLists: Member[];
   private subMembers: Subscription;
@@ -42,8 +41,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.memberLists = null;
 
     this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
-    this.connect = null;
-    this.sub = null;
+    this.connect = JSON.parse(localStorage.getItem('connect'));
 
     this.fullPage = true;
     this.floating = true;
@@ -52,7 +50,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.fullPage = true;
         this.floating = true;
         this.currentUrl = route.routerEvent.url;
-        if (this.currentUrl.includes('/kraken/')) {
+        if (this.currentUrl.includes('/app/')) {
           this.fullPage = false;
         }
         if (this.currentUrl.includes('/full/')) {
@@ -99,16 +97,13 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     this.showNavbarButton();
 
-    this.sub = this.authService.getUser().subscribe(dataUser => {
-      if (dataUser) {
-        this.subMembers = this.memberListService.obs_getList().subscribe(data => {
-          if (data) {
-            this.memberLists = data;
-          }
-        });
-        this.connect = dataUser;
-      }
-    });
+    if (this.connect && this.connect.role > 1) {
+      this.subMembers = this.memberListService.obs_getList().subscribe(data => {
+        if (data) {
+          this.memberLists = data;
+        }
+      });
+    }
 
     this.router.events
         .pipe(filter(event => event instanceof NavigationEnd), distinctUntilChanged())
@@ -117,11 +112,7 @@ export class AppComponent implements OnInit, OnDestroy {
         });
   }
 
-
   ngOnDestroy(): void {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
     if (this.subMembers) {
       this.subMembers.unsubscribe();
     }

@@ -1,9 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../../service/guard/auth.service';
+import {AuthService} from '../../share/guard/auth.service';
 import {ToastrService} from 'ngx-toastr';
-import {Router} from '@angular/router';
-import {AppISetting} from '../../app.interface.setting';
+import {AppISetting} from '../../share/interface/app.interface.setting';
 
 @Component({
   selector: 'app-register',
@@ -30,8 +29,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   public focusPassword1: boolean;
 
   constructor(private authService: AuthService,
-              private toastService: ToastrService,
-              private router: Router) {
+              private toastService: ToastrService) {
     this.isProcessed = false;
     this.loginForm = new FormGroup({
       actionDone: new FormControl({value: false, disabled: false}),
@@ -69,7 +67,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   get email() {return this.loginForm.get('email') as FormControl; }
   get password() {return this.loginForm.get('password') as FormControl; }
   get password1() {return this.loginForm.get('password1') as FormControl; }
-    get actionDone() {return this.loginForm.get('actionDone') as FormControl; }
+  get actionDone() {return this.loginForm.get('actionDone') as FormControl; }
 
   ngOnInit() {
     this.isProcessed = false;
@@ -80,6 +78,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     const body = document.getElementsByTagName('body')[0];
     body.classList.remove('register-page');
   }
+
+  /*--------------------------------------------------------------------*/
 
   onLogin() {
     this.formOk = true;
@@ -92,17 +92,18 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     if (this.password1.value === this.password.value) {
         if (this.actionDone.value === true) {
-            this.authService.signUp(this.email.value, this.password.value, this.name.value, this.surname.value, this.phone.value)
-                .then((result) => {
-                    if (result) {
-                        this.authService.sendVerificationMail();
+                // tslint:disable-next-line:max-line-length
+                this.authService.signUp(this.email.value, this.password.value, this.name.value, this.surname.value, this.phone.value)
+                    .then((result) => {
+                        if (result) {
+                            this.authService.sendVerificationMail();
+                            this.isProcessed = false;
+                        } else {
+                            this.isProcessed = false;
+                        }
+                    }, (error) => {
                         this.isProcessed = false;
-                    } else {
-                        this.isProcessed = false;
-                    }
-                }, (error) => {
-                    this.isProcessed = false;
-                });
+                    });
         } else {
             this.isProcessed = false;
             this.toastService.warning('<span class=" tim-icons icon-trash-simple"></span>Vous devez accepter les conditions', 'Attention',

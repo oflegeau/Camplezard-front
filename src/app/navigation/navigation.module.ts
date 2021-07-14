@@ -22,14 +22,14 @@ import {AlertConfig, BsDatepickerModule} from 'ngx-bootstrap';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
 import {RegisterComponent} from './register/register.component';
-import {ServiceModule} from '../service/service.module';
-import { ConditionsComponent } from './conditions/conditions.component';
 import { HelpComponent } from './help/help.component';
-import { RulesComponent } from './rules/rules.component';
-import { HomeComponent } from './home/home.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { HomeUserComponent } from './home-user/home-user.component';
+import {HomeVerifiedComponent} from './home-verified/home-verified.component';
+import {HomePageComponent} from './home-page/home-page.component';
+import {IconsComponent} from './icons/icons.component';
+import {ShareModule} from '../share/share.module';
 
 @NgModule({
     imports: [
@@ -45,39 +45,33 @@ import { HomeUserComponent } from './home-user/home-user.component';
         AngularMultiSelectModule,
         BsDatepickerModule,
         NgSelectModule,
-        ServiceModule
+        ShareModule
     ],
-  declarations: [
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent,
-    AuthNavbarComponent,
-    LockComponent,
-    NotFoundComponent,
-    ForbiddenComponent,
-    UserComponent,
-    LoginComponent,
-    RegisterComponent,
-    ConditionsComponent,
-    HelpComponent,
-    RulesComponent,
-    HomeComponent,
-    ForgotPasswordComponent,
-    VerifyEmailComponent,
-    HomeUserComponent,
-  ],
-  exports: [
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent,
-    AuthNavbarComponent,
-    LockComponent,
-    NotFoundComponent,
-    ForbiddenComponent,
-    UserComponent,
-    HomeComponent,
-    LoginComponent
-  ],
+    declarations: [
+        AuthNavbarComponent,
+        FooterComponent,
+        ForbiddenComponent,
+        ForgotPasswordComponent,
+        HelpComponent,
+        HomePageComponent,
+        HomeUserComponent,
+        HomeVerifiedComponent,
+        IconsComponent,
+        LockComponent,
+        LoginComponent,
+        NavbarComponent,
+        NotFoundComponent,
+        RegisterComponent,
+        SidebarComponent,
+        UserComponent,
+        VerifyEmailComponent,
+    ],
+    exports: [
+        AuthNavbarComponent,
+        SidebarComponent,
+        FooterComponent,
+        NavbarComponent
+    ],
     providers: [AlertConfig, BsDatepickerConfig],
 })
 export class NavigationModule {}

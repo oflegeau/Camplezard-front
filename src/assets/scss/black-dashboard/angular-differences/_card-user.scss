@@ -2,19 +2,19 @@
   .author {
     .block {
       &.block-one {
-        @include linear-gradient-right(rgba($danger, 0.6), rgba($danger, 0));
+        @include linear-gradient-right(rgba($secondary, 0.6), rgba($secondary, 0));
       }
 
       &.block-two {
-        @include linear-gradient-right(rgba($danger, 0.6), rgba($danger, 0));
+        @include linear-gradient-right(rgba($secondary, 0.6), rgba($secondary, 0));
       }
 
       &.block-three {
-        @include linear-gradient-right(rgba($danger, 0.6), rgba($danger, 0));
+        @include linear-gradient-right(rgba($secondary, 0.6), rgba($secondary, 0));
       }
 
       &.block-four {
-        @include linear-gradient-right(rgba($danger, 0.6), rgba($danger, 0));
+        @include linear-gradient-right(rgba($secondary, 0.6), rgba($secondary, 0));
       }
     }
   }

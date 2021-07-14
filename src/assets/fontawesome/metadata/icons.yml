@@ -3986,7 +3986,7 @@ book-spells:
 book-user:
   changes:
     - 5.7.0
-  label: Book with UserConnected
+  label: Book with User
   search:
     terms:
       - address
@@ -8052,7 +8052,7 @@ clipboard-prescription:
 clipboard-user:
   changes:
     - 5.7.0
-  label: Clipboard with UserConnected
+  label: Clipboard with User
   search:
     terms:
       - attendance
@@ -14493,7 +14493,7 @@ file-user:
   changes:
     - 5.3.0
     - 5.10.2
-  label: UserConnected File
+  label: User File
   search:
     terms:
       - account
@@ -19496,7 +19496,7 @@ hospital-symbol:
 hospital-user:
   changes:
     - 5.7.0
-  label: Hospital with UserConnected
+  label: Hospital with User
   search:
     terms:
       - covid-19
@@ -19842,7 +19842,7 @@ house-user:
   changes:
     - 5.13.0
     - 5.14.0
-  label: House UserConnected
+  label: House User
   search:
     terms:
       - covid-19
@@ -38144,7 +38144,7 @@ user:
     - 5.0.0
     - 5.0.3
     - 5.0.11
-  label: UserConnected
+  label: User
   search:
     terms:
       - account
@@ -38165,7 +38165,7 @@ user-alien:
   changes:
     - 5.12.0
     - 5.14.0
-  label: UserConnected Alien
+  label: User Alien
   search:
     terms:
       - ET
@@ -38187,7 +38187,7 @@ user-alt:
     - 5.0.0
     - 5.0.3
     - 5.0.11
-  label: Alternate UserConnected
+  label: Alternate User
   search:
     terms:
       - account
@@ -38207,7 +38207,7 @@ user-alt:
 user-alt-slash:
   changes:
     - 5.0.11
-  label: Alternate UserConnected Slash
+  label: Alternate User Slash
   search:
     terms:
       - account
@@ -38227,7 +38227,7 @@ user-alt-slash:
 user-astronaut:
   changes:
     - 5.0.11
-  label: UserConnected Astronaut
+  label: User Astronaut
   search:
     terms:
       - avatar
@@ -38246,7 +38246,7 @@ user-astronaut:
 user-chart:
   changes:
     - 5.3.0
-  label: UserConnected Chart
+  label: User Chart
   search:
     terms:
       - chart
@@ -38263,7 +38263,7 @@ user-chart:
 user-check:
   changes:
     - 5.0.11
-  label: UserConnected Check
+  label: User Check
   search:
     terms:
       - accept
@@ -38285,7 +38285,7 @@ user-circle:
     - 5.0.11
     - 5.11.0
     - 5.11.1
-  label: UserConnected Circle
+  label: User Circle
   search:
     terms:
       - account
@@ -38305,7 +38305,7 @@ user-circle:
 user-clock:
   changes:
     - 5.0.11
-  label: UserConnected Clock
+  label: User Clock
   search:
     terms:
       - alert
@@ -38322,7 +38322,7 @@ user-clock:
 user-cog:
   changes:
     - 5.0.11
-  label: UserConnected Cog
+  label: User Cog
   search:
     terms:
       - admin
@@ -38339,7 +38339,7 @@ user-cog:
 user-cowboy:
   changes:
     - 5.11.0
-  label: UserConnected Cowboy
+  label: User Cowboy
   search:
     terms:
       - buckaroo
@@ -38366,7 +38366,7 @@ user-cowboy:
 user-crown:
   changes:
     - 5.3.0
-  label: UserConnected Crown
+  label: User Crown
   search:
     terms:
       - admin
@@ -38383,7 +38383,7 @@ user-crown:
 user-edit:
   changes:
     - 5.0.11
-  label: UserConnected Edit
+  label: User Edit
   search:
     terms:
       - edit
@@ -38402,7 +38402,7 @@ user-edit:
 user-friends:
   changes:
     - 5.0.11
-  label: UserConnected Friends
+  label: User Friends
   search:
     terms:
       - group
@@ -38420,7 +38420,7 @@ user-friends:
 user-graduate:
   changes:
     - 5.0.11
-  label: UserConnected Graduate
+  label: User Graduate
   search:
     terms:
       - cap
@@ -38457,7 +38457,7 @@ user-hard-hat:
 user-headset:
   changes:
     - 5.7.0
-  label: UserConnected Headset
+  label: User Headset
   search:
     terms:
       - gaming
@@ -38477,7 +38477,7 @@ user-headset:
 user-injured:
   changes:
     - 5.4.0
-  label: UserConnected Injured
+  label: User Injured
   search:
     terms:
       - cast
@@ -38497,7 +38497,7 @@ user-lock:
   changes:
     - 5.0.11
     - 5.9.0
-  label: UserConnected Lock
+  label: User Lock
   search:
     terms:
       - admin
@@ -38558,7 +38558,7 @@ user-md-chat:
 user-minus:
   changes:
     - 5.0.11
-  label: UserConnected Minus
+  label: User Minus
   search:
     terms:
       - delete
@@ -38574,7 +38574,7 @@ user-minus:
 user-music:
   changes:
     - 5.11.0
-  label: UserConnected Music
+  label: User Music
   search:
     terms:
       - artist
@@ -38591,7 +38591,7 @@ user-music:
 user-ninja:
   changes:
     - 5.0.11
-  label: UserConnected Ninja
+  label: User Ninja
   search:
     terms:
       - assassin
@@ -38631,7 +38631,7 @@ user-plus:
     - 5.0.0
     - 5.0.3
     - 5.0.11
-  label: UserConnected Plus
+  label: User Plus
   search:
     terms:
       - add
@@ -38651,7 +38651,7 @@ user-robot:
   changes:
     - 5.12.0
     - 5.14.0
-  label: UserConnected Robot
+  label: User Robot
   search:
     terms:
       - android
@@ -38672,7 +38672,7 @@ user-secret:
     - 5.0.0
     - 5.0.3
     - 5.0.11
-  label: UserConnected Secret
+  label: User Secret
   search:
     terms:
       - clothing
@@ -38693,7 +38693,7 @@ user-secret:
 user-shield:
   changes:
     - 5.0.11
-  label: UserConnected Shield
+  label: User Shield
   search:
     terms:
       - admin
@@ -38711,7 +38711,7 @@ user-shield:
 user-slash:
   changes:
     - 5.0.11
-  label: UserConnected Slash
+  label: User Slash
   search:
     terms:
       - ban
@@ -38727,7 +38727,7 @@ user-slash:
 user-tag:
   changes:
     - 5.0.11
-  label: UserConnected Tag
+  label: User Tag
   search:
     terms:
       - avatar
@@ -38746,7 +38746,7 @@ user-tag:
 user-tie:
   changes:
     - 5.0.11
-  label: UserConnected Tie
+  label: User Tie
   search:
     terms:
       - avatar
@@ -38768,7 +38768,7 @@ user-times:
     - 5.0.0
     - 5.0.3
     - 5.0.11
-  label: Remove UserConnected
+  label: Remove User
   search:
     terms:
       - archive
@@ -38786,7 +38786,7 @@ user-unlock:
   changes:
     - 5.12.1
     - 5.14.0
-  label: UserConnected Unlock
+  label: User Unlock
   search:
     terms:
       - admin
@@ -38805,7 +38805,7 @@ user-visor:
   changes:
     - 5.12.0
     - 5.14.0
-  label: UserConnected Visor
+  label: User Visor
   search:
     terms:
       - geordi la forge

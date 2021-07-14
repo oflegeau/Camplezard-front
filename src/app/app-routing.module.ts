@@ -3,38 +3,36 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
-import {RoleGuard} from './service/guard/authRole.service';
+import {RoleGuard} from './share/guard/authRole.service';
 import {LockComponent} from './navigation/lock/lock.component';
 import {LoginComponent} from './navigation/login/login.component';
 import {ForbiddenComponent} from './navigation/forbidden/forbidden.component';
 import {NotFoundComponent} from './navigation/not-found/not-found.component';
-import {AuthGuard} from './service/guard/authGuard.service';
+import {AuthGuard} from './share/guard/authGuard.service';
 import {UserComponent} from './navigation/user/user.component';
 import {MemberListComponent} from './member/member-list/member-list.component';
 import {MemberItemComponent} from './member/member-item/member-item.component';
 import {CampingHomeComponent} from './camping/camping-home/camping-home.component';
 import {RegisterComponent} from './navigation/register/register.component';
-import {ConditionsComponent} from './navigation/conditions/conditions.component';
 import {HelpComponent} from './navigation/help/help.component';
-import {RulesComponent} from './navigation/rules/rules.component';
-import {HomeComponent} from './navigation/home/home.component';
 import {ForgotPasswordComponent} from './navigation/forgot-password/forgot-password.component';
 import {VerifyEmailComponent} from './navigation/verify-email/verify-email.component';
 import {HomeUserComponent} from './navigation/home-user/home-user.component';
+import {HomeVerifiedComponent} from './navigation/home-verified/home-verified.component';
+import {HomePageComponent} from './navigation/home-page/home-page.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/app/home', pathMatch: 'full'},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'lock', component: LockComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'forgot-password', component: ForgotPasswordComponent},
   { path: 'verify-email', component: VerifyEmailComponent},
-  { path: 'condition', component: ConditionsComponent},
-  { path: 'rules', component: RulesComponent},
-  { path: 'help', component: HelpComponent},
-  { path: 'forbidden', component: ForbiddenComponent},
-  { path: 'not-found', component: NotFoundComponent},
   { path: 'home-user', component: HomeUserComponent},
+  { path: 'home-verified', component: HomeVerifiedComponent},
+  { path: 'full/help', component: HelpComponent},
+  { path: 'full/forbidden', component: ForbiddenComponent},
+  { path: 'full/not-found', component: NotFoundComponent},
   {
     path: 'app/home',
     data: {
@@ -43,14 +41,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [{
                     path: '',
-                    component: HomeComponent,
+                    component: HomePageComponent,
                 },
                   {
                     path: 'camping',
                     component: CampingHomeComponent,
                     canActivate: [RoleGuard],
                     data: {
-                      role: JSON.stringify({admin: true, manager: true, user: false}),
+                      role: JSON.stringify({admin: true, manager: true, customer: true, member: true, user: false}),
                       breadcrumb: 'Mon Dashboard',
                     },
                   },
@@ -59,7 +57,7 @@ const routes: Routes = [
                     component: UserComponent,
                     canActivate: [RoleGuard],
                     data: {
-                      role: JSON.stringify({admin: true, manager: true, user: false}),
+                      role: JSON.stringify({admin: true, manager: true, customer: true, member: true, user: false}),
                       breadcrumb: 'Mon Compte',
                     },
                   },
@@ -76,7 +74,7 @@ const routes: Routes = [
         path: '',
         canActivate: [RoleGuard],
         data: {
-          role: JSON.stringify({admin: true, manager: true, user: false}),
+          role: JSON.stringify({admin: true, manager: true, customer: false, member: true, user: false}),
         },
         children: [{
           path: '',
@@ -86,7 +84,7 @@ const routes: Routes = [
             path: ':id',
             canActivate: [RoleGuard],
             data: {
-              role: JSON.stringify({admin: true, manager: true, user: false}),
+              role: JSON.stringify({admin: true, manager: true,customer: false, member: true,  user: false}),
               breadcrumb: 'ItemMember',
             },
             children:

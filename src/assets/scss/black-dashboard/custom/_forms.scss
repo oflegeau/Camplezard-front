@@ -86,7 +86,7 @@
 .has-success,
 .has-danger {
   &:after {
-    font-family: "nucleo";
+    font-family: "nucleo", serif;
     content: "\ea1b";
     display: inline-block;
     position: absolute;
@@ -130,7 +130,7 @@
 
   &.input-group-focus {
     .input-group-text {
-      border-color: #ec250d !important;
+      border-color: $danger !important;
     }
   }
 }

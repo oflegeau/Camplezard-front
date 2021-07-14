@@ -1,0 +1,298 @@
+$off: #e9607d;
+$leave: #f3a4b5;
+$error: #5603ad;
+$rtt: #F07148;
+
+$disabled: #323848;
+$we: #292E40;
+$holiday: #211f30;
+
+
+.calendar-container {
+  background-color: #32384D;
+  padding: 10px;
+
+  &__header {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__title {
+    color: #F0A132;
+    font-size: 20px;
+    font-weight: 800;
+  }
+}
+
+.calendar-table {
+  width: 100%;
+
+  &__header {
+    border-bottom: 1px solid #9FAAB7;
+    margin-bottom: 10px;
+
+    .calendar-table__col {
+      display: inline-block;
+      color: #807d7d;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 12px 3px;
+      text-align: center;
+      text-transform: uppercase;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__row {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__body {
+    .calendar-table__col {
+      width: 40px;
+      height: 40px;
+      padding-bottom: 2px;
+    }
+  }
+
+  &__item {
+    border: 2px solid transparent;
+    border-radius: 50%;
+    color:#807d7d;
+    font-size: 12px;
+    font-weight: 500;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__inactive {
+    .calendar-table__item {
+      color: #211f30;
+      cursor: default;
+
+      &:hover {
+        background: transparent;
+        box-shadow: none;
+      }
+    }
+
+    &.calendar-table__event {
+      .calendar-table__item {
+        color: #807d7d;
+        opacity: 0.25;
+
+        &:hover {
+          background: #F0A132;
+          border-color: #292E40;
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+          -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+          -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+
+  &__holiday {
+    .calendar-table__item {
+      border-color: $holiday;
+      background-color: $holiday;
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__we {
+    .calendar-table__item {
+      border-color: $we;
+      background-color: $we;
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__error {
+    .calendar-table__error {
+      background-color: $error;
+      border-color: #32384D;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+    }
+  }
+
+  // Leave //
+  &__leave {
+    .calendar-table__item {
+      background-color: $leave;
+      border-color: #32384D;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+    }
+  }
+
+  &__leaveAM {
+    .calendar-table__item {
+      background: linear-gradient(90deg, $leave 50%, transparent 50%);
+      border-color: #32384D;
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+    }
+  }
+
+  &__leaveAM_offPM {
+    .calendar-table__item {
+      background: linear-gradient(90deg, $leave 50%, $off 50%);
+      border-color: #32384D;
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+    }
+  }
+
+  &__leaveAM_rttPM {
+    .calendar-table__item {
+      background: linear-gradient(90deg, $leave 50%, $rtt 50%);
+      border-color: #32384D;
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+    }
+  }
+
+  &__leavePM {
+    .calendar-table__item {
+      background: linear-gradient(90deg, transparent 50%, $leave 50%);
+      border-color: #32384D;
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+    }
+  }
+
+  // OFF //
+  &__off {
+    .calendar-table__item {
+      background-color: $off;
+      border-color: #32384D;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+    }
+  }
+
+  &__offAM {
+    .calendar-table__item {
+      background: linear-gradient(90deg, $off 50%, transparent 50%);
+      border-color: #32384D;
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+    }
+  }
+
+  &__offAM_leavePM {
+    .calendar-table__item {
+      background: linear-gradient(90deg, $off 50%, $leave 50%);
+      border-color: #32384D;
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+    }
+  }
+
+  &__offAM_rttPM {
+    .calendar-table__item {
+      background: linear-gradient(90deg, $off 50%, $rtt 50%);
+      border-color: #32384D;
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+    }
+  }
+
+  &__offPM {
+    .calendar-table__item {
+      background: linear-gradient(90deg, transparent 50%, $off 50%);
+      border-color: #32384D;
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+    }
+  }
+
+  // RTT //
+  &__rtt {
+    .calendar-table__item {
+      background-color: $rtt;
+      border-color: #32384D;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+    }
+  }
+
+  &__rttAM {
+    .calendar-table__item {
+      background: linear-gradient(90deg, $rtt 50%, transparent 50%);
+      border-color: #32384D;
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+    }
+  }
+
+  &__rttAM_leavePM {
+    .calendar-table__item {
+      background: linear-gradient(90deg, $rtt 50%, $leave 50%);
+      border-color: #32384D;
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+    }
+  }
+
+  &__rttAM_offPM {
+    .calendar-table__item {
+      background: linear-gradient(90deg, $rtt 50%, $off 50%);
+      border-color: #32384D;
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+    }
+  }
+
+  &__rttPM {
+    .calendar-table__item {
+      background: linear-gradient(90deg, transparent 50%, $rtt 50%);
+      border-color: #32384D;
+      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+    }
+  }
+}

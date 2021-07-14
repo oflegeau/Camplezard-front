@@ -105,8 +105,32 @@
 .btn-primary {
   @include btn-styles($primary, $primary-states);
 }
+.btn-secondary {
+  @include btn-styles($secondary, $secondary-states);
+  &:not(:disabled):not(.disabled):active {
+    color: $white;
+  }
+}
+.btn-teal {
+  @include btn-styles($teal, $teal);
+}
+.btn-cyan {
+  @include btn-styles($cyan, $cyan);
+}
 .btn-success {
   @include btn-styles($success, $success-states);
+}
+.btn-blue {
+  @include btn-styles($blue, $blue);
+}
+.btn-pink {
+  @include btn-styles($pink, $pink);
+}
+.btn-red {
+  @include btn-styles($red, $red);
+}
+.btn-purple {
+  @include btn-styles($purple, $purple);
 }
 .btn-info {
   @include btn-styles($info, $info-states);
@@ -116,6 +140,12 @@
   &:not(:disabled):not(.disabled):active {
     color: $white;
   }
+}
+.btn-orange {
+  @include btn-styles($orange, $orange);
+}
+.btn-yellow {
+  @include btn-styles($yellow, $yellow);
 }
 .btn-danger {
   @include btn-styles($danger, $danger-states);

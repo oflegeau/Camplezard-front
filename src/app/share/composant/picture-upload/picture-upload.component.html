@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class=" fileinput">
+      <input type="file" (change)="handleImageChange($event)" #fileInput />
+          <div class="thumbnail" [ngClass]="{ 'img-circle': avatar }">
+            <img src="{{ imagePreviewUrl }}" alt="...">
+          </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <image-cropper class="imageAvatar text-center"
+                   *ngIf="imagePreviewUrl"
+                   [imageBase64]="imagePreviewUrl"
+                   [maintainAspectRatio]="true"
+                   [aspectRatio]="1"
+                   [resizeToWidth]="380"
+                   [roundCropper]="false"
+                   format="jpeg"
+                   (imageCropped)="imageCropped($event)"
+                   (imageLoaded)="imageLoaded()"
+                   (cropperReady)="cropperReady()"
+                   (loadImageFailed)="loadImageFailed()"></image-cropper>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+      <ng-container *ngIf="file === null">
+        <button class="btn-round btn btn-sm btn-secondary" (click)="handleClick()">
+          Parcourir
+        </button>
+      </ng-container>
+      <ng-container *ngIf="file !== null ">
+          <button class="btn-round btn btn-sm btn-secondary" (click)="handleClick()">
+            Changer
+          </button>
+        <br *ngIf="avatar"/>
+          <button *ngIf="avatar" class="btn-round btn btn-sm btn-danger mt-2" (click)="handleRemove()">
+            <i class="fa fa-times"></i> Supprimer
+          </button>
+          <button *ngIf="!avatar" class="btn-round btn btn-sm btn-danger ml-2" (click)="handleRemove()">
+            <i class="fa fa-times"></i> Supprimer
+          </button>
+      </ng-container>
+  </div>
+  <div class="col-md-6">
+      <button *ngIf="!avatar" class="btn-round btn btn-sm btn-primary" (click)="onOK()">
+        Valider l'image
+      </button>
+      <button *ngIf="avatar" class="btn-round btn btn-sm btn-primary" (click)="onOK()">
+        Valider la photo
+      </button>
+      <button class="btn-round btn btn-sm btn-primary ml-2" (click)="onCancel()">
+         Annuler
+      </button>
+  </div>
+</div>

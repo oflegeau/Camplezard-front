@@ -1,0 +1,9 @@
+.fileinput input {
+  display: none;
+}
+
+.imageAvatar {
+  background-size: cover;
+  width: 300px;
+  height: 250px;
+}

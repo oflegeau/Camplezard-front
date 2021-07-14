@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AuthService} from '../../service/guard/auth.service';
+import {AuthService} from '../../share/guard/auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({

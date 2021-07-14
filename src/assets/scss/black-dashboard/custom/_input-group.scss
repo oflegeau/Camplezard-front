@@ -1,6 +1,6 @@
 .form-group.has-danger .error,
 .input-group.has-danger .error {
-  color: $danger-states;
+  color: $danger;
 }
 
 .form-group.has-success .error,
@@ -12,6 +12,7 @@
   $padding-lg-vertical,
   $padding-input-horizontal
 );
+
 @include input-base-padding($padding-input-vertical, $padding-input-horizontal);
 
 .form-group.no-border,
@@ -48,7 +49,7 @@
 .has-error {
   .form-control-feedback,
   .control-label {
-    color: $danger-states;
+    color: $danger;
   }
 }
 .has-success {
@@ -116,10 +117,9 @@
 .input-group-focus {
   .input-group-prepend .input-group-text,
   .input-group-append .input-group-text {
-    background-color: $white;
+    background-color: $black;
     border-color: $primary;
-    background-color: $transparent-bg;
-    border-color: $primary;
+  //  background-color: $transparent-bg;
   }
 
   &.no-border {
@@ -169,7 +169,7 @@
 .form-control[readonly],
 fieldset[disabled] .form-control {
   background-color: $black-states;
-  color: $default;
+  color: $info;
   cursor: not-allowed;
 }
 

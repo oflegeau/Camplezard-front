@@ -1,20 +1,22 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../service/guard/auth.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AuthService} from '../../share/guard/auth.service';
 
 @Component({
   selector: 'app-forbidden',
   templateUrl: './forbidden.component.html',
   styleUrls: ['./forbidden.component.scss']
 })
-export class ForbiddenComponent implements OnInit {
+export class ForbiddenComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.add('forbidden-page');
   }
-
-  onDeco() {
-  //  this.authService.signOutAccount();
+  ngOnDestroy() {
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.remove('forbidden-page');
   }
 }

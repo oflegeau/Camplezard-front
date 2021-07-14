@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AuthService} from '../../service/guard/auth.service';
-import {Connect} from '../../service/model/Connect';
+import {AuthService} from '../../share/guard/auth.service';
 
 @Component({
   selector: 'app-home-user',
@@ -19,5 +18,9 @@ export class HomeUserComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     const body = document.getElementsByTagName('body')[0];
     body.classList.remove('home-user-page');
+  }
+
+  sendMail() {
+
   }
 }

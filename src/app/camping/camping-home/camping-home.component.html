@@ -1,1 +1,80 @@
-<p>camping-home works!</p>
+<div class=" content">
+    <section *ngIf="places" class="row">
+
+        <div class="col-4 d-flex justify-content-left">
+            <span class="white-text-underline">Emplacements Zone {{activePage}}</span>
+        </div>
+
+        <div class="col-8 d-flex justify-content-end">
+            <ng-container *ngFor="let data of typePlaces; let i= index">
+                <a style="cursor: pointer" (click)="onTypePlace(i)">
+                    <i class="{{i | getTypePlace : 'icon'}} white-text ml-2"> </i>
+                    <span class="white-text" style="font-size: small"> {{i | getTypePlace : 'text'}} </span>
+                    <span class=" mr-3 badge {{i | getTypePlace : 'badge'}}" >{{places.type[i]}}</span>
+                </a>
+            </ng-container>
+        </div>
+    </section>
+
+    <section *ngIf="places" style="margin-top: 50px">
+            <section class="card-area">
+            <app-camping-place-card *ngIf="places.items.length > 0"
+                                    [place]="places.items[0]"></app-camping-place-card>
+            <app-camping-place-card *ngIf="places.items.length > 1"
+                                    [place]="places.items[1]"></app-camping-place-card>
+            <app-camping-place-card *ngIf="places.items.length > 2"
+                                    [place]="places.items[2]"></app-camping-place-card>
+            <app-camping-place-card *ngIf="places.items.length > 3"
+                                    [place]="places.items[3]"></app-camping-place-card>
+            </section>
+
+            <section class="card-area">
+                <app-camping-place-card *ngIf="places.items.length > 4"
+                                        [place]="places.items[4]"></app-camping-place-card>
+                <app-camping-place-card *ngIf="places.items.length > 5"
+                                        [place]="places.items[5]"></app-camping-place-card>
+                <app-camping-place-card *ngIf="places.items.length > 6"
+                                        [place]="places.items[6]"></app-camping-place-card>
+                <app-camping-place-card *ngIf="places.items.length > 7"
+                                        [place]="places.items[7]"></app-camping-place-card>
+            </section>
+    </section>
+
+    <section *ngIf="places" class="row mt-2">
+        <div class="col-md-12 d-flex justify-content-md-center">
+            <nav class="mt-2 mb-4 pt-2">
+
+                <ul class="pagination pg-dark mb-0 flex-wrap">
+                    <!--First-->
+                    <li class="page-item clearfix d-none d-md-block" (click)="firstPage()"
+                        [ngClass]="{disabled: activePage == 1}">
+                        <a class="page-link">&laquo;</a>
+                    </li>
+                    <!--Arrow left-->
+                    <li class="page-item" (click)="previousPage()" [ngClass]="{disabled: activePage == 1}">
+                        <a class="page-link" aria-label="Previous">
+                            <span>Précédent</span>
+                        </a>
+                    </li>
+                    <!--Numbers-->
+                    <li class="page-item" #pages
+                        *ngFor="let page of paginators | slice:firstVisiblePaginator:lastVisiblePaginator; let i = index"
+                        [ngClass]="{active: i + firstVisiblePaginator + 1 == activePage}">
+                        <a class="page-link waves-light" (click)="changePage($event)">{{page}}</a>
+                    </li>
+                    <!--Arrow right-->
+                    <li class="page-item" (click)="nextPage()" [ngClass]="{disabled: activePage == numberOfPaginators}">
+                        <a class="page-link" aria-label="Next">
+                            <span>Suivant</span>
+                        </a>
+                    </li>
+                    <!--Last-->
+                    <li class="page-item clearfix d-none d-md-block" (click)="lastPage()"
+                        [ngClass]="{disabled: activePage == numberOfPaginators}">
+                        <a class="page-link">&raquo;</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,86 @@
+<div class=" content">
+    <div class="row mt-4">
+        <div class="col-12">
+            <h1 class="text-primary text-center" *ngIf="connect as user">
+                Bienvenue <strong>{{(user.surname) ? user.surname : '...'}} {{(user.name) ? user.name : '...'}}</strong>
+            </h1>
+        <h1 class="text-secondary text-center">
+            Vous êtes connecté sur l'application app
+        </h1>
+        <h4 class=" description text-center" *ngIf="connect" [ngSwitch]="connect.role">
+            <span *ngSwitchCase="1">avec le profil Utilisateur</span>
+            <span *ngSwitchCase="2">avec le profil Membre</span>
+            <span *ngSwitchCase="3">avec le profil Client</span>
+            <span *ngSwitchCase="4">avec le profil Manager</span>
+            <span *ngSwitchCase="5">avec le profil Administrateur</span>
+        </h4>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-4 col-sm-12 col-12 mb-2">
+            <div class="serv-section-2 serv-section-2-act">
+                <a class="serv-section-2-icon serv-section-2-icon-act" routerLink="/app/members">
+                    <i class="fas fa-users"></i>
+                </a>
+                <div class="serv-section-desc">
+                    <h4>Ressources</h4>
+                    <h5>Accès aux ressources</h5></div>
+                <div class="section-heading-line-left"></div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12 col-12 mb-2">
+            <div class="serv-section-2">
+                <a class="serv-section-2-icon serv-section-2-icon-act" routerLink="/app/clients">
+                    <i class="fas fa-comments-dollar"></i> </a>
+                <div class="serv-section-desc">
+                    <h4>Clients</h4>
+                    <h5>Accès aux Clients</h5></div>
+                <div class="section-heading-line-left"></div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12 col-12">
+            <div class="serv-section-2">
+                <a class="serv-section-2-icon serv-section-2-icon-act" routerLink="/app/projects">
+                    <i class="fas fa-folder-open"></i> </a>
+                <div class="serv-section-desc">
+                    <h4>Projets</h4>
+                    <h5>Accès aux Projets</h5></div>
+                <div class="section-heading-line-left"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-4 col-sm-12 col-12 mb-2">
+            <div class="serv-section-2 serv-section-2-act">
+                <a class="serv-section-2-icon serv-section-2-icon-act" routerLink="/app/company">
+                    <i class="far fa-clock"></i>
+                </a>
+                <div class="serv-section-desc">
+                    <h4>Dashboard</h4>
+                    <h5>Société</h5></div>
+                <div class="section-heading-line-left"></div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12 col-12 mb-2">
+            <div class="serv-section-2 serv-section-2-act">
+                <a class="serv-section-2-icon serv-section-2-icon-act" routerLink="/app/drive">
+                    <i class="far fa-clock"></i>
+                </a>
+                <div class="serv-section-desc">
+                    <h4>Drive</h4>
+                    <h5>Import/Export CSV</h5></div>
+                <div class="section-heading-line-left"></div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12 col-12 mb-2">
+            <div class="serv-section-2 serv-section-2-act">
+                <a class="serv-section-2-icon serv-section-2-icon-act" routerLink="/app/admin">
+                    <i class="fas fa-fire-extinguisher"></i> </a>
+                <div class="serv-section-desc">
+                    <h4>Administration</h4>
+                    <h5>Imports "Lucca"</h5></div>
+                <div class="section-heading-line-left"></div>
+            </div>
+        </div>
+    </div>
+</div>

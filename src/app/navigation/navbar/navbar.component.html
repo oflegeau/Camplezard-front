@@ -148,8 +148,11 @@
             dropdownToggle
             href="#"
             (click)="$event.preventDefault()">
-            <div class=" photo">
-              <img alt="Profile Photo" src="assets/img/mike.jpg" />
+            <div *ngIf="!connect" class=" photo">
+              <img alt="Profile Photo" src="assets/img/inconnu.jpg" />
+            </div>
+            <div *ngIf="connect" class=" photo">
+              <img alt="Profile Photo" src="{{connect.photo | photoPipe}}" />
             </div>
             <b class=" caret d-none d-lg-block d-xl-block"> </b>
             <p class=" d-lg-none">Log out</p>
@@ -158,7 +161,7 @@
             class=" dropdown-menu dropdown-navbar dropdown-menu-right"
             *dropdownMenu>
             <li class=" nav-link">
-              <a class=" nav-item dropdown-item" href="javascript:void(0)" (click)="onUser()">
+              <a class=" nav-item dropdown-item" href="app/home/user">
                 Mon Compte
               </a>
             </li>

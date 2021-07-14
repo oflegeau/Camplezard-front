@@ -1,0 +1,46 @@
+
+<!--- MODAL CREATE -->
+
+<div    aria-hidden="true"
+        aria-labelledby="myModalDeleteLabel"
+        bsModal
+        class=" modal fade modal-mini modal-success"
+        #childModalCreate = "bs-modal"
+        id="myModalDelete"
+        role="dialog"
+        tabindex="-1">
+    <div class=" modal-dialog">
+        <div class=" modal-content">
+            <div class=" modal-header justify-content-center">
+                <button aria-hidden="true"
+                        class=" close"
+                        (click)="childModalCreate.hide()"
+                        data-dismiss="modal"
+                        type="button">
+                    <i class=" {{'exit' | getIcon : ''}} text-white" > </i>
+                </button>
+                <div class=" modal-profile">
+                    <i class=" {{'create' | getIcon : 'fal'}}" > </i>
+                </div>
+            </div>
+            <div class=" modal-body">
+                <p *ngIf="deleteCreation" >{{deleteCreation.title}}</p>
+                <p *ngIf="deleteCreation" style="color: #1e1e2f">{{deleteCreation.message}}</p>
+            </div>
+            <div class=" modal-footer">
+                <button (click)="onConfirm();childModalCreate.hide()"
+                        class=" btn btn-link btn-neutral"
+                        data-dismiss="modal"
+                        type="button">
+                    OUI
+                </button>
+                <button
+                        class=" btn btn-link btn-neutral"
+                        (click)="childModalCreate.hide()"
+                        type="button">
+                    NON
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

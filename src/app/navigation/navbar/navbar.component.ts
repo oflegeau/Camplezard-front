@@ -3,14 +3,15 @@ import { ROUTES } from '../sidebar/sidebar.component';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import {AuthService} from '../../service/guard/auth.service';
-import {AppIBreadCrumb} from '../../app.interface.breadcrumb';
+import {AuthService} from '../../share/guard/auth.service';
 import {Subscription} from 'rxjs';
 import {BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
 import {BsModalService} from 'ngx-bootstrap';
-import {AppISetting} from '../../app.interface.setting';
-import {GlobalVariable, PeriodMonths} from '../../service/model/GlobalVariable';
-import {GlobalVariableService} from '../../service/service/global.variable.service';
+import {Connect} from '../../share/back-model/Connect';
+import {AppIBreadCrumb} from '../../share/interface/app.interface.breadcrumb';
+import {GlobalVariableService} from '../../share/service/global.variable.service';
+import {AppISetting} from '../../share/interface/app.interface.setting';
+import {GlobalVariable, PeriodMonths} from '../../share/front-model/GlobalVariable';
 
 const misc: any = {
   sidebar_mini_active: true
@@ -22,6 +23,7 @@ const misc: any = {
 })
 export class NavbarComponent implements OnInit, OnDestroy {
 
+  public connect: Connect;
   @Input() breadcrumb: AppIBreadCrumb[];
 
   public globalVariable: GlobalVariable;
@@ -55,6 +57,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       private modalService: BsModalService,
       private globalVariableService: GlobalVariableService) {
     this.location = location;
+    this.connect = JSON.parse(localStorage.getItem('connect'));
 
     this.bsConfig = Object.assign({}, {
       isAnimated: true,
@@ -142,7 +145,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
       titlee = titlee.slice(1);
     }
 
-    // tslint:disable-next-line:prefer-for-of
     for (let item = 0; item < this.listTitles.length; item++) {
       if (this.listTitles[item].path === titlee) {
         return this.listTitles[item].title;
@@ -234,9 +236,5 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     // we stop the simulation of Window Resize after the animations are completed
     setTimeout(()=> {clearInterval(simulateWindowResize);}, 1000);
-  }
-
-  onUser() {
-    this.router.navigate(['/user']);
   }
 }

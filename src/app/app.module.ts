@@ -30,16 +30,18 @@ import {NgSelectModule} from '@ng-select/ng-select';
 import {AppRoutingModule} from './app-routing.module';
 import {MemberModule} from './member/member.module';
 import {NavigationModule} from './navigation/navigation.module';
-import {ConnectRestService} from './service/rest/connect.rest.service';
-import {MemberListService} from './service/service/member.list.service';
-import {MemberRestService} from './service/rest/member.rest.service';
-import {GlobalVariableService} from './service/service/global.variable.service';
-import {AuthService} from './service/guard/auth.service';
-import {RoleGuard} from './service/guard/authRole.service';
-import {AuthGuard} from './service/guard/authGuard.service';
-import {ServiceModule} from './service/service.module';
+import {ConnectRestService} from './share/rest/connect.rest.service';
+import {MemberListService} from './share/service/member.list.service';
+import {MemberRestService} from './share/rest/member.rest.service';
+import {GlobalVariableService} from './share/service/global.variable.service';
+import {AuthService} from './share/guard/auth.service';
+import {RoleGuard} from './share/guard/authRole.service';
+import {AuthGuard} from './share/guard/authGuard.service';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {CampingModule} from './camping/camping.module';
+import {ShareModule} from './share/share.module';
+import {PlacePageService} from './share/service/place.page.service';
+import {PlaceRestService} from './share/rest/place.rest.service';
 
 @NgModule({
     declarations: [
@@ -76,7 +78,7 @@ import {CampingModule} from './camping/camping.module';
         AngularFireAuthModule,
         AngularFirestoreModule,
         NgSelectModule,
-        ServiceModule,
+        ShareModule,
         NavigationModule,
         MemberModule,
         CampingModule,
@@ -85,7 +87,8 @@ import {CampingModule} from './camping/camping.module';
                 AuthService, AuthGuard, RoleGuard,
                 GlobalVariableService,
                 ConnectRestService,
-                MemberRestService, MemberListService,],
+                MemberRestService, MemberListService,
+                PlaceRestService, PlacePageService],
     bootstrap: [AppComponent],
     schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })

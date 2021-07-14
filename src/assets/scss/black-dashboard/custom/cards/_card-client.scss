@@ -1,0 +1,20 @@
+.card-client {
+  height: 303px;
+
+  .table-full-width {
+    max-height: 240px;
+    position: relative;
+  }
+
+  .card-header {
+    .title {
+      margin-right: 20px;
+      font-weight: $font-weight-normal;
+    }
+
+    .dropdown {
+      float: right;
+      color: darken($white, 20%);
+    }
+  }
+}

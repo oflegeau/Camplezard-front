@@ -94,7 +94,7 @@
     [data-toggle="collapse"] ~ div > ul > li:hover > a {
       .sidebar-mini-icon,
       .sidebar-normal {
-        color: $white;
+        color: $black;
       }
     }
 
@@ -147,7 +147,7 @@
       > a {
         margin: 10px 15px 0;
         border-radius: $btn-round-radius;
-        color: $white;
+        color: $black;
         display: block;
         text-decoration: none;
         position: relative;
@@ -180,7 +180,7 @@
 
         i,
         p {
-          color: white;
+          color: $black;
         }
 
         &:before {
@@ -190,7 +190,7 @@
           width: 6px;
           top: 22px;
           left: -4px;
-          background: $white;
+          background: $black;
           border-radius: 50%;
         }
       }
@@ -198,17 +198,17 @@
       &.active > a[data-toggle="collapse"] {
         background: transparent;
         box-shadow: none;
-        color: $white;
+        color: $black;
 
         i {
-          color: $white;
+          color: $black;
         }
 
         & + div .nav .active a {
           box-shadow: none;
           .sidebar-mini-icon,
           .sidebar-normal {
-            color: $white;
+            color: $black;
             font-weight: $font-weight-normal;
           }
 
@@ -219,7 +219,7 @@
             width: 6px;
             top: 17px;
             left: -4px;
-            background: $white;
+            background: $black;
             border-radius: 50%;
           }
         }
@@ -230,7 +230,7 @@
           width: 6px;
           top: 22px;
           left: -4px;
-          background: rgba($white, 0.6);
+          background: rgba($black, 0.6);
           border-radius: 50%;
         }
       }
@@ -354,28 +354,10 @@
     }
   }
 
-  &[data="blue"] {
-    @include linear-gradient($info-states, $info);
+  &[data="primary"] {
+    @include linear-gradient($primary-states, $primary);
     &:before {
-      border-bottom-color: $info;
-    }
-  }
-  &[data="green"] {
-    @include linear-gradient($success-states, $success);
-    &:before {
-      border-bottom-color: $success;
-    }
-  }
-  &[data="orange"] {
-    @include linear-gradient($warning-states, $warning);
-    &:before {
-      border-bottom-color: $warning;
-    }
-  }
-  &[data="red"] {
-    @include linear-gradient($danger-states, $danger);
-    &:before {
-      border-bottom-color: $danger;
+      border-bottom-color: $primary;
     }
   }
 
@@ -481,22 +463,6 @@
   background: linear-gradient($background-black, $background-states-black);
 
   @include transitions(0.5s, cubic-bezier(0.685, 0.0473, 0.346, 1));
-
-  &[data="blue"] {
-    border-top: 2px solid $info;
-  }
-
-  &[data="green"] {
-    border-top: 2px solid $success;
-  }
-
-  &[data="orange"] {
-    border-top: 2px solid $warning;
-  }
-
-  &[data="red"] {
-    border-top: 2px solid $danger;
-  }
 
   &[data="primary"] {
     border-top: 2px solid $primary;

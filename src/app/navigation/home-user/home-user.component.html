@@ -1,5 +1,5 @@
 <div class="full-page login-page"
-     style="background-image: url('../../../assets/img/bg17.jpg');
+     style="background-image: url('../../../assets/img/bg11.jpg');
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;">
@@ -8,22 +8,22 @@
             <div class=" col-lg-4 col-md-6 ml-auto mr-auto">
                 <div class=" card card-login card-white">
                     <div class=" card-header">
-                        <img alt="" src="../../../assets/img/card-primary.png" />
-                        <h1 class=" card-title">Check</h1>
+                        <img alt="" src="../../../assets/img/card-info.png" />
+                        <h1 class=" card-title">Ask</h1>
                     </div>
-                    <div class=" card-body" *ngIf="authService.userData as user">
-                        <h1 class="text-primary">Bonjour <strong>{{(user.displayName) ? user.displayName : 'Utilisateur X'}}</strong></h1>
-                        <p class="text-primary">Email: <strong>{{user.email}}</strong></p>
-                        <h4 *ngIf="user.emailVerified === false" class="text-primary">Merci de vérifier votre email</h4>
+                    <div class=" card-body" *ngIf="authService  && authService.userData as user">
+                        <h1 class="text-info">Bonjour <strong>{{(user.displayName) ? user.displayName : 'Utilisateur X'}}</strong></h1>
+                        <p class="text-info">Email: <strong>{{user.email}}</strong></p>
+                        <h4 *ngIf="user.emailVerified === true" class="text-danger">Demandez des droits d'accès à votre Administrateur !</h4>
                     </div>
                     <div class=" card-footer">
-                        <button type="button" (click)="authService.sendVerificationMail()"
-                                class="btn btn-primary btn-lg btn-block">
-                            Relancer la procédure
+                        <button type="button" (click)="sendMail()"
+                                class="btn btn-info btn-lg btn-block">
+                            Demander par mail
                         </button>
                         <div class=" pull-right">
                             <h6>
-                                <a class=" link footer-link" href="javascript:void(0)" (click)="authService.signOut()">
+                                <a class=" link footer-link text-info" href="javascript:void(0)" (click)="authService.signOut()">
                                     Se déconnecter
                                 </a>
                             </h6>

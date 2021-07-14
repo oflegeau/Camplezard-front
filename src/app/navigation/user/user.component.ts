@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {Connect} from '../../service/model/Connect';
-import {AuthService} from '../../service/guard/auth.service';
+import {AuthService} from '../../share/guard/auth.service';
+import {Connect} from '../../share/back-model/Connect';
 
 @Component({
   selector: 'app-user',
   templateUrl: 'user.component.html'
 })
 export class UserComponent implements OnInit {
+
   public connect: Connect;
   public changePhoto: boolean;
 
@@ -16,7 +17,8 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.changePhoto = false;
+    console.log('here');
+   this.changePhoto = false;
   }
 
   onChange()  {

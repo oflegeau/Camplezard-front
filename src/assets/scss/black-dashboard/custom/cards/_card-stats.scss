@@ -19,6 +19,18 @@
       padding: 14px 13px;
     }
 
+    &.icon-purple {
+      @include diagonal-gradient($purple, $purple);
+    }
+
+    &.icon-pink {
+      @include diagonal-gradient($pink, $pink);
+    }
+
+    &.icon-red {
+      @include diagonal-gradient($red, $red);
+    }
+
     &.icon-danger {
       @include diagonal-gradient($danger, $danger-states);
     }
@@ -35,8 +47,17 @@
       @include diagonal-gradient($info, $info-states);
     }
 
+    &.icon-black {
+      @include diagonal-gradient($black, $black-states);
+    }
+
+
     &.icon-primary {
       @include diagonal-gradient($primary, $primary-states);
+    }
+
+    &.icon-secondary {
+      @include diagonal-gradient($secondary, $secondary-states);
     }
   }
 

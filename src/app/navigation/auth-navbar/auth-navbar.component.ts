@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-import {AuthService} from '../../service/guard/auth.service';
+import {AuthService} from '../../share/guard/auth.service';
 
 const misc: any = {
   sidebar_mini_active: true
@@ -25,6 +25,7 @@ export class AuthNavbarComponent implements OnInit {
               public toastr: ToastrService) {
     this.location = location;
   }
+
   minimizeSidebar() {
     const body = document.getElementsByTagName('body')[0];
     if (body.classList.contains('sidebar-mini')) {
@@ -66,6 +67,6 @@ export class AuthNavbarComponent implements OnInit {
       }
     }
 
-    return 'Application Camping';
+    return 'app Web App';
   }
 }

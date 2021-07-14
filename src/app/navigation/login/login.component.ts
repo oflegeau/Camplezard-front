@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ToastrService} from 'ngx-toastr';
-import {AuthService} from '../../service/guard/auth.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../share/guard/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             Validators.minLength(6),
             Validators.pattern('[a-zA-Z0-9 _%-]*')]),
       email: new FormControl({value: '', disabled: false},
-                  [Validators.required, Validators.email]),
+          [Validators.required, Validators.email]),
     });
   }
 
