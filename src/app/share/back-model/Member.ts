@@ -69,9 +69,8 @@ export class MemberResa extends MemberCard {
   public resas: Resa[];
 
   // tslint:disable-next-line:max-line-length
-  constructor(id: string, name: string, surname: string, photo: string, created: Date, email: string, phone: string, nation: number, birthday: Date, birthdayCity: string, profession: string, sex: boolean, address: string, code: string, city: string, carType: string, carNumber: string, comment: string, resas: Resa[]) {
-    // tslint:disable-next-line:max-line-length
-    super(id, name, surname, photo, created, email, phone, nation, birthday, birthdayCity, profession, sex, address, code, city, carType, carNumber, comment);
+  constructor(id: string, name: string, surname: string, photo: string, created: Date, email: string, phone: string, nation: number, birthday: Date, birthdayCity: string, profession: string, sex: boolean, address: string, code: string, city: string, carType: string, carNumber: string, comment: string, here: boolean, resas: Resa[]) {
+    super(id, name, surname, photo, created, email, phone, nation, birthday, birthdayCity, profession, sex, address, code, city, carType, carNumber, comment, here);
     this.resas = resas;
   }
 }
