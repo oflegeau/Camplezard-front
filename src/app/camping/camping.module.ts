@@ -11,7 +11,6 @@ import {CollapseModule} from 'ngx-bootstrap/collapse';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {BsDatepickerModule, TabsModule, TooltipModule} from 'ngx-bootstrap';
 import {NgSelectModule} from '@ng-select/ng-select';
-import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
 import {MemberListComponent} from '../member/member-list/member-list.component';
 import { CampingHomeComponent } from './camping-home/camping-home.component';
 import {ShareModule} from '../share/share.module';
@@ -34,7 +33,6 @@ import { CampingPlanComponent } from './camping-plan/camping-plan.component';
         TooltipModule.forRoot(),
         BsDatepickerModule.forRoot(),
         NgSelectModule,
-        AngularMultiSelectModule,
         TabsModule,
         ShareModule
     ],

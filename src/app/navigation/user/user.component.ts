@@ -17,7 +17,6 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('here');
    this.changePhoto = false;
   }
 

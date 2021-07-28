@@ -115,7 +115,7 @@
             <li>
               <input type="text" style="cursor: pointer; color: #211F3A"
                      placeholder="Datepicker"
-                     class="form-control primary-text"
+                     class="form-control text-primary"
                      bsDatepicker
                      (bsValueChange)="onChangeDate($event)"
                      [bsValue]="bsValue"
@@ -177,58 +177,3 @@
     </div>
   </div>
 </nav>
-
-<!--- MODAL PARAMETER -->
-<div  aria-hidden="true"
-      aria-labelledby="myModalLabel"
-      bsModal
-      class="modal fade"
-      #paramModal="bs-modal"
-      id="myModal"
-      role="dialog"
-      tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header justify-content-center">
-        <button
-                aria-hidden="true"
-                class="close"
-                data-dismiss="modal"
-                type="button"
-                (click)="paramModal.hide()">
-          <i class="tim-icons icon-simple-remove default-text"> </i>
-        </button>
-        <h4 class="title title-up">Paramètres Graphiques</h4>
-      </div>
-      <div class="modal-body">
-        <div class="adjustments-line mt1">
-          <div class="togglebutton switch-sidebar-mini text-center">
-            <span class="label-switch mr">OFF</span>
-            <bSwitch
-                    [switch-on-color]="'primary'"
-                    [switch-off-text]="' '"
-                    [switch-on-text]="' '"
-                    [(ngModel)]="state"
-                    (click)="onChange($event)"
-            ></bSwitch>
-            <span class="label-switch label-right ml">ON</span>
-          </div>
-        </div>
-        <div class="text-center mt">Thème</div>
-        <div class=" adjustments-line text-center color-change">
-          <div class="togglebutton switch-sidebar-mini">
-            <span class="label-switch mr"> LIGHT MODE </span>
-            <bSwitch
-                    [switch-on-color]="'primary'"
-                    [switch-off-text]="' '"
-                    [switch-on-text]="' '"
-                    [(ngModel)]="dashboardColor"
-                    (click)="onChangeDashboardColor($event)"
-            ></bSwitch>
-            <span class="label-switch label-right ml"> DARK MODE </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

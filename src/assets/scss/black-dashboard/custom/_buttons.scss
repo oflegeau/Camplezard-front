@@ -102,8 +102,29 @@
 
 // Apply the mixin to the buttons
 // .btn-default { @include btn-styles($default-color, $default-states-color); }
+.btn-primary-dark {
+  @include btn-styles($primary-dark, $primary-dark);
+  &:not(:disabled):not(.disabled):active {
+    color: $white;
+  }
+}
 .btn-primary {
   @include btn-styles($primary, $primary-states);
+  &:not(:disabled):not(.disabled):active {
+    color: $black;
+  }
+}
+.btn-primary-light {
+  @include btn-styles($primary-light, $primary-light);
+  &:not(:disabled):not(.disabled):active {
+    color: $black;
+  }
+}
+.btn-secondary-dark {
+  @include btn-styles($secondary-dark, $secondary-dark);
+  &:not(:disabled):not(.disabled):active {
+    color: $white;
+  }
 }
 .btn-secondary {
   @include btn-styles($secondary, $secondary-states);
@@ -111,14 +132,60 @@
     color: $white;
   }
 }
+.btn-secondary-light {
+  @include btn-styles($secondary-light, $secondary-light);
+  &:not(:disabled):not(.disabled):active {
+    color: $white;
+  }
+}
+.btn-info {
+  @include btn-styles($info, $info-states);
+  &:not(:disabled):not(.disabled):active {
+    color: $white;
+  }
+}
+.btn-success {
+  @include btn-styles($success, $success-states);
+  &:not(:disabled):not(.disabled):active {
+    color: $white;
+  }
+}
+.btn-success-light {
+  @include btn-styles($success-light, $success-light);
+  &:not(:disabled):not(.disabled):active {
+    color: $black;
+  }
+}
+.btn-danger {
+  @include btn-styles($danger, $danger-states);
+  &:not(:disabled):not(.disabled):active {
+    color: $white;
+  }
+}
+.btn-danger-light {
+  @include btn-styles($danger-light, $danger-light);
+  &:not(:disabled):not(.disabled):active {
+    color: $white;
+  }
+}
+.btn-warning {
+  @include btn-styles($warning, $warning-states);
+  &:not(:disabled):not(.disabled):active {
+    color: $white;
+  }
+}
+.btn-white {
+  @include btn-styles($white, $white);
+  &:not(:disabled):not(.disabled):active {
+    color: $black;
+  }
+}
+
 .btn-teal {
   @include btn-styles($teal, $teal);
 }
 .btn-cyan {
   @include btn-styles($cyan, $cyan);
-}
-.btn-success {
-  @include btn-styles($success, $success-states);
 }
 .btn-blue {
   @include btn-styles($blue, $blue);
@@ -132,26 +199,11 @@
 .btn-purple {
   @include btn-styles($purple, $purple);
 }
-.btn-info {
-  @include btn-styles($info, $info-states);
-}
-.btn-warning {
-  @include btn-styles($warning, $warning-states);
-  &:not(:disabled):not(.disabled):active {
-    color: $white;
-  }
-}
 .btn-orange {
   @include btn-styles($orange, $orange);
 }
 .btn-yellow {
   @include btn-styles($yellow, $yellow);
-}
-.btn-danger {
-  @include btn-styles($danger, $danger-states);
-}
-.btn-neutral {
-  @include btn-styles($white, $white);
 }
 
 .btn {

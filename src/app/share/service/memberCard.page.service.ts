@@ -6,8 +6,8 @@ import {PageMember} from '../back-model/PageMember';
 import {MemberRestService} from '../rest/member.rest.service';
 import {AuthService} from '../guard/auth.service';
 import {AppISetting} from '../interface/app.interface.setting';
-import {MemberCard} from '../back-model/MemberCard';
 import {Reponse} from '../back-model/Reponse';
+import {Member, MemberCard} from '../back-model/Member';
 
 @Injectable({
   providedIn: 'root'
@@ -28,11 +28,11 @@ export class MemberCardPageService {
   // GET
   // ------------------------------------------------------------------------------------------- //
 
-  obs_getPage(page: number,
-              size: number,
-              typeFilter: number,
-              sortAsc: boolean,
-              sortName: string): Observable<PageMember> {
+  get_obs(page: number,
+          size: number,
+          typeFilter: number,
+          sortAsc: boolean,
+          sortName: string): Observable<PageMember> {
     this.memberRestService.getPage(page, size, typeFilter, sortAsc, sortName).subscribe(
       (data: HttpResponse<PageMember>) => {
         if (data.ok && data.status === AppISetting.HTTP_OK) {
@@ -56,7 +56,7 @@ export class MemberCardPageService {
   //                                  POST                                          //
   // ------------------------------------------------------------------------------ //
 
-  pro_create(obj: MemberCard): Promise<Reponse> {
+  create(obj: MemberCard): Promise<Reponse> {
 
     return new Promise((resolve, reject) => {
       this.memberRestService.create(obj).subscribe(
@@ -88,7 +88,7 @@ export class MemberCardPageService {
   //                                  PUT                                           //
   // ------------------------------------------------------------------------------ //
 
-  pro_update(obj: MemberCard): Promise<Reponse> {
+  update(obj: MemberCard): Promise<Reponse> {
     return new Promise((resolve, reject) => {
       this.memberRestService.update(obj).subscribe(
         (data: HttpResponse<Reponse>) => {
@@ -122,7 +122,7 @@ export class MemberCardPageService {
   //                                  DELETE                                        //
   // ------------------------------------------------------------------------------ //
 
-  pro_delete(obj: MemberCard): Promise<Reponse> {
+  delete(obj: MemberCard): Promise<Reponse> {
     return new Promise((resolve, reject) => {
       this.memberRestService.delete(obj.id).subscribe(
         (data: HttpResponse<Reponse>) => {

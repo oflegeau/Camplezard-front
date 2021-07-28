@@ -22,7 +22,6 @@ import {
   TooltipModule
 } from 'ngx-bootstrap';
 import {TagInputModule} from 'ngx-chips';
-import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
@@ -43,6 +42,9 @@ import {ShareModule} from './share/share.module';
 import {PlacePageService} from './share/service/place.page.service';
 import {PlaceRestService} from './share/rest/place.rest.service';
 import {MemberCardPageService} from './share/service/memberCard.page.service';
+import {MemberService} from './share/service/member.service';
+import {PlaceService} from './share/service/place.service';
+import {PlaceListService} from './share/service/place.list.service';
 
 @NgModule({
     declarations: [
@@ -68,7 +70,6 @@ import {MemberCardPageService} from './share/service/memberCard.page.service';
         PopoverModule.forRoot(),
         CollapseModule.forRoot(),
         TagInputModule,
-        AngularMultiSelectModule,
         TabsModule.forRoot(),
         PaginationModule.forRoot(),
         AlertModule.forRoot(),
@@ -88,8 +89,8 @@ import {MemberCardPageService} from './share/service/memberCard.page.service';
                 AuthService, AuthGuard, RoleGuard,
                 GlobalVariableService,
                 ConnectRestService,
-                MemberRestService, MemberListService, MemberCardPageService,
-                PlaceRestService, PlacePageService],
+                MemberRestService, MemberListService, MemberCardPageService, MemberService,
+                PlaceRestService, PlacePageService, PlaceService, PlaceListService],
     bootstrap: [AppComponent],
     schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })

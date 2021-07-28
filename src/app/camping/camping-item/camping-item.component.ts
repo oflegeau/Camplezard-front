@@ -27,24 +27,6 @@ export class CampingItemComponent implements OnInit {
     this.calendarDays = new Array<CalendarDay>();
   }
 
-  color_btn_struct(i:number) { return AppISetting.getColor('btn',AppISetting.PROJECT_STRUCT,i);}
-  color_btn_prod(i:number) { return AppISetting.getColor('btn',AppISetting.PROJECT_TIME,i);}
-  color_btn_nf() { return AppISetting.getColor('btn',AppISetting.PROJECT_NF,0);}
-  color_btn_ct() { return AppISetting.getColor('btn',AppISetting.PROJECT_CT,0);}
-  color_btn_leave(i:number) { return AppISetting.getColor('btn',AppISetting.LEAVE,i);}
-
-  color_txt_struct(i:number) { return AppISetting.getColor('txt',AppISetting.PROJECT_STRUCT,i);}
-  color_txt_prod( i:number) { return AppISetting.getColor('txt',AppISetting.PROJECT_TIME,i);}
-  color_txt_nf() { return AppISetting.getColor('txt',AppISetting.PROJECT_NF,0);}
-  color_txt_ct() { return AppISetting.getColor('txt',AppISetting.PROJECT_CT,0);}
-  color_txt_leave( i:number) { return AppISetting.getColor('txt',AppISetting.LEAVE,i);}
-
-  color_struct(i:number) { return AppISetting.getColor('color',AppISetting.PROJECT_STRUCT,i);}
-  color_prod( i:number) { return AppISetting.getColor('color',AppISetting.PROJECT_TIME,i);}
-  color_nf() { return AppISetting.getColor('color',AppISetting.PROJECT_NF,0);}
-  color_ct() { return AppISetting.getColor('color',AppISetting.PROJECT_CT,0);}
-  color_leave( i:number) { return AppISetting.getColor('color',AppISetting.LEAVE,i);}
-
   /*--------------------------------------------------------------------*/
   /*                     Init                                           */
   /*--------------------------------------------------------------------*/

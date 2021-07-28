@@ -1,5 +1,4 @@
 // Global settings
-
 $enable-caret: true !default;
 $enable-rounded: true !default;
 $enable-shadows: true !default;
@@ -9,7 +8,6 @@ $enable-grid-classes: true !default;
 $enable-print-styles: true !default;
 
 // Color system
-
 $white: #e3e3e3 !default;
 $gray-100: #f6f9fc !default;
 $gray-200: #e9ecef !default;
@@ -41,26 +39,46 @@ $grays: map-merge(
   $grays
 );
 
-$blue: #78CCF0 !default;
-$indigo: #5603ad !default;
-$purple: #8965e0 !default;
-$pink: #f3a4b5 !default;
-$red: #e9607d !default;
-$orange: #e98e10 !default;
-$yellow: #eec756 !default;
-$green: #1CB4BA !default;
-$teal: #11cdef !default;
-$cyan: #2bffc6 !default;
-
 $black: #211f30 !default;
 $default: #32384D !default;
-$default-light: #48516F !default;
-$primary: #89DA59 !default;
-$secondary: #F4CC70 !default;
-$success: #80BD9E !default;
-$info: #209488 !default;
-$warning: #DE7A22 !default;
-$danger: #F98866 !default;
+$default-light: #535b70 !default;
+
+$primary-dark: #F57333 !default;
+$primary: #E29930 !default;
+$primary-light: #F0C232 !default;
+
+$secondary-dark: #4050B8 !default;
+$secondary: #217CA3 !default;
+$secondary-light: #6284B3 !default;
+
+$info: #5998B3 !default;
+$success: #3FB090 !default;
+$success-light: #44B2B3 !default;
+$danger: #F55D51 !default;
+$danger-light: #E5724B !default;
+$warning: #F0DF26 !default;
+
+// gradient
+$black-states: #2B2B30 !default;
+$default-states: #43454D !default;
+$primary-states: #E3AE64 !default;
+$secondary-states: #4687A3 !default;
+$success-states: #68B09C !default;
+$info-states: #82A4B3 !default;
+$warning-states: #F0E45D !default;
+$danger-states: #F59089 !default;
+
+// opacity
+$default-opacity: rgba(182, 182, 182, 0.6) !default;
+$primary-opacity: rgba(227, 174, 100, 0.3) !default;
+$secondary-opacity: rgba(33, 124, 163, 0.3) !default;
+$success-opacity: rgba(63, 176, 144, 0.3) !default;
+$info-opacity: rgba(44, 168, 255, 0.3) !default;
+$warning-opacity: rgba(240, 223, 38, 0.3) !default;
+$danger-opacity: rgba(245, 93, 81, 0.3) !default;
+
+$background-black: #211F30 !default;
+$background-states-black: #211F3A !default;
 
 $line-height-lg: 1.625rem !default;
 $line-height-sm: 1.5 !default;
@@ -78,6 +96,17 @@ $opacity-1: rgba(255, 255, 255, 0.1) !default;
 $opacity-2: rgba(255, 255, 255, 0.2) !default;
 
 // end beniamin
+$blue: #007bff !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #dc3545 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #28a745 !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+
 $colors: () !default;
 $colors: map-merge(
   (
@@ -102,76 +131,6 @@ $colors: map-merge(
 
 $default-color-opacity: rgba(182, 182, 182, 0.6) !default;
 $orange-color: $orange !default;
-
-.default-light-text {
-  color: $default-light;
-}
-.default-text {
-  color: $default;
-}
-.primary-text {
-  color: $primary;
-}
-.secondary-text {
-   color: $secondary;
-}
-.success-text {
-  color: $success;
-}
-.info-text {
-  color: $info;
-}
-.warning-text {
-  color: $warning;
-}
-.yellow-text {
-  color: $yellow;
-}
-.cyan-text {
-  color: $cyan;
-}
-.danger-text {
-  color: $danger;
-}
-.white-text {
-  color: #e3e3e3;
-
-  &-underline {
-    color: #e3e3e3;
-    border-bottom: 1px solid #e3e3e3;
-    margin-bottom: 10px;
-  }
-}
-.grey-text {
-  color: $opacity-gray-5;
-}
-.blackLight-text {
-     color: #535b70;
-   }
-.black-text {
-  color: $black;
-}
-
-// gradient
-$black-states: #211F3A !default;
-$default-states: #32385B !default;
-$primary-states: #78BF4E !default;
-$secondary-states: #DBB865 !default;
-$success-states: #6FA389 !default;
-$info-states: #1B7A71 !default;
-$warning-states: #C46B1D !default;
-$danger-states: #E07B5C !default;
-
-$background-black: #211F30 !default;
-$background-states-black: #211F3A !default;
-
-// opacity
-$default-opacity: rgba(182, 182, 182, 0.6) !default;
-$primary-opacity: rgba(249, 99, 50, 0.3) !default;
-$success-opacity: rgba(24, 206, 15, 0.3) !default;
-$info-opacity: rgba(44, 168, 255, 0.3) !default;
-$warning-opacity: rgba(255, 178, 54, 0.3) !default;
-$danger-opacity: rgba(255, 54, 54, 0.3) !default;
 
 $light-gray: #e3e3e3 !default;
 $medium-gray: #dddddd !default;
@@ -308,7 +267,6 @@ $link-hover-color: darken($link-color, 15%);
 $link-hover-decoration: none !default;
 
 // Grid breakpoints
-
 $grid-breakpoints: (
   xs: 0,
   sm: 576px,
@@ -325,7 +283,6 @@ $grid-breakpoints: (
 // Define the maximum width of `.container` for different screen sizes.
 
 // Spacing
-
 $spacer: 1.5rem !default;
 $spacers: () !default;
 $spacers: map-merge(
@@ -1057,3 +1014,62 @@ $footer-link-color: $gray-600 !default;
 $footer-link-hover-color: $gray-700 !default;
 $footer-heading-color: $gray-600 !default;
 $footer-heading-font-size: $font-size-sm !default;
+
+// Color-text
+.text-white {
+  color: #e3e3e3;
+
+  &-underline {
+    color: #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    margin-bottom: 10px;
+  }
+}
+.text-grey {
+  color: $opacity-gray-5 !important;
+}
+.text-black {
+  color: $black !important;
+}
+.text-default {
+  color: $default !important;
+}
+.text-default-light {
+  color: $default-light !important;
+}
+.text-primary-dark {
+  color: $primary-dark !important;
+}
+.text-primary {
+  color: $primary !important;
+}
+.text-primary-light {
+  color: $primary-light !important;
+}
+.text-secondary-dark {
+  color: $secondary-dark !important;
+}
+.text-secondary {
+  color: $secondary !important;
+}
+.text-secondary-light {
+  color: $secondary !important;
+}
+.text-info {
+  color: $info !important;
+}
+.text-success {
+  color: $success !important;
+}
+.text-success-light {
+  color: $success-light !important;
+}
+.text-warning {
+  color: $warning !important;
+}
+.text-danger-light {
+  color: $danger-light !important;
+}
+.text-danger {
+  color: $danger !important;
+}

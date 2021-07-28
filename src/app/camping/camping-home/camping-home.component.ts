@@ -6,6 +6,9 @@ import {PagePlace} from '../../share/back-model/PagePlace';
 import {PlacePageService} from '../../share/service/place.page.service';
 import {GlobalVariable, PeriodMonths} from '../../share/front-model/GlobalVariable';
 import {GlobalVariableService} from '../../share/service/global.variable.service';
+import {BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
+import {BsModalService} from 'ngx-bootstrap';
+import {AppISetting} from '../../share/interface/app.interface.setting';
 
 @Component({
   selector: 'app-camping-home',
@@ -13,12 +16,6 @@ import {GlobalVariableService} from '../../share/service/global.variable.service
   styleUrls: ['./camping-home.component.scss']
 })
 export class CampingHomeComponent implements  OnInit, OnDestroy {
-
-  // gestion de la période glissante //
-  public globalVariable: GlobalVariable;
-  private globalVariableSub: Subscription;
-  public periodMonths: PeriodMonths;
-  public nbMonths: number;
 
   places: PagePlace;
   private subPlaces: Subscription;
@@ -33,14 +30,24 @@ export class CampingHomeComponent implements  OnInit, OnDestroy {
   firstVisiblePaginator = 0;
   lastVisiblePaginator = this.numberOfVisiblePaginators;
 
+  public date = new Date();
+  // MODAL DATE
+  minDate = new Date(2019, 11, 1);
+  maxDate = new Date();
+  bsValue = new Date();
+  bsConfig: Partial<BsDatepickerConfig>;
+
   constructor(private placePageService: PlacePageService,
-              private globalVariableService: GlobalVariableService,
-              private router: Router,
-              private toastrService: ToastrService) {
+              private modalService: BsModalService,) {
     this.places = null;
     this.subPlaces = null;
 
     this.filterTypeValue = 0;
+    this.bsConfig = Object.assign({}, {
+      isAnimated: true,
+      containerClass: 'theme-orange',
+      dateInputFormat: 'D-MM-YYYY',
+    });
   }
 
   /*--------------------------------------------------------------------*/
@@ -48,17 +55,15 @@ export class CampingHomeComponent implements  OnInit, OnDestroy {
   /*--------------------------------------------------------------------*/
 
   onRefresh() {
-    this.periodMonths = this.globalVariableService.getPeriodMonths();
-    this.nbMonths = this.globalVariable.nbMonths;
     if (this.activePage > 0) {
-      this.placePageService.obs_getPage(this.activePage-1);
+      this.placePageService.get_obs(this.activePage-1);
     }
   }
 
   ngOnInit() {
     if (this.activePage > 0) {
 
-      this.subPlaces = this.placePageService.obs_getPage(this.activePage-1).subscribe(data => {
+      this.subPlaces = this.placePageService.get_obs(this.activePage-1).subscribe(data => {
         if (data) {
           this.places = data;
           if (this.places.totalPage !== this.numberOfPaginators) {
@@ -68,20 +73,11 @@ export class CampingHomeComponent implements  OnInit, OnDestroy {
         }, error => console.log(error),
           () => console.log('complete places'));
     }
-
-    // variable de période glissante /
-    this.globalVariableSub = this.globalVariableService.obs_getObj().subscribe(data => {
-      this.globalVariable=data;
-      this.onRefresh();
-    });
   }
 
   ngOnDestroy(): void {
     if (this.subPlaces) {
       this.subPlaces.unsubscribe();
-    }
-    if (this.globalVariableSub) {
-      this.globalVariableSub.unsubscribe();
     }
   }
 
@@ -90,6 +86,19 @@ export class CampingHomeComponent implements  OnInit, OnDestroy {
   onTypePlace(i: number) {
     this.filterTypeValue = i;
 
+  }
+
+  onLess() {
+    this.bsValue = new Date(this.date.setDate(this.date.getDate() - 1));
+  }
+
+  onChangeDate(value: Date) {
+    const date = value;
+    this.date = new Date(date);
+  }
+
+  onMore() {
+    this.bsValue = new Date(this.date.setDate(this.date.getDate() + 1));
   }
 
   /*--------------------------------------------------------------------*/

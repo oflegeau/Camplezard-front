@@ -20,7 +20,7 @@ export class GlobalVariableService {
     //                                  GET                                           //
     // ------------------------------------------------------------------------------ //
 
-    public obs_getObj(): Observable<GlobalVariable> {
+    public get_obs(): Observable<GlobalVariable> {
         return this.obs.asObservable();
     }
 
@@ -87,7 +87,7 @@ export class GlobalVariableService {
     //                                  UPDATE                                        //
     // ------------------------------------------------------------------------------ //
 
-    pro_update_PeriodMonth(periodMonth: number): Promise<boolean> {
+    update_PeriodMonth(periodMonth: number): Promise<boolean> {
         return new Promise((resolve, reject) => {
             this.object.nbMonths = periodMonth;
 
@@ -99,7 +99,7 @@ export class GlobalVariableService {
         });
     }
 
-    pro_update_LastMonth(lastMonth: Date): Promise<boolean> {
+    update_LastMonth(lastMonth: Date): Promise<boolean> {
         return new Promise((resolve, reject) => {
             this.object.lastMonth = lastMonth;
             this.obs.next(this.object);

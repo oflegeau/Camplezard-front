@@ -32,13 +32,13 @@ export class ControlPeriodComponent implements OnChanges {
           'Erreur', AppISetting.toastOptions);
     } else if (this.periodMonths.monthMax !== 0) {
       this.periodMonths.monthMax -= 1;
-      this.globalVariableService.pro_update_LastMonth(new Date(this.periodMonths.yearMax,
+      this.globalVariableService.update_LastMonth(new Date(this.periodMonths.yearMax,
           this.periodMonths.monthMax,
           AppISetting.nbDayByMonth(this.periodMonths.yearMax, this.periodMonths.monthMax), 23, 59, 59)).then();
     } else {
       this.periodMonths.monthMax = 11;
       this.periodMonths.yearMax -= 1;
-      this.globalVariableService.pro_update_LastMonth(new Date(this.periodMonths.yearMax,
+      this.globalVariableService.update_LastMonth(new Date(this.periodMonths.yearMax,
           this.periodMonths.monthMax,
           AppISetting.nbDayByMonth(this.periodMonths.yearMax, this.periodMonths.monthMax), 23, 59, 59)).then();
     }
@@ -50,13 +50,13 @@ export class ControlPeriodComponent implements OnChanges {
     } else {
       if (this.periodMonths.monthMax !== 11) {
         this.periodMonths.monthMax += 1;
-        this.globalVariableService.pro_update_LastMonth(new Date(this.periodMonths.yearMax,
+        this.globalVariableService.update_LastMonth(new Date(this.periodMonths.yearMax,
             this.periodMonths.monthMax,
             AppISetting.nbDayByMonth(this.periodMonths.yearMax, this.periodMonths.monthMax), 23, 59, 59)).then();
       } else {
         this.periodMonths.monthMax = 0;
         this.periodMonths.yearMax += 1;
-        this.globalVariableService.pro_update_LastMonth(new Date(this.periodMonths.yearMax,
+        this.globalVariableService.update_LastMonth(new Date(this.periodMonths.yearMax,
             this.periodMonths.monthMax,
             AppISetting.nbDayByMonth(this.periodMonths.yearMax, this.periodMonths.monthMax), 23, 59, 59)).then();
       }

@@ -3,7 +3,6 @@ import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common
 import {Observable} from 'rxjs';
 import {Connect} from '../back-model/Connect';
 import {environment} from '../../../environments/environment';
-import {PageConnect} from '../back-model/PageConnect';
 import {Reponse} from '../back-model/Reponse';
 
 @Injectable()
@@ -32,25 +31,6 @@ export class ConnectRestService {
       .set('Content-Type', 'application/json');
 
     return this.http.get<Connect[]>(this.localurl, {headers, observe: 'response'});
-  }
-
-  getPage( page: number,
-           size: number,
-           filter: number,
-           sortAsc: boolean,
-           sortName: string): Observable<HttpResponse<PageConnect>> {
-    const headers = new HttpHeaders()
-        .set('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + this.setPassword()))
-      .set('Content-Type', 'application/json');
-
-    const paramas = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString())
-      .set('filter', filter.toString())
-      .set('sortAsc', sortAsc.toString())
-      .set('sortName', sortName);
-
-    return this.http.get<PageConnect>(this.localurl + '/page', {headers, params: paramas, observe: 'response'});
   }
 
   getConnect(): Observable<HttpResponse<Connect>> {

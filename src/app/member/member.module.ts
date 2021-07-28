@@ -1,6 +1,5 @@
 import {MemberListComponent} from './member-list/member-list.component';
 import {BsDatepickerModule, TabsModule, TooltipModule} from 'ngx-bootstrap';
-import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {CollapseModule} from 'ngx-bootstrap/collapse';
@@ -15,6 +14,8 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {ShareModule} from '../share/share.module';
 import {MemberModalComponent} from './member-component/member-modal/member-modal.component';
+import {MemberItemComponent} from './member-item/member-item.component';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 @NgModule({
     imports: [
@@ -31,13 +32,14 @@ import {MemberModalComponent} from './member-component/member-modal/member-modal
         TooltipModule.forRoot(),
         BsDatepickerModule.forRoot(),
         NgSelectModule,
-        AngularMultiSelectModule,
         TabsModule,
+        NgxSpinnerModule,
         ShareModule,
     ],
     declarations: [
         MemberListComponent,
         MemberModalComponent,
+        MemberItemComponent,
     ],
     entryComponents: [],
     exports: []

@@ -3,7 +3,7 @@ import {Observable, Subscription} from 'rxjs';
 import {ModalDirective} from 'ngx-bootstrap';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BsDatepickerConfig, BsDatepickerViewMode} from 'ngx-bootstrap/datepicker';
-import {MemberCard} from '../../../share/back-model/MemberCard';
+import {MemberCard} from '../../../share/back-model/Member';
 
 @Component({
   selector: 'app-member-modal',
@@ -165,12 +165,16 @@ export class MemberModalComponent implements OnInit, OnDestroy {
                                           this.surname.value,
                                           this.image,
                                           new Date(this.creation.value),
-                                          false,
                                           '',
                                           '',
                                           this.typeSelected,
                                          null,
+                                         '',
+                                         '',
                                          false,
+                                          '',
+                                          '',
+                                          '',
                                           '',
                                           '',
                                           ''));

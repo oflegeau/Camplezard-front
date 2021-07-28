@@ -1,1 +1,251 @@
-<p>member-item works!</p>
+<div class=" content">
+
+    <section  class="row mt-4">
+        <div class="col-8 d-flex justify-content-start">
+            <h1 *ngIf="memberResa">
+                <i *ngIf="memberResa.here" class="{{'member-internal' | getIcon : 'fad'}} text-white mr-2"></i>
+                <i *ngIf="!memberResa.here && memberResa.resas.length > 0" class="{{'client' | getIcon : 'fad'}} text-white mr-2"></i>
+                <i *ngIf="!memberResa.here && memberResa.resas.length === 0" class="{{'member-out' | getIcon : 'fad'}} text-white mr-2"></i>
+                {{memberResa.name}} {{memberResa.surname}}
+            </h1>
+        </div>
+        <div class="col-4 d-flex justify-content-end">
+            <ng-select #refNgSelectMember style="width: 200px"
+                       [clearable]="false"
+                       [(ngModel)]="selectedIdMember"
+                       (click)="onSelectMember($event)">
+                <ng-option *ngFor="let item of members" [value]="item.id">{{item.name}}</ng-option>
+            </ng-select>
+        </div>
+    </section>
+
+    <section *ngIf="memberResa" class="row">
+        <div class=" col-lg-3 col-md-6">
+            <app-card-kpi [icon]= "'prod' | getIcon : 'fas'"
+                          [iconColor]="'icon-info'"
+                          [title]="'Production (h/j)'"
+                          [value]="0"
+                          [iconComment]= "'contribute' | getIcon : 'fas'"
+                          [comment1]="'Assignations'"
+                          [comment2]="0 + ' %'"
+            ></app-card-kpi>
+        </div>
+        <div class=" col-lg-3 col-md-6">
+            <app-card-kpi [icon]= "'turnover' | getIcon : 'fas'"
+                          [iconColor]="'icon-primary'"
+                          [title]="'CA (HT)'"
+                          [value]="292 | currency:'EUR':'symbol':'1.0-0'"
+                          [iconComment]= "'scan' | getIcon : 'fas'"
+                          [comment1]="'Prod. Valorisée'"
+                          [comment2]="0 + 'h/j'"
+            ></app-card-kpi>
+        </div>
+        <div class=" col-lg-3 col-md-6">
+            <app-card-kpi [icon]= "'cost' | getIcon : 'fas'"
+                          [iconColor]="'icon-secondary'"
+                          [title]="'Charges'"
+                          [value]="333 | currency:'EUR':'symbol':'1.0-0'"
+                          [iconComment]= "'percent' | getIcon : 'fas'"
+                          [comment1]="'Sur Prod.'"
+                          [comment2]="0  + ' h/j'"
+            ></app-card-kpi>
+        </div>
+        <div class=" col-lg-3 col-md-6">
+            <app-card-kpi [icon]= "'margin' | getIcon : 'fas'"
+                          [iconColor]="'icon-success'"
+                          [title]="'Marge (HT)'"
+                          [value]="333 | currency:'EUR':'symbol':'1.0-0'"
+                          [iconComment]= "'percent' | getIcon : 'fas'"
+                          [comment1]="'Marge nette'"
+                          [comment2]="0 + ' %'"
+            ></app-card-kpi>
+        </div>
+    </section>
+
+    <div #anchorResa>
+        <div class="row">
+            <div class="col-4 d-flex justify-content-start">
+                <h4>
+                    <i class=" {{'kpi' | getIcon : 'fas'}} default-light-text mr-1"> </i>
+                    <span class=" default-light-text">Réservations</span>
+                </h4>
+            </div>
+            <div class="col-8 d-flex justify-content-end">
+                <h4>
+                </h4>
+            </div>
+        </div>
+    </div>
+
+    <section class="row">
+        <div *ngIf="memberResa"  class=" col-lg-12">
+            <div class=" card card-client">
+                <div class=" card-header">
+                    <div class=" tools float-right">
+                        <div class=" dropdown" dropdown>
+                            <button
+                                    class=" btn btn-link dropdown-toggle btn-icon dropdown-toggle"
+                                    data-toggle="dropdown"
+                                    dropdownToggle
+                                    type="button">
+                                <i class=" tim-icons icon-settings-gear-63"> </i>
+                            </button>
+                            <div class=" dropdown-menu dropdown-menu-right" *dropdownMenu>
+                                <a class=" dropdown-item text-success" (click)="onCreateResa();">
+                                    <i class=" {{'create' | getIcon : 'fad'}} mr-1"> </i>Nouvelle réservation </a>
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class=" card-title">Liste des réservations</h5>
+                </div>
+                <div class=" card-body">
+                    <div class=" table-full-width table-responsive">
+                        <table class=" table">
+                            <thead class=" text-primary">
+                            <tr>
+                                <th>#</th>
+                                <th>Début</th>
+                                <th>Fin</th>
+                                <th>Nuités</th>
+                                <th>Dépot ID</th>
+                                <th>ID Type</th>
+                                <th>ID n°</th>
+                                <th>
+                                    <button
+                                            class=" btn btn-link btn-icon btn-sm btn-simple"
+                                            tooltip="Animaux"
+                                            type="button">
+                                        <i class=" {{'parttime' | getIcon : 'fas'}} text-white-50"> </i>
+                                    </button>
+                                </th>
+                                <th>
+                                    <button
+                                            class=" btn btn-link btn-icon btn-sm btn-simple"
+                                            tooltip="Garage"
+                                            type="button">
+                                        <i class=" {{'parttime' | getIcon : 'fas'}} text-white-50"> </i>
+                                    </button>
+                                </th>
+                                <th>
+                                    <button
+                                            class=" btn btn-link btn-icon btn-sm btn-simple"
+                                            tooltip="Caravane"
+                                            type="button">
+                                        <i class=" {{'parttime' | getIcon : 'fas'}} text-white-50"> </i>
+                                    </button>
+                                </th>
+                                <th>
+                                    <button
+                                            class=" btn btn-link btn-icon btn-sm btn-simple"
+                                            tooltip="Voiture"
+                                            type="button">
+                                        <i class=" {{'parttime' | getIcon : 'fas'}} text-white-50"> </i>
+                                    </button>
+                                </th>
+                                <th>
+                                    <button
+                                            class=" btn btn-link btn-icon btn-sm btn-simple"
+                                            tooltip="Branchements"
+                                            type="button">
+                                        <i class=" {{'parttime' | getIcon : 'fas'}} text-white-50"> </i>
+                                    </button>
+                                </th>
+                                <th class=" text-right">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let data of memberResa.resas; let i = index">
+                                <td>i</td>
+                                <td>{{data.startDate | date}}</td>
+                                <td>{{data.endDate | date}}</td>
+                                <td>{{data.days}}</td>
+                                <td>
+                                    <bSwitch disabled
+                                             [(ngModel)]="data.identity"
+                                             [switch-off-text]="'NOK'"
+                                             [switch-on-text]="'OK'"
+                                             [switch-on-color]="'primary'"
+                                             [switch-off-color]="'primary'">
+                                    </bSwitch>
+                                </td>
+                                <td>{{data.identityType}}</td>
+                                <td>{{data.identityNum}}</td>
+
+                                <td class=" text-right">
+                                    <button (click)="onDeleteResa(i)"
+                                            class=" btn btn-danger btn-link btn-icon btn-sm btn-simple"
+                                            tooltip="Supprimer"
+                                            type="button">
+                                        <i class=" tim-icons icon-simple-remove"> </i>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div #anchorProfil>
+        <div class="row">
+            <div class="col-4 d-flex justify-content-start">
+                <h4>
+                    <i class=" {{'kpi' | getIcon : 'fas'}} default-light-text mr-1"> </i>
+                    <span class=" default-light-text">Profil</span>
+                </h4>
+            </div>
+            <div class="col-8 d-flex justify-content-end">
+                <h4>
+                </h4>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="memberResa"  class=" row">
+        <div class=" col-md-12 ml-auto mr-auto">
+            <div class=" card">
+                <div class=" card-body">
+                    <tabset
+                            class="nav-pills-primary nav-pills-icons justify-content-center"
+                            type="pills">
+                        <tab>
+                            <ng-template tabHeading>
+                                <i class=" {{'chart' | getIcon : 'fad'}}"> </i> P&L
+                            </ng-template>
+
+                            <!--app-tab-profit-and-lost [ca]="projectData.ca"
+                                              [caSent]="projectData.caSent"
+                                              [caPaid]="projectData.caPaid"
+                                              [prod]="projectData.prod"
+                                              [prodAssign]="projectData.prodAssign"
+                                              [cost]="projectData.cost"></app-tab-profit-and-lost-->
+                        </tab>
+                        <tab>
+                            <ng-template tabHeading>
+                                <i class=" {{'member-team' | getIcon : 'fad'}}"> </i> P&L
+                            </ng-template>
+
+                            <!--app-tab-profit-and-lost [ca]="projectData.ca"
+                                              [caSent]="projectData.caSent"
+                                              [caPaid]="projectData.caPaid"
+                                              [prod]="projectData.prod"
+                                              [prodAssign]="projectData.prodAssign"
+                                              [cost]="projectData.cost"></app-tab-profit-and-lost-->
+                        </tab>
+                        <tab>
+                            <ng-template tabHeading>
+                                <i class=" {{'info' | getIcon : 'fad'}}"> </i>  Détails
+                            </ng-template>
+                            <!--app-project-contract [projectCard]="projectData"
+                                                  (changeProject)="onChangeProject($event)"></app-project-contract-->
+                        </tab>
+                    </tabset>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

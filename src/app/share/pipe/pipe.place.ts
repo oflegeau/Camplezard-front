@@ -42,81 +42,65 @@ export class GetTypePlacePipe implements PipeTransform {
         if (format === 'btn') {
             switch (param) {
                 case AppISetting.PLACE_ALL:
-                    return 'btn-warning';
+                    return 'btn-white';
                 case AppISetting.PLACE_STATE:
                     return 'btn-secondary';
                 case AppISetting.PLACE_OFF:
                     return 'btn-danger';
                 case AppISetting.PLACE_BUSY:
-                    return 'btn-success';
+                    return 'btn-primary';
                 case AppISetting.PLACE_BOOKED:
                     return 'btn-info';
                 case AppISetting.PLACE_FREE:
-                    return 'btn-primary';
-            }
-        }
-        if (format === 'background') {
-            switch (param) {
-                case AppISetting.PLACE_ALL:
-                    return '#DE7A22';
-                case AppISetting.PLACE_STATE:
-                    return '#F4CC70';
-                case AppISetting.PLACE_OFF:
-                    return '#F98866';
-                case AppISetting.PLACE_BUSY:
-                    return '#209488';
-                case AppISetting.PLACE_BOOKED:
-                    return '#80BD9E';
-                case AppISetting.PLACE_FREE:
-                    return '#89DA59';
-            }
-        }
-        if (format === 'background-state') {
-            switch (param) {
-                case AppISetting.PLACE_ALL:
-                    return '#C46B1D';
-                case AppISetting.PLACE_STATE:
-                    return '#DBB865';
-                case AppISetting.PLACE_OFF:
-                    return '#E07B5C';
-                case AppISetting.PLACE_BUSY:
-                    return '#1B7A71';
-                case AppISetting.PLACE_BOOKED:
-                    return '#6FA389';
-                case AppISetting.PLACE_FREE:
-                    return '#78BF4E';
+                    return 'btn-success';
             }
         }
         if (format === 'color') {
             switch (param) {
                 case AppISetting.PLACE_ALL:
-                    return '#e3e3e3';
+                    return 'text-white';
                 case AppISetting.PLACE_STATE:
-                    return '#020202';
+                    return 'text-secondary';
                 case AppISetting.PLACE_OFF:
-                    return '#e3e3e3';
+                    return 'text-danger';
                 case AppISetting.PLACE_BUSY:
-                    return '#e3e3e3';
+                    return 'text-primary';
                 case AppISetting.PLACE_BOOKED:
-                    return '#e3e3e3';
+                    return 'text-info';
                 case AppISetting.PLACE_FREE:
-                    return '#020202';
+                    return 'text-success';
             }
         }
-        if (format === 'badge') {
+        if (format === 'color-text') {
             switch (param) {
                 case AppISetting.PLACE_ALL:
-                    return 'badge-warning';
+                    return 'text-black'
                 case AppISetting.PLACE_STATE:
-                    return 'badge-secondary';
+                    return 'text-white'
                 case AppISetting.PLACE_OFF:
-                    return 'badge-danger';
+                    return 'text-white';
                 case AppISetting.PLACE_BUSY:
-                    return 'badge-success';
+                    return 'text-black';
                 case AppISetting.PLACE_BOOKED:
-                    return 'badge-info';
+                    return 'text-white';
                 case AppISetting.PLACE_FREE:
-                    return 'badge-primary';
+                    return 'text-white';
+            }
+        }
+        if (format === 'color-code') {
+            switch (param) {
+                case AppISetting.PLACE_ALL:
+                    return AppISetting.COLOR_WHITE;
+                case AppISetting.PLACE_STATE:
+                    return AppISetting.COLOR_SECONDARY;
+                case AppISetting.PLACE_OFF:
+                    return AppISetting.COLOR_DANGER;
+                case AppISetting.PLACE_BUSY:
+                    return AppISetting.COLOR_PRIMARY;
+                case AppISetting.PLACE_BOOKED:
+                    return AppISetting.COLOR_INFO;
+                case AppISetting.PLACE_FREE:
+                    return AppISetting.COLOR_SUCCESS;
             }
         }
         return '';

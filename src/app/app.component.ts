@@ -2,13 +2,13 @@ import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {AppIBreadCrumb} from './share/interface/app.interface.breadcrumb';
 import {Connect} from './share/back-model/Connect';
-import {Member} from './share/back-model/MemberCard';
 import {AuthService} from './share/guard/auth.service';
 import {MemberListService} from './share/service/member.list.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import PerfectScrollbar from 'perfect-scrollbar';
 import {distinctUntilChanged, filter} from 'rxjs/operators';
+import {Member} from './share/back-model/Member';
 
 const misc: any = {
   sidebar_mini_active: true
@@ -98,7 +98,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.showNavbarButton();
 
     if (this.connect && this.connect.role > 1) {
-      this.subMembers = this.memberListService.obs_getList().subscribe(data => {
+      this.subMembers = this.memberListService.get_obs().subscribe(data => {
         if (data) {
           this.memberLists = data;
         }

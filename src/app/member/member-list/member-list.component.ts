@@ -1,12 +1,12 @@
 import {Component, OnDestroy, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {PageMember} from '../../share/back-model/PageMember';
 import {Subject, Subscription} from 'rxjs';
-import {MemberCard} from '../../share/back-model/MemberCard';
 import {DeleteConfirmation} from '../../share/front-model/DeleteConfirmation';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {MemberCardPageService} from '../../share/service/memberCard.page.service';
 import {AppISetting} from '../../share/interface/app.interface.setting';
+import {Member, MemberCard} from '../../share/back-model/Member';
 
 @Component({
   selector: 'app-member-list',
@@ -60,17 +60,17 @@ export class MemberListComponent implements OnInit, OnDestroy {
 
   onRefresh() {
     if (this.activePage > 0) {
-      this.memberCardPageService.obs_getPage(this.activePage - 1,
-          this.itemsPerPage,
-          this.filterTypeValue,
-          this.sortAsc,
-          this.sortName);
+      this.memberCardPageService.get_obs(this.activePage - 1,
+                                              this.itemsPerPage,
+                                              this.filterTypeValue,
+                                              this.sortAsc,
+                                              this.sortName);
     }
   }
 
   ngOnInit() {
     if (this.activePage > 0) {
-      this.subMembers = this.memberCardPageService.obs_getPage(this.activePage - 1,
+      this.subMembers = this.memberCardPageService.get_obs(this.activePage - 1,
           this.itemsPerPage,
           this.filterTypeValue,
           this.sortAsc,
@@ -83,7 +83,7 @@ export class MemberListComponent implements OnInit, OnDestroy {
             }
           },
           error => console.log(error),
-          () => console.log('complete clients'));
+          () => console.log('liste members'));
     }
   }
 
@@ -98,7 +98,7 @@ export class MemberListComponent implements OnInit, OnDestroy {
   /*--------------------------------------------------------------------*/
 
   onSelect(id: string) {
-    this.router.navigate(['/kraken/members/' + id]);
+    this.router.navigate(['/app/members/' + id]);
   }
 
   onTypeMember(i: number) {
@@ -134,9 +134,9 @@ export class MemberListComponent implements OnInit, OnDestroy {
   }
 
   createMember(event: MemberCard) {
-    this.memberCardPageService.pro_create(event).then(() => {
-          this.toastrService.success('<span class=" tim-icons icon-pencil"></span>Ressource ajoutée',
-              'Mise A jour de Kraken', AppISetting.toastOptions);
+    this.memberCardPageService.create(event).then(() => {
+          this.toastrService.success('<span class=" tim-icons icon-pencil"></span>Personne ajoutée',
+              'Mise A jour de base', AppISetting.toastOptions);
           this.onRefresh();
         },
         (res) => console.log(res));
@@ -153,10 +153,10 @@ export class MemberListComponent implements OnInit, OnDestroy {
   }
 
   changeMember(event: MemberCard) {
-    this.memberCardPageService.pro_update(event).then(
+    this.memberCardPageService.update(event).then(
         () => {
-          this.toastrService.info('<span class=" tim-icons icon-pencil"></span>Ressource modifiée',
-              'Mise A jour de Kraken', AppISetting.toastOptions);
+          this.toastrService.info('<span class=" tim-icons icon-pencil"></span>Personne modifiée',
+              'Mise A jour de la base', AppISetting.toastOptions);
         },
         (res) => console.log(res));
   }
@@ -174,7 +174,7 @@ export class MemberListComponent implements OnInit, OnDestroy {
 
   confirmDelete(event : number) {
     if (this.line !== -1) {
-      this.memberCardPageService.pro_delete(this.members.items[this.line]).then(
+      this.memberCardPageService.delete(this.members.items[this.line]).then(
           (reponse) => {
             if (reponse.ok === true) {
               this.toastrService.warning('<span class=" tim-icons icon-trash-simple"></span>Personne supprimée', 'Mise A jour de la Base',

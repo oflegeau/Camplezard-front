@@ -14,7 +14,7 @@ export class RoleGuard implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
     const connect = JSON.parse(localStorage.getItem('connect'));
-    let role = {admin: false, manager: false, customer: false, member: false, user: false};
+    let role = {admin: false, manager: false, user: false};
     role = JSON.parse(next.data.role);
 
     switch (connect.role) {
@@ -25,16 +25,6 @@ export class RoleGuard implements CanActivate {
         break;
       case AppISetting.ROLE_MANAGER:
         if (role.manager) {
-          return true;
-        }
-        break;
-      case AppISetting.ROLE_CUSTOMER:
-        if (role.customer) {
-          return true;
-        }
-        break;
-      case AppISetting.ROLE_MEMBER:
-        if (role.member) {
           return true;
         }
         break;

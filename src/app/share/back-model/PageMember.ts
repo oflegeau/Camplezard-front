@@ -1,4 +1,4 @@
-import {MemberCard} from './MemberCard';
+import {MemberCard} from './Member';
 
 export class PageMember {
 

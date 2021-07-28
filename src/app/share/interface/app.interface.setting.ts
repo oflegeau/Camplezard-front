@@ -13,10 +13,8 @@ export class AppISetting {
   public static HTTP_FAIL = 417;
   public static HTTP_ERROR = 500;
 
-  public static ROLE_ADMIN = 5;
-  public static ROLE_MANAGER = 4;
-  public static ROLE_CUSTOMER = 3;
-  public static ROLE_MEMBER = 2;
+  public static ROLE_ADMIN = 3;
+  public static ROLE_MANAGER = 2;
   public static ROLE_USER = 1;
 
   public static LEAVE = 10;
@@ -40,15 +38,6 @@ export class AppISetting {
   public static MEMBER_ALL = 0;
   public static MEMBER_MEMBER = 1;
   public static MEMBER_CLIENT = 2;
-  public static MEMBER_OUT = 3;
-
-  public static PROJECT_ALL = 0;
-  public static PROJECT_STRUCT = 1;
-  public static PROJECT_TIME = 2;
-  public static PROJECT_DAAS = 3;
-  public static PROJECT_FIXED = 4;
-  public static PROJECT_NF = 5;
-  public static PROJECT_CT = 6;
 
   public static toastOptions = {timeOut: 5000,
                                 closeButton: true,
@@ -56,74 +45,23 @@ export class AppISetting {
                                 toastClass: 'alert alert-info alert-with-icon',
                                 positionClass: 'toast-top-right'};
 
-
-
-  public static getColor(type: string, origin: number, i: number): string {
-    const rotColorBtnStruct = [ 'btn-secondary', 'btn-info', 'btn-blue','btn-teal', 'btn-success',  'btn-cyan',
-      'btn-secondary', 'btn-info', 'btn-blue','btn-teal', 'btn-success',  'btn-cyan',
-      'btn-secondary', 'btn-info', 'btn-blue','btn-teal', 'btn-success',  'btn-cyan'];
-    const rotColorBtnWork = [  'btn-primary',  'btn-warning', 'btn-yellow', 'btn-orange',
-      'btn-primary',  'btn-warning', 'btn-yellow', 'btn-orange',
-      'btn-primary',  'btn-warning', 'btn-yellow', 'btn-orange'];
-    const rotColorBtnLeave = [ 'btn-danger', 'btn-red' , 'btn-pink',
-      'btn-danger', 'btn-red' , 'btn-pink',
-      'btn-danger', 'btn-red' , 'btn-pink',];
-
-    const rotColorTxtStruct = [ 'text-white', 'text-white',  'text-black-50', 'text-black-50', 'text-white', 'text-black-50',
-      'text-white', 'text-white',  'text-black-50', 'text-black-50', 'text-white', 'text-black-50',
-      'text-white', 'text-white',  'text-black-50', 'text-black-50', 'text-white', 'text-black-50'];
-    const rotColorTxtWork = [   'text-black-50', 'text-black-50',  'text-black-50','text-black-50 ',
-      'text-black-50', 'text-black-50',  'text-black-50','text-black-50 ',
-      'text-black-50', 'text-black-50',  'text-black-50','text-black-50 '];
-    const rotColorTxtLeave = [  'text-black-50','text-white', 'text-black-50',
-      'text-black-50','text-white', 'text-black-50',
-      'text-black-50','text-white', 'text-black-50'];
-
-    const rotColorStruct = [ '#217CA3', '#5998B3', '#78CCF0','#11cdef', '#1CB4BA',  '#2bffc6', '#1CB4BA',
-      '#217CA3', '#5998B3', '#78CCF0','#11cdef', '#1CB4BA',  '#2bffc6',
-      '#217CA3', '#5998B3', '#78CCF0','#11cdef', '#1CB4BA',  '#2bffc6'];
-    const rotColorWork = [   '#F0A132',  '#F0BA18', '#eec756', '#e98e10',
-      '#F0A132',  '#F0BA18', '#eec756', '#e98e10',
-      '#F0A132',  '#F0BA18', '#eec756', '#e98e10'];
-    const rotColorLeave = [  '#F07148', '#e9607d' , '#f3a4b5' ,
-      '#F07148', '#e9607d' , '#f3a4b5',
-      '#F07148', '#e9607d' , '#f3a4b5'];
-
-    switch(type) {
-      case 'btn':
-        switch (origin) {
-          case this.PROJECT_STRUCT : return rotColorBtnStruct[i];
-          case this.PROJECT_TIME : return rotColorBtnWork[i];
-          case this.PROJECT_NF : return 'btn-neutral';
-          case this.PROJECT_CT : return 'btn-purple';
-          case this.LEAVE : return rotColorBtnLeave[i];
-        }
-        break;
-
-      case 'txt':
-        switch (origin) {
-          case this.PROJECT_STRUCT : return rotColorTxtStruct[i];
-          case this.PROJECT_TIME : return rotColorTxtWork[i];
-          case this.PROJECT_NF : return 'text-black-50';
-          case this.PROJECT_CT : return 'text-black-50';
-          case this.LEAVE : return rotColorTxtLeave[i];
-        }
-        break;
-
-      case 'color':
-        switch (origin) {
-          case this.PROJECT_STRUCT : return rotColorStruct[i];
-          case this.PROJECT_TIME : return rotColorWork[i];
-          case this.PROJECT_NF : return '#e3e3e3';
-          case this.PROJECT_CT : return '#8965e0';
-          case this.LEAVE : return rotColorLeave[i];
-        }
-        break;
-    }
-    return  '';
-  }
-
-
+  public static COLOR_WHITE = '#e3e3e3';
+  public static COLOR_GREY = '#DEDEDE7F';
+  public static COLOR_BLACK = '#211f30';
+  public static COLOR_DEFAULT = '#32384D';
+  public static COLOR_DEFAULT_LIGHT = '#535b70';
+  public static COLOR_PRIMARY_DARK = '#F57333';
+  public static COLOR_PRIMARY = '#E29930';
+  public static COLOR_PRIMARY_LIGHT = '#F0C232';
+  public static COLOR_SECONDARY_DARK = '#4050B8';
+  public static COLOR_SECONDARY = '#217CA3';
+  public static COLOR_SECONDARY_LIGHT = '#6284B3';
+  public static COLOR_INFO = '#5998B3';
+  public static COLOR_SUCCESS = '#3FB090';
+  public static COLOR_SUCCESS_LIGHT = '#44B2B3';
+  public static COLOR_DANGER = '#F55D51';
+  public static COLOR_DANGER_LIGHT = '#E5724B';
+  public static COLOR_WARNING = '#F0DF26';
 
   public static getDayOff(year:number): Array<Date> {
     const tab = new Array<Date>();

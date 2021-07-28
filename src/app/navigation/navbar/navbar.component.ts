@@ -60,7 +60,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     this.bsConfig = Object.assign({}, {
       isAnimated: true,
-      containerClass: 'theme-green',
+      containerClass: 'theme-orange',
       dateInputFormat: 'MM-YYYY',
     });
   }
@@ -74,7 +74,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.sidebarClose();
     });
 
-    this.globalVariableSub = this.globalVariableService.obs_getObj().subscribe(data => {
+    this.globalVariableSub = this.globalVariableService.get_obs().subscribe(data => {
       this.globalVariable=data;
       this.nbMonths = this.globalVariable.nbMonths;
       this.periodMonths = this.globalVariableService.getPeriodMonths();
@@ -91,12 +91,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   /*--------------------------------------------------------------------*/
 
   onMonths(nb: number) {
-    this.globalVariableService.pro_update_PeriodMonth(nb).then();
+    this.globalVariableService.update_PeriodMonth(nb).then();
   }
 
   onChangeDate(value: Date) {
     const date = value;
-    this.globalVariableService.pro_update_LastMonth(new Date(
+    this.globalVariableService.update_LastMonth(new Date(
         date.getFullYear(),
         date.getMonth(),
         AppISetting.nbDayByMonth(date.getFullYear(), date.getMonth()), 23, 59, 59)).then();

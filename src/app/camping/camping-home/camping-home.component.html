@@ -1,37 +1,53 @@
 <div class=" content">
     <section *ngIf="places" class="row mt-4">
 
-        <div class="col-7 d-flex justify-content-left">
-            <ng-container *ngFor="let data of typePlaces; let i= index">
-                <a style="cursor: pointer" (click)="onTypePlace(i)">
-                    <button (click)="onTypePlace(i)"
-                            class=" btn {{i | getTypePlace : 'btn'}} btn-link btn-icon btn-sm btn-simple"
-                            tooltip="{{i | getTypePlace : 'text'}}"
-                            type="button">
-                        <i class=" {{i | getTypePlace : 'icon' | getIcon : 'fas'}} "> </i>
-                    </button>
-                    <span class=" mr-3 badge {{i | getTypePlace : 'badge'}}"
-                          style=" color:{{i | getTypePlace : 'color'}}">{{places.type[i]}}</span>
-                </a>
-            </ng-container>
-
-        </div>
-
-        <div class="col-3">
+        <div class="col-6 d-flex justify-content-left">
             <h2>
-                <span class="primary-text">Zone {{activePage}}</span>
+                <span class="text-primary">Zone {{activePage}}</span>
             </h2>
         </div>
-
-        <div class="col-2 d-flex justify-content-end">
+        <div class="col-6 d-flex justify-content-end">
             <h4>
-                <app-control-period [periodMonths]="periodMonths"
-                                    [nbMonths]="nbMonths"></app-control-period>
+                <a style="cursor: pointer" (click)="onLess()">
+                    <i class=" fad fa-arrow-alt-circle-left text-white mr-2"> </i>
+                </a>
+                <input type="text" style="cursor: pointer; color: #efeff1"
+                       placeholder="Date"
+                       class=" custom text-white"
+                       bsDatepicker
+                       (bsValueChange)="onChangeDate($event)"
+                       [bsValue]="bsValue"
+                       [minDate]="minDate"
+                       [maxDate]="maxDate"
+                       [minMode]="'day'"
+                       [daysDisabled]="[6,0]"
+                       [bsConfig]="bsConfig">
+                <a style="cursor: pointer" (click)="onMore()">
+                    <i class="fad fa-arrow-alt-circle-right text-white ml-2"></i>
+                </a>
             </h4>
         </div>
     </section>
 
-    <section *ngIf="places" style="margin-top: 50px">
+    <section *ngIf="places" class="row">
+
+        <div class="col-2 d-flex justify-content-left">
+           <span class="text-default">Filtres</span>
+        </div>
+        <div class="col-10 d-flex justify-content-end">
+            <h4>
+                <ng-container *ngFor="let data of typePlaces; let i= index">
+                    <a style="cursor: pointer" (click)="onTypePlace(i)">
+                        <i class="{{i | getTypePlace : 'icon' | getIcon : 'fad'}} text-white ml-3"> </i>
+                        <span class="text-white mr-1" style="font-size: small"> {{i | getTypePlace : 'text'}} </span>
+                        <span class="badge {{i | getTypePlace : 'btn'}} {{i | getTypePlace : 'color-text'}}" >{{places.type[i]}}</span>
+                    </a>
+                </ng-container>
+            </h4>
+        </div>
+    </section>
+
+    <section *ngIf="places" style="margin-top: 10px">
             <section class="card-area">
             <app-camping-place-card *ngIf="places.items.length > 0"
                                     [place]="places.items[0]"></app-camping-place-card>

@@ -4,34 +4,34 @@ import {AuthService} from '../guard/auth.service';
 import {Router} from '@angular/router';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {AppISetting} from '../interface/app.interface.setting';
-import {PagePlace} from '../back-model/PagePlace';
+import {Place} from '../back-model/Place';
 import {PlaceRestService} from '../rest/place.rest.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class PlacePageService {
+export class PlaceListService {
 
-    private obj: PagePlace;
-    private obsObj: BehaviorSubject<PagePlace>;
+    private list: Place[];
+    private obsList: BehaviorSubject<Place[]>;
 
     constructor(private placeRestService: PlaceRestService,
                 private authService: AuthService,
                 private router: Router) {
-        this.obj = null;
-        this.obsObj = new BehaviorSubject<PagePlace>(this.obj);
+        this.list = null;
+        this.obsList = new BehaviorSubject<Place[]>(this.list);
     }
 
     // ------------------------------------------------------------------------------------------- //
     // GET
     // ------------------------------------------------------------------------------------------- //
 
-    public get_obs(zone: number): Observable<PagePlace> {
-        this.placeRestService.getPlacePage(zone).subscribe(
-            (data: HttpResponse<PagePlace>) => {
+    public get_obs(): Observable<Place[]> {
+        this.placeRestService.getPlaceList().subscribe(
+            (data: HttpResponse<Place[]>) => {
                 if (data.ok && data.status === AppISetting.HTTP_OK) {
-                    this.obj = data.body;
-                    this.obsObj.next(this.obj);
+                    this.list = data.body;
+                    this.obsList.next(this.list);
                 }
             },
             (err: HttpErrorResponse) => {
@@ -40,18 +40,20 @@ export class PlacePageService {
                     case AppISetting.HTTP_FORBIDDEN:  this.router.navigate(['/forbidden']); break;
                     case AppISetting.HTTP_UNAUTHORIZED: this.authService.signOut(); break;
                     default: if (err.error) {console.log(err.error.message); } break;
-                }} else {console.log('Pb HTTP REST'); }});
-        return this.obsObj.asObservable();
+                }} else {console.log('Pb HTTP REST');
+            }});
+
+        return this.obsList.asObservable();
     }
 
-    public get_prom(zone: number): Promise<PagePlace> {
+    public get_prom(): Promise<Place[]> {
         return new Promise((resolve, reject) => {
-            this.placeRestService.getPlacePage(zone).subscribe(
-                (data: HttpResponse<PagePlace>) => {
+            this.placeRestService.getPlaceList().subscribe(
+                (data: HttpResponse<Place[]>) => {
                     if (data.ok && data.status === AppISetting.HTTP_OK) {
-                        this.obj = data.body;
-                        this.obsObj.next(this.obj);
-                        resolve(this.obj);
+                        this.list = data.body;
+                        this.obsList.next(this.list);
+                        resolve(this.list);
                     }
                 },
                 (err: HttpErrorResponse) => {
@@ -65,4 +67,6 @@ export class PlacePageService {
                 });
         });
     }
+
+    // ------------------------------------------------------------------------------------------- //
 }

@@ -17,7 +17,6 @@ import {ForbiddenComponent} from './forbidden/forbidden.component';
 import {UserComponent} from './user/user.component';
 import {LockComponent} from './lock/lock.component';
 import { LoginComponent } from './login/login.component';
-import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
 import {AlertConfig, BsDatepickerModule} from 'ngx-bootstrap';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
@@ -41,7 +40,6 @@ import {ShareModule} from '../share/share.module';
         CollapseModule.forRoot(),
         BsDropdownModule.forRoot(),
         ModalModule.forRoot(),
-        AngularMultiSelectModule,
         BsDatepickerModule,
         NgSelectModule,
         ShareModule

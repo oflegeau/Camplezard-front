@@ -1,7 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RouterModule} from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
 import {GetIconPipe} from './pipe/pipe.icon';
 import {IsBinaryColorPipe, IsBinaryPipe, IsRoleAdminPipe, IsRoleManagerPipe, IsRoleMemberPipe, IsRoleUserPipe} from './pipe/pipe.is';
 import {LogoPipe, PhotoPipe, SanitizePipe} from './pipe/pipe.photo';
@@ -17,18 +15,11 @@ import {ToastrModule} from 'ngx-toastr';
 import {BsDatepickerModule} from 'ngx-bootstrap';
 import {GetTypePlacePipe} from './pipe/pipe.place';
 import {ControlPeriodComponent} from './composant/control-period/control-period.component';
-import {GetTypeMemberPipe, GetTypeRolePipe} from './pipe/pipe.member';
+import {GetTypeMemberPipe} from './pipe/pipe.member';
+import {CardKpiComponent} from './composant/card-kpi/card-kpi.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule, ReactiveFormsModule,
-        HammerModule,
-        ImageCropperModule,
-        ModalModule.forRoot(),
-        ToastrModule.forRoot(),
-        BsDatepickerModule.forRoot(),
-    ],
     declarations: [
         GetIconPipe,
         IsRoleUserPipe,
@@ -44,12 +35,22 @@ import {GetTypeMemberPipe, GetTypeRolePipe} from './pipe/pipe.member';
         DivBy10Pipe,
         GetTypePlacePipe,
         GetTypeMemberPipe,
-        GetTypeRolePipe,
         IsDateNotNullPipe,
         ModalConfirmDeleteComponent,
         ModalConfirmCreateComponent,
         PictureUploadComponent,
-        ControlPeriodComponent
+        ControlPeriodComponent,
+        CardKpiComponent
+    ],
+    imports: [
+        CommonModule,
+        FormsModule, ReactiveFormsModule,
+        HammerModule,
+        ImageCropperModule,
+        ModalModule.forRoot(),
+        ToastrModule.forRoot(),
+        BsDatepickerModule.forRoot(),
+        RouterModule,
     ],
     exports: [
         GetIconPipe,
@@ -67,11 +68,13 @@ import {GetTypeMemberPipe, GetTypeRolePipe} from './pipe/pipe.member';
         IsDateNotNullPipe,
         GetTypePlacePipe,
         GetTypeMemberPipe,
-        GetTypeRolePipe,
         ModalConfirmDeleteComponent,
         ModalConfirmCreateComponent,
         PictureUploadComponent,
-        ControlPeriodComponent
+        ControlPeriodComponent,
+        CardKpiComponent
+    ],
+    entryComponents: [
     ],
     providers: [],
 })

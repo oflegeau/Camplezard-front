@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges} from '@angular/core';
-import {Place} from '../../../share/back-model/Place';
+import {Place, PlaceCard} from '../../../share/back-model/Place';
 
 @Component({
   selector: 'app-camping-place-card',
@@ -8,13 +8,20 @@ import {Place} from '../../../share/back-model/Place';
 })
 export class CampingPlaceCardComponent implements OnChanges {
 
-  @Input() place: Place;
+  @Input() place: PlaceCard;
   public now = new Date();
+
+  public ca: number;
+  public cost: number;
+  public margin: number;
+  public prod: number;
 
   constructor() {
     this.place = null;
   }
 
   ngOnChanges() {
+      this.ca = 10239;
+      this.prod = 233;
   }
 }

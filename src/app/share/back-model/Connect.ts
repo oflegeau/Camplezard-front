@@ -3,6 +3,7 @@ export class Connect {
   public role: number;
   public emailVerified: boolean;
   public lastConnexion: Date;
+
   public email: string;
   public phone: string;
   public name: string;

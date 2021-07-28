@@ -50,7 +50,7 @@ const routes: Routes = [
                     component: CampingPlanComponent,
                     canActivate: [RoleGuard],
                     data: {
-                      role: JSON.stringify({admin: true, manager: true, customer: true, member: true, user: false}),
+                      role: JSON.stringify({admin: true, manager: true, user: false}),
                       breadcrumb: 'Mon Dashboard',
                     },
                   },
@@ -59,7 +59,7 @@ const routes: Routes = [
                     component: UserComponent,
                     canActivate: [RoleGuard],
                     data: {
-                      role: JSON.stringify({admin: true, manager: true, customer: true, member: true, user: false}),
+                      role: JSON.stringify({admin: true, manager: true, user: false}),
                       breadcrumb: 'Mon Compte',
                     },
                   },
@@ -76,7 +76,7 @@ const routes: Routes = [
         path: '',
         canActivate: [RoleGuard],
         data: {
-          role: JSON.stringify({admin: true, manager: true, customer: false, member: true, user: false}),
+          role: JSON.stringify({admin: true, manager: true, user: false}),
         },
         children: [{
           path: '',
@@ -87,7 +87,7 @@ const routes: Routes = [
             canActivate: [RoleGuard],
             component: CampingItemComponent,
             data: {
-              role: JSON.stringify({admin: true, manager: true, customer: false, member: true, user: false}),
+              role: JSON.stringify({admin: true, manager: true, user: false}),
               breadcrumb: 'ItemPlace',
             },
           },
@@ -106,7 +106,7 @@ const routes: Routes = [
         path: '',
         canActivate: [RoleGuard],
         data: {
-          role: JSON.stringify({admin: true, manager: true, customer: false, member: true, user: false}),
+          role: JSON.stringify({admin: true, manager: true, user: false}),
         },
         children: [{
           path: '',
@@ -116,7 +116,7 @@ const routes: Routes = [
             path: ':id',
             canActivate: [RoleGuard],
             data: {
-              role: JSON.stringify({admin: true, manager: true,customer: false, member: true,  user: false}),
+              role: JSON.stringify({admin: true, manager: true, user: false}),
               breadcrumb: 'ItemMember',
             },
             children:

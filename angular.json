@@ -27,15 +27,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
               "src/assets/css/nucleo-icons.css",
               "src/assets/demo/demo.css",
               "node_modules/bs-stepper/dist/css/bs-stepper.css",
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/assets/scss/black-dashboard.scss",
-              "node_modules/@swimlane/ngx-datatable/index.css",
-              "node_modules/@swimlane/ngx-datatable/assets/icons.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/@ng-select/ng-select/themes/default.theme.css",
+              "src/styles.scss"
             ],
             "scripts": []
           },
